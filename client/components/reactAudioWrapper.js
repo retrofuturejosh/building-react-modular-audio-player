@@ -22,7 +22,11 @@ export class ReactAudioWrapper extends Component {
     this.seekingInterval = setInterval( () => {
       let currentAudioTime = (this.audioRef.currentTime / this.audioRef.duration) * 100;
       this.setState({seekerVal: currentAudioTime});
+      console.log('called');
     }, 500);
+    this.audioRef.onended = () => {
+      clearInterval(this.seekingInterval);
+    };
   }
 
   handlePlay(e) {
