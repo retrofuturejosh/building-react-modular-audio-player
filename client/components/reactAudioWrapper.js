@@ -8,7 +8,8 @@ export class ReactAudioWrapper extends Component {
     };
     this.handlePlay = this.handlePlay.bind(this);
     this.handlePause = this.handlePause.bind(this);
-    this.handleSeeker = this.handleSeeker.bind(this);
+    this.handleSeekSlider = this.handleSeekSlider.bind(this);
+    this.handleSeek = this.handleSeek.bind(this);
   }
 
   handlePlay(e) {
@@ -19,8 +20,13 @@ export class ReactAudioWrapper extends Component {
     this.audioRef.pause();
   }
 
-  handleSeeker(e) {
+  handleSeekSlider(event) {
     this.setState({seekerVal: event.target.value});
+  }
+
+  handleSeek(event){
+    let seekTo = this.audioRef.duration * (event.target.value / 100);
+    this.audioRef.currentTime = seekTo;
   }
 
   render() {
@@ -47,9 +53,9 @@ export class ReactAudioWrapper extends Component {
           max="100"
           value={this.state.seekerVal}
           step="1"
-          onChange={this.handleSeeker}
-        >
-        </input>
+          onChange={this.handleSeekSlider}
+          onMouseUp={this.handleSeek}
+        />
       </div>
     )
   }
