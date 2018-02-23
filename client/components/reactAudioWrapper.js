@@ -34,15 +34,21 @@ export class ReactAudioWrapper extends Component {
   }
 
   handlePlay() {
-    this.audioRef.play();
-    this.setState({playing: true});
-    this.handleProgress();
+    if (!this.state.playing) {
+      this.audioRef.play();
+      this.setState({playing: true});
+      this.handleProgress();
+    }
   }
 
   handlePause() {
-    clearInterval(this.seekingInterval);
-    this.audioRef.pause();
-    this.setState({playing: false})
+    if (this.state.playing) {
+      clearInterval(this.seekingInterval);
+      this.audioRef.pause();
+      this.setState({playing: false})
+    } else {
+      this.handlePlay()
+    }
   }
 
   handleSeekSlider(event) {
