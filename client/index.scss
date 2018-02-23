@@ -14,7 +14,7 @@ body {
   width: 10em;
   cursor: default;
 
-  &-top {
+  &-top, &-bottom {
     display: flex;
   }
 }

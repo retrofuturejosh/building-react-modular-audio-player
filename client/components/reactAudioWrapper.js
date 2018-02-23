@@ -9,6 +9,8 @@ export class ReactAudioWrapper extends Component {
       playing: false,
       muted: false,
       volumePreMute: "75",
+      duration: "",
+      currentAudioTime: "0:00"
     };
     this.seekingInterval = null;
     this.handlePlay = this.handlePlay.bind(this);
@@ -18,6 +20,7 @@ export class ReactAudioWrapper extends Component {
     this.handleVolume = this.handleVolume.bind(this);
     this.handleProgress = this.handleProgress.bind(this);
     this.handleMute = this.handleMute.bind(this);
+    this.setTime = this.setTime.bind(this);
   }
 
   handleProgress() {
@@ -25,12 +28,28 @@ export class ReactAudioWrapper extends Component {
       clearInterval(this.seekingInterval);
     }
     this.seekingInterval = setInterval( () => {
+      this.setTime();
       let currentAudioTime = (this.audioRef.currentTime / this.audioRef.duration) * 100;
       this.setState({seekerVal: currentAudioTime});
     }, 500);
     this.audioRef.onended = () => {
       clearInterval(this.seekingInterval);
     };
+  }
+
+  setTime(seekTo){
+    let time;
+    if (seekTo || seekTo === 0) {
+      time = seekTo;
+    } else {
+      time = this.audioRef.currentTime;
+    }
+    let minutes = Math.floor(time / 60);
+    let seconds = Math.floor(time - minutes * 60);
+    if (seconds < 10) {
+      seconds = '0' + seconds;
+    }
+    this.setState({currentAudioTime: `${minutes}:${seconds}`});
   }
 
   handlePlay() {
@@ -47,19 +66,23 @@ export class ReactAudioWrapper extends Component {
       this.audioRef.pause();
       this.setState({playing: false})
     } else {
-      this.handlePlay()
+      this.handlePlay();
     }
   }
 
   handleSeekSlider(event) {
+    let seekTo = this.audioRef.duration * (event.target.value / 100);
     clearInterval(this.seekingInterval);
+    this.setTime(seekTo);
     this.setState({seekerVal: event.target.value});
   }
 
   handleSeek(event){
     let seekTo = this.audioRef.duration * (event.target.value / 100);
     this.audioRef.currentTime = seekTo;
-    this.handleProgress();
+    if (this.state.playing) {
+      this.handleProgress();
+    }
   }
 
   handleVolume(event, muting) {
@@ -134,7 +157,10 @@ export class ReactAudioWrapper extends Component {
             onChange={this.handleVolume}
           />
         </div>
-        <div audio-player-bottom>
+        <div className="audio-player-bottom">
+          <div className="current-time">
+            {this.state.currentAudioTime}
+          </div>
           <input
             className="slider"
             type="range"
