@@ -22,20 +22,19 @@ export class ReactAudioWrapper extends Component {
     this.seekingInterval = setInterval( () => {
       let currentAudioTime = (this.audioRef.currentTime / this.audioRef.duration) * 100;
       this.setState({seekerVal: currentAudioTime});
-      console.log('called');
     }, 500);
     this.audioRef.onended = () => {
       clearInterval(this.seekingInterval);
     };
   }
 
-  handlePlay(e) {
+  handlePlay() {
     this.audioRef.play();
     this.setState({playing: true});
     this.handleProgress();
   }
 
-  handlePause(e) {
+  handlePause() {
     this.audioRef.pause();
     this.setState({playing: false})
     clearInterval(this.seekingInterval);
@@ -64,40 +63,48 @@ export class ReactAudioWrapper extends Component {
 
     return (
       <div className="audio-player">
-        <audio
-          src={this.props.mp3}
-          ref={(audioRef) => { this.audioRef = audioRef; }}
-        />
-        <div
-          id="play"
-          onClick={this.handlePlay}>
-          Play
+        <div className="audio-player-top">
+          <audio
+            src={this.props.mp3}
+            ref={(audioRef) => { this.audioRef = audioRef; }}
+          />
+          <div
+            id="play"
+            onClick={this.handlePlay}>
+            Play
+          </div>
+          <div
+            id="pause"
+            onClick={this.handlePause}>
+            Pause
+          </div>
+          <div
+            id="volume">
+            Volume
+          </div>
+          <input
+            className="slider"
+            type="range"
+            min="0"
+            max="100"
+            step="1"
+            value={this.state.volume}
+            onChange={this.handleVolume}
+          />
         </div>
-        <div
-          id="pause"
-          onClick={this.handlePause}>
-          Pause
+        <div audio-player-bottom>
+          <input
+            className="slider"
+            type="range"
+            min="0"
+            max="100"
+            step="1"
+            value={this.state.seekerVal}
+            onChange={this.handleSeekSlider}
+            onMouseDown={this.handleSeekDown}
+            onMouseUp={this.handleSeek}
+          />
         </div>
-        <input
-          id="seek-slider"
-          type="range"
-          min="0"
-          max="100"
-          step="1"
-          value={this.state.seekerVal}
-          onChange={this.handleSeekSlider}
-          onMouseDown={this.handleSeekDown}
-          onMouseUp={this.handleSeek}
-        />
-        <input
-          id="volume-slider"
-          type="range"
-          min="0"
-          max="100"
-          step="1"
-          value={this.state.volume}
-          onChange={this.handleVolume}
-        />
       </div>
     )
   }
