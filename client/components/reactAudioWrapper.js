@@ -9,8 +9,9 @@ export class ReactAudioWrapper extends Component {
       playing: false,
       muted: false,
       volumePreMute: "75",
-      duration: "",
-      currentAudioTime: "0:00"
+      duration: "0:00",
+      currentAudioTime: "0:00",
+      loaded: false
     };
     this.seekingInterval = null;
     this.handlePlay = this.handlePlay.bind(this);
@@ -21,6 +22,7 @@ export class ReactAudioWrapper extends Component {
     this.handleProgress = this.handleProgress.bind(this);
     this.handleMute = this.handleMute.bind(this);
     this.setTime = this.setTime.bind(this);
+    this.loadDuration = this.loadDuration.bind(this);
   }
 
   handleProgress() {
@@ -44,20 +46,23 @@ export class ReactAudioWrapper extends Component {
     } else {
       time = this.audioRef.currentTime;
     }
+    let currentAudioTime = this.secondsToClock(time);
+    this.setState({ currentAudioTime });
+  }
+
+  secondsToClock(time){
     let minutes = Math.floor(time / 60);
     let seconds = Math.floor(time - minutes * 60);
     if (seconds < 10) {
       seconds = '0' + seconds;
     }
-    this.setState({currentAudioTime: `${minutes}:${seconds}`});
+    return `${minutes}:${seconds}`;
   }
 
   handlePlay() {
-    if (!this.state.playing) {
-      this.audioRef.play();
-      this.setState({playing: true});
-      this.handleProgress();
-    }
+    this.audioRef.play();
+    this.setState({playing: true});
+    this.handleProgress();
   }
 
   handlePause() {
@@ -123,6 +128,11 @@ export class ReactAudioWrapper extends Component {
     this.setState({muted: !this.state.muted});
   }
 
+  loadDuration(){
+    let duration = this.secondsToClock(this.audioRef.duration);
+    this.setState({duration})
+  }
+
   render() {
 
     return (
@@ -131,6 +141,7 @@ export class ReactAudioWrapper extends Component {
           <audio
             src={this.props.mp3}
             ref={(audioRef) => { this.audioRef = audioRef; }}
+            onLoadedMetadata={this.loadDuration}
           />
           <div
             id="play"
@@ -171,6 +182,9 @@ export class ReactAudioWrapper extends Component {
             onChange={this.handleSeekSlider}
             onMouseUp={this.handleSeek}
           />
+        <div className="duration">
+          {this.state.duration}
+        </div>
         </div>
       </div>
     )
