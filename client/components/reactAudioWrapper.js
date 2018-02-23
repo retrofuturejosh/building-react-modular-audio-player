@@ -41,6 +41,7 @@ export class ReactAudioWrapper extends Component {
   }
 
   endPlay() {
+    clearInterval(this.seekingInterval);
     this.setState({
       playing: false,
       playHover: false,
@@ -59,9 +60,6 @@ export class ReactAudioWrapper extends Component {
       let currentAudioTime = (this.audioRef.currentTime / this.audioRef.duration) * 100;
       this.setState({seekerVal: currentAudioTime});
     }, 500);
-    this.audioRef.onended = () => {
-      clearInterval(this.seekingInterval);
-    };
   }
 
   setTime(seekTo){
@@ -86,7 +84,10 @@ export class ReactAudioWrapper extends Component {
 
   handlePlay() {
     this.audioRef.play();
-    this.setState({playing: true, paused: false, pauseHover: false});
+    this.setState({
+      playing: true,
+      paused: false,
+      pauseHover: false});
     this.handleProgress();
   }
 
@@ -94,10 +95,17 @@ export class ReactAudioWrapper extends Component {
     if (this.state.playing) {
       clearInterval(this.seekingInterval);
       this.audioRef.pause();
-      this.setState({playing: false, paused: true, playHover: false, pauseHover: true})
+      this.setState({
+        playing: false,
+        paused: true,
+        playHover: false,
+        pauseHover: true})
     } else if (this.state.playStarted){
       this.handlePlay();
-      this.setState({playing: true, paused: false, playHover: true})
+      this.setState({
+        playing: true,
+        paused: false,
+        playHover: true})
     }
   }
 
@@ -187,8 +195,7 @@ export class ReactAudioWrapper extends Component {
             id="play"
             onClick={this.handlePlay}
             onMouseOver={e => this.handleHoverOver(e, 'play')}
-            onMouseLeave={e => this.handleHoverOut(e, 'play')}
-            >
+            onMouseLeave={e => this.handleHoverOut(e, 'play')}>
             <img src={this.state.playHover ? "/play-dark.png" : "/play-light.png"}/>
           </div>
           <div
@@ -205,11 +212,11 @@ export class ReactAudioWrapper extends Component {
             onMouseOut={e => this.handleHoverOut(e, 'mute')}>
             {this.state.muted ? 
               (
-                <img src={this.state.muteHover ? "/volume-dark.png" : "/mute-dark.png"}/>
+              <img src={this.state.muteHover ? "/volume-dark.png" : "/mute-dark.png"}/>
               )
               :
               (
-                <img src={this.state.muteHover ? "/mute.png": "/volume.png"}/>
+              <img src={this.state.muteHover ? "/mute.png": "/volume.png"}/>
               )
             }
           </div>
