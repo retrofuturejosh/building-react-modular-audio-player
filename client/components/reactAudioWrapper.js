@@ -58,14 +58,23 @@ export class ReactAudioWrapper extends Component {
 
   handleVolume(event, muting) {
     if (event) {
-      this.setState({volume: event.target.value});
-      this.audioRef.volume = event.target.value / 100;
+      //for pure volume sliding
+      let newVolume = (event.target.value < 1) ? 0 : event.target.value
+      this.setState({volume: newVolume});
+      this.audioRef.volume = newVolume / 100;
+
+      if (newVolume < 1) {
+        this.setState({muted: true});
+      } else if (this.state.muted) {
+        this.setState({muted: false})
+      }
     } else if (muting) {
-      this.audioRef.muted = true;
+      //moving volume slider to 0 and muting
       this.setState({volumePreMute: this.state.volume, volume: "0"})
+      this.audioRef.volume = 0;
     } else  {
+      //returning volume and slider to previous position before mute
       this.setState({volume: this.state.volumePreMute})
-      this.audioRef.muted = false;
       this.audioRef.volume = this.state.volumePreMute / 100;
     }
   }
