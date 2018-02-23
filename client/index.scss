@@ -9,6 +9,9 @@ body {
 
 //audio player
 .audio-player {
+  font-family: sans-serif;
+  font-weight: 100;
+  font-size: small;
   display: flex;
   flex-direction: column;
   width: 10em;
@@ -34,6 +37,8 @@ img {
   height: 1em;
   width: auto;
   margin-right: 0.25em;
+  -webkit-filter: contrast(200%);
+  filter: contrast(200%);
 }
 
 
@@ -46,6 +51,7 @@ input[type=range].slider {
   -webkit-appearance: none;
   width: 100%;
   margin: 4.5px 0;
+  background-color: rgba(255, 255, 255, 0);
 }
 input[type=range].slider:focus {
   outline: none;
