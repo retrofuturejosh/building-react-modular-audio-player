@@ -7,11 +7,16 @@ export class ReactAudioWrapper extends Component {
       seekerVal: "0",
       volume: "75",
       playing: false,
+      paused: false,
       muted: false,
       volumePreMute: "75",
       duration: "0:00",
       currentAudioTime: "0:00",
-      loaded: false
+      loaded: false,
+      playHover: false,
+      pauseHover: false,
+      playStarted: false,
+      muteHover: false,
     };
     this.seekingInterval = null;
     this.handlePlay = this.handlePlay.bind(this);
@@ -23,6 +28,26 @@ export class ReactAudioWrapper extends Component {
     this.handleMute = this.handleMute.bind(this);
     this.setTime = this.setTime.bind(this);
     this.loadDuration = this.loadDuration.bind(this);
+    this.handleHoverOver = this.handleHoverOver.bind(this);
+    this.handleHoverOut = this.handleHoverOut.bind(this);
+    this.startPlay = this.startPlay.bind(this);
+    this.endPlay = this.endPlay.bind(this);
+  }
+
+  startPlay() {
+    if (!this.state.playStarted) {
+      this.setState({playStarted: true})
+    }
+  }
+
+  endPlay() {
+    this.setState({
+      playing: false,
+      playHover: false,
+      playStarted: false,
+      currentAudioTime: "0:00",
+      seekerVal: "0"
+    })
   }
 
   handleProgress() {
@@ -61,7 +86,7 @@ export class ReactAudioWrapper extends Component {
 
   handlePlay() {
     this.audioRef.play();
-    this.setState({playing: true});
+    this.setState({playing: true, paused: false, pauseHover: false});
     this.handleProgress();
   }
 
@@ -69,9 +94,10 @@ export class ReactAudioWrapper extends Component {
     if (this.state.playing) {
       clearInterval(this.seekingInterval);
       this.audioRef.pause();
-      this.setState({playing: false})
-    } else {
+      this.setState({playing: false, paused: true, playHover: false, pauseHover: true})
+    } else if (this.state.playStarted){
       this.handlePlay();
+      this.setState({playing: true, paused: false, playHover: true})
     }
   }
 
@@ -133,6 +159,18 @@ export class ReactAudioWrapper extends Component {
     this.setState({duration})
   }
 
+  handleHoverOver(e, type){
+    if (type === 'play') this.setState({playHover: true});
+    if (type === 'pause' && this.state.playStarted) this.setState({pauseHover: true});
+    if (type === 'mute') this.setState({muteHover: true})
+  }
+
+  handleHoverOut(e, type){
+    if (type === 'play' && !this.state.playing) this.setState({playHover: false});
+    if (type === 'pause' && !this.state.paused) this.setState({pauseHover: false});
+    if (type === 'mute') this.setState({muteHover: false})
+  }
+
   render() {
 
     return (
@@ -142,21 +180,38 @@ export class ReactAudioWrapper extends Component {
             src={this.props.mp3}
             ref={(audioRef) => { this.audioRef = audioRef; }}
             onLoadedMetadata={this.loadDuration}
+            onPlay={this.startPlay}
+            onEnded={this.endPlay}
           />
           <div
             id="play"
-            onClick={this.handlePlay}>
-            <img src="/play.png"/>
+            onClick={this.handlePlay}
+            onMouseOver={e => this.handleHoverOver(e, 'play')}
+            onMouseLeave={e => this.handleHoverOut(e, 'play')}
+            >
+            <img src={this.state.playHover ? "/play-dark.png" : "/play-light.png"}/>
           </div>
           <div
             id="pause"
-            onClick={this.handlePause}>
-            <img src="/pause.png"/>
+            onClick={this.handlePause}
+            onMouseOver={e => this.handleHoverOver(e, 'pause')}
+            onMouseLeave={e => this.handleHoverOut(e, 'pause')}>
+            <img src={this.state.pauseHover ? "/pause-dark.png" : "/pause-light.png"}/>
           </div>
           <div
             id="volume"
-            onClick={this.handleMute}>
-            <img src={this.state.muted ? "/mute.png" : "/volume.png"}/>
+            onClick={this.handleMute}
+            onMouseOver={e => this.handleHoverOver(e, 'mute')}
+            onMouseOut={e => this.handleHoverOut(e, 'mute')}>
+            {this.state.muted ? 
+              (
+                <img src={this.state.muteHover ? "/volume-dark.png" : "/mute-dark.png"}/>
+              )
+              :
+              (
+                <img src={this.state.muteHover ? "/mute.png": "/volume.png"}/>
+              )
+            }
           </div>
           <input
             className="slider"
