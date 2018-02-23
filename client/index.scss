@@ -6,6 +6,8 @@ body {
 
 }
 
+
+//audio player
 .audio-player {
   display: flex;
   flex-direction: column;
@@ -17,6 +19,11 @@ body {
   }
 }
 
+img {
+  height: 1em;
+  width: auto;
+  margin-right: 0.25em;
+}
 
 
 
