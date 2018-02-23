@@ -16,12 +16,14 @@ body {
   flex-direction: column;
   width: 10em;
   cursor: default;
+  align-items: center;
+  justify-content: center;
 
   &-top, &-bottom {
     display: flex;
   }
   &-bottom {
-    margin-top: 0.5em;
+    margin-top: 0.25em;
   }
 }
 
@@ -31,6 +33,12 @@ body {
 
 .duration {
   margin-left: 0.25em;
+}
+
+.current-time, .duration, #play, #pause, #volume {
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
 }
 
 img {
