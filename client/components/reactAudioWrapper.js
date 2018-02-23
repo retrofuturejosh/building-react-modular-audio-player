@@ -25,7 +25,6 @@ export class ReactAudioWrapper extends Component {
       clearInterval(this.seekingInterval);
     }
     this.seekingInterval = setInterval( () => {
-      console.log('called');
       let currentAudioTime = (this.audioRef.currentTime / this.audioRef.duration) * 100;
       this.setState({seekerVal: currentAudioTime});
     }, 500);
