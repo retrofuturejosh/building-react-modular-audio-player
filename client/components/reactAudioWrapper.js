@@ -1,5 +1,6 @@
 import React, { Component } from 'react';
 import './audioWrapperStyle.scss';
+import icons from './assets/index';
 
 export class ReactAudioWrapper extends Component {
   constructor(props) {
@@ -18,14 +19,14 @@ export class ReactAudioWrapper extends Component {
       pauseHover: false,
       playStarted: false,
       muteHover: false,
-      playIcon: "/play-light.png",
-      playEngagedIcon: "/play-dark.png",
-      pauseIcon: "/pause-light.png",
-      pauseEngagedIcon: "/pause-dark.png",
-      volumeIcon: "/volume.png",
-      muteIcon: "/mute.png",
-      muteEngagedIcon: "/mute-dark.png",
-      unMuteIcon: "/volume-dark.png"
+      playIcon: icons.playIcon,
+      playEngagedIcon: icons.playEngagedIcon,
+      pauseIcon: icons.pauseIcon,
+      pauseEngagedIcon: icons.pauseEngagedIcon,
+      volumeIcon: icons.volumeIcon,
+      muteIcon: icons.muteIcon,
+      muteEngagedIcon: icons.muteEngagedIcon,
+      unMuteIcon: icons.unMuteIcon
     };
     this.seekingInterval = null;
     this.handlePlay = this.handlePlay.bind(this);

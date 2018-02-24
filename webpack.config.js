@@ -29,6 +29,31 @@ module.exports = {
       {
         test: /\.svg$|\.ttf?|\.woff$|\.woff2|\.eof|\.eot/,
         loader: 'file-loader'
+      },
+      {
+        test: /\.(png)$/,
+        use: [
+          {
+            loader: 'url-loader',
+            options: {
+              limit: 25000
+            }
+          }
+        ]
+      },
+      {
+        test: /\.svg$/,
+        use: [
+          {
+            loader: "babel-loader"
+          },
+          {
+            loader: "react-svg-loader",
+            options: {
+              jsx: true // true outputs JSX tags
+            }
+          }
+        ]
       }
     ]
   },
