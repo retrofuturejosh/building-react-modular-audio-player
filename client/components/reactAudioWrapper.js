@@ -1,4 +1,5 @@
 import React, { Component } from 'react';
+import './audioWrapperStyle.scss';
 
 export class ReactAudioWrapper extends Component {
   constructor(props) {
@@ -180,6 +181,46 @@ export class ReactAudioWrapper extends Component {
   }
 
   render() {
+    let playIcon = this.props.playIcon ?
+      this.props.playIcon
+        : 
+      "/playIcon";
+
+    let playEngagedIcon = this.props.playEngagedIcon ?
+      this.props.playEngagedIcon 
+        :
+      "/play-dark.png";
+
+    let pauseIcon = this.props.pauseIcon ?
+      this.props.pauseIcon
+        : 
+      "/pause-light.png";
+
+    let pauseEngagedIcon = this.props.pauseEngagedIcon ?
+      this.props.pauseEngagedIcon 
+        :
+      "/pause-dark.png";
+
+    let volumeIcon = this.props.volumeIcon ? 
+      this.props.volumeIcon
+        :
+      "/volume.png";
+    
+    let muteIcon = this.props.muteIcon ?
+      this.props.muteIcon
+        :
+      "/mute.png";
+    
+    let muteEngagedIcon = this.props.muteEngagedIcon ?
+      this.props.muteEngagedIcon
+        :
+      "/mute-dark.png";
+    
+    let unMuteIcon = this.props.unMuteIcon ?
+      this.props.unMuteIcon
+        :
+      "/volume-dark.png"
+    
 
     return (
       <div className="audio-player">
@@ -196,14 +237,14 @@ export class ReactAudioWrapper extends Component {
             onClick={this.handlePlay}
             onMouseOver={e => this.handleHoverOver(e, 'play')}
             onMouseLeave={e => this.handleHoverOut(e, 'play')}>
-            <img src={this.state.playHover ? "/play-dark.png" : "/play-light.png"}/>
+            <img src={this.state.playHover ? playEngagedIcon : playIcon}/>
           </div>
           <div
             id="pause"
             onClick={this.handlePause}
             onMouseOver={e => this.handleHoverOver(e, 'pause')}
             onMouseLeave={e => this.handleHoverOut(e, 'pause')}>
-            <img src={this.state.pauseHover ? "/pause-dark.png" : "/pause-light.png"}/>
+            <img src={this.state.pauseHover ? pauseEngagedIcon : pauseIcon}/>
           </div>
           <div
             id="volume"
@@ -212,11 +253,11 @@ export class ReactAudioWrapper extends Component {
             onMouseOut={e => this.handleHoverOut(e, 'mute')}>
             {this.state.muted ? 
               (
-              <img src={this.state.muteHover ? "/volume-dark.png" : "/mute-dark.png"}/>
+                <img src={this.state.muteHover ? unMuteIcon : muteEngagedIcon}/>
               )
               :
               (
-              <img src={this.state.muteHover ? "/mute.png": "/volume.png"}/>
+                <img src={this.state.muteHover ? muteIcon : volumeIcon}/>
               )
             }
           </div>
