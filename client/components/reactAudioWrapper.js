@@ -26,7 +26,14 @@ export class ReactAudioWrapper extends Component {
       volumeIcon: icons.volumeIcon,
       muteIcon: icons.muteIcon,
       muteEngagedIcon: icons.muteEngagedIcon,
-      unMuteIcon: icons.unMuteIcon
+      unMuteIcon: icons.unMuteIcon,
+      sliderClass: "slider",
+      fontFamily: "sans-serif",
+      fontWeight: "100",
+      fontSize: "small",
+      fontColor: "black",
+      playerWidth: "10em",
+      playerHeight: "5em"
     };
     this.seekingInterval = null;
     this.handlePlay = this.handlePlay.bind(this);
@@ -42,11 +49,11 @@ export class ReactAudioWrapper extends Component {
     this.handleHoverOut = this.handleHoverOut.bind(this);
     this.startPlay = this.startPlay.bind(this);
     this.endPlay = this.endPlay.bind(this);
-    this.setIcons = this.setIcons.bind(this);
+    this.setOpts = this.setOpts.bind(this);
   }
 
   componentDidMount() {
-    let icons = this.setIcons([
+    let opts = this.setOpts([
       'playIcon',
       'playEngagedIcon',
       'pauseIcon',
@@ -54,20 +61,27 @@ export class ReactAudioWrapper extends Component {
       'volumeIcon',
       'muteIcon',
       'muteEngagedIcon',
-      'unMuteIcon'
+      'unMuteIcon',
+      'fontFamily',
+      'fontWeight',
+      'fontSize',
+      'fontColor',
+      'sliderClass',
+      'playerWidth',
+      'playerHeight'
     ]);
-    this.setState(icons);
+    this.setState(opts);
   }
 
-  setIcons(icons) {
-    let returnIcons = {};
-    icons.forEach(icon => {
-      returnIcons[icon] = this.props[icon] ?
-        this.props[icon]
+  setOpts(settings) {
+    let opts = {};
+    settings.forEach(setting => {
+      opts[setting] = this.props[setting] ?
+        this.props[setting]
           :
-        this.state[icon];
+        this.state[setting];
     })
-    return returnIcons;
+    return opts;
   }
 
   startPlay() {
@@ -218,7 +232,34 @@ export class ReactAudioWrapper extends Component {
   render() {
 
     return (
-      <div className="audio-player">
+      <div className="audio-player"
+        style={{
+          fontFamily: this.state.fontFamily,
+          fontWeight: this.state.fontWeight,
+          color: this.state.fontColor,
+          fontSize: this.state.fontSize,
+          width: this.state.playerWidth,
+          height: this.state.playerHeight
+          }}>
+
+      {/* if there is a name or artist */}
+        {this.props.name ?
+          <div className="audio-player-track-name">
+            {this.props.artist ? 
+              (`${this.props.artist} - `)
+                : 
+              null
+            }
+            {this.props.name ? 
+              (this.props.name)
+                :
+              null}
+          </div>
+            :
+          null
+        }
+
+
         <div className="audio-player-top">
           <audio
             src={this.props.mp3}
@@ -257,7 +298,7 @@ export class ReactAudioWrapper extends Component {
             }
           </div>
           <input
-            className="slider"
+            className={this.state.sliderClass}
             type="range"
             min="0"
             max="100"
@@ -271,7 +312,7 @@ export class ReactAudioWrapper extends Component {
             {this.state.currentAudioTime}
           </div>
           <input
-            className="slider"
+            className={this.state.sliderClass}
             type="range"
             min="0"
             max="100"
