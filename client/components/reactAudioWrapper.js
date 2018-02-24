@@ -33,7 +33,8 @@ export class ReactAudioWrapper extends Component {
       fontSize: "small",
       fontColor: "black",
       playerWidth: "10em",
-      playerHeight: "5em"
+      playerHeight: "5em",
+      hideSeeking: false
     };
     this.seekingInterval = null;
     this.handlePlay = this.handlePlay.bind(this);
@@ -307,7 +308,12 @@ export class ReactAudioWrapper extends Component {
             onChange={this.handleVolume}
           />
         </div>
-        <div className="audio-player-bottom">
+
+      {/* Seeking Div */}
+      {this.props.hideSeeking ? 
+        null
+          :
+        (<div className="audio-player-bottom">
           <div className="current-time">
             {this.state.currentAudioTime}
           </div>
@@ -324,7 +330,9 @@ export class ReactAudioWrapper extends Component {
         <div className="duration">
           {this.state.duration}
         </div>
-        </div>
+      </div>)
+      }
+
       </div>
     )
   }

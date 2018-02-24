@@ -6,7 +6,7 @@ ReactDOM.render(
     <ReactAudioWrapper
       mp3="/mp3Example.mp3"
       // name="My Head"
-      artist="Kimmi Moore"
+      // artist="Kimmi Moore"
       // playIcon="/play-light.png"
       // playEngagedIcon="/play-dark.png"
       // pauseIcon="/pause-light.png"
@@ -22,6 +22,7 @@ ReactDOM.render(
       // sliderClass="my-slider"
       // playerWidth="20em"
       // playerHeight="2em"
+      // hideSeeking={true}
       />,
   document.getElementById('app')
 )
