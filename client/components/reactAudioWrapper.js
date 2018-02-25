@@ -25,9 +25,9 @@ export class ReactAudioWrapper extends Component {
       pauseIcon: icons.pauseIcon,
       pauseEngagedIcon: icons.pauseEngagedIcon,
       volumeIcon: icons.volumeIcon,
+      volumeEngagedIcon: icons.volumeEngaged,
       muteIcon: icons.muteIcon,
       muteEngagedIcon: icons.muteEngagedIcon,
-      volumeEngagedIcon: icons.unMuteIcon,
       forwardIcon: icons.forwardIcon,
       forwardHoverIcon: icons.forwardHoverIcon,
       sliderClass: "slider",
@@ -73,9 +73,11 @@ export class ReactAudioWrapper extends Component {
       'pauseIcon',
       'pauseEngagedIcon',
       'volumeIcon',
+      'volumeEngagedIcon',
       'muteIcon',
       'muteEngagedIcon',
-      'unMuteIcon',
+      'forwardIcon',
+      'forwardHoverIcon',
       'fontFamily',
       'fontWeight',
       'fontSize',
@@ -140,9 +142,9 @@ export class ReactAudioWrapper extends Component {
           playing: false})
       }
       else {
-        this.setScrollSize();
         if (this.state.playing) this.handlePlay();
       }
+      this.setScrollSize();
     });
   }
 

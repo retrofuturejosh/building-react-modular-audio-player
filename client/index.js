@@ -28,7 +28,7 @@ ReactDOM.render(
       // volumeIcon="/volume.png"
       // muteIcon="/mute.png"
       // muteEngagedIcon="/mute-dark.png"
-      // unMuteIcon="/volume-dark.png"
+      // volumeEngagedIcon="/volume-dark.png"
       // fontFamily="serif"
       // fontSize="larger"
       // fontColor="red"
