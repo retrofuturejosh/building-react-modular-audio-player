@@ -242,20 +242,24 @@ export class ReactAudioWrapper extends Component {
   }
 
   renderPlayIcon() {
-    //initial play button
-    if (!this.state.playStarted && !this.state.playHover) return this.state.playIcon;
-    //hover over play before track has started
-    else if(!this.state.playStarted && this.state.playHover) return this.state.playEngagedIcon;
-    //play has paused, no hover
-    else if(this.state.playStarted && !this.state.playHover && !this.state.playing) return this.state.pauseEngagedIcon
-    //play has paused, hovering
-    else if(this.state.playStarted && this.state.playHover && !this.state.playing) return this.state.playIcon;
-    //play has started, no hover
-    else if(this.state.playStarted && !this.state.playHover) return this.state.playEngagedIcon
-    //play has started, hovering
-    else if(this.state.playStarted && this.state.playHover) return this.state.pauseIcon;
-    //fallback
-    else return this.state.playIcon
+    if(this.state.playStarted){
+      if(this.state.playHover) {
+        //play has started, hovering, playing
+        if(this.state.playing) return this.state.pauseIcon;
+        //play has started, hovering, paused
+        else return this.state.playIcon;
+      } else {
+        //play has started, NOT hovering, playing
+        if(this.state.playing) return this.state.playEngagedIcon;
+        //play has started, NOT hovering, paused
+        else return this.state.pauseEngagedIcon;
+      }
+    } else {
+      //play has NOT started, hovering
+      if(this.state.playHover) return this.state.playEngagedIcon;
+      //play has NOT started, NOT hovering
+      else return this.state.playIcon;
+    }
   }
 
   renderMuteIcon() {
