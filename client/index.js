@@ -21,7 +21,7 @@ ReactDOM.render(
       // fontWeight="bolder"
       // iconSize="1em"
       // sliderClass="my-slider"
-      // playerWidth="20rem"
+      playerWidth="200px"
       // hideSeeking={true}
       />,
   document.getElementById('app')

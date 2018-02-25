@@ -60,6 +60,7 @@ export class ReactAudioWrapper extends Component {
     this.setOpts = this.setOpts.bind(this);
     this.scrollMarquee = this.scrollMarquee.bind(this);
     this.renderPlayIcon = this.renderPlayIcon.bind(this);
+    this.setScrollSize = this.setScrollSize.bind(this);
   }
 
   componentDidMount() {
@@ -80,19 +81,22 @@ export class ReactAudioWrapper extends Component {
       'playerWidth',
       'iconSize'
     ]);
-    this.setState(opts);
+    this.setState(opts, () => {
+      this.setScrollSize()
+    });
   }
 
-  componentDidUpdate() {
-    if(!this.state.gotWidth) {
-      let marqueeWidth = this.marquee.getBoundingClientRect().width
-      let nameDisplayWidth = this.nameDisplay.getBoundingClientRect().width
-
-      if(marqueeWidth > nameDisplayWidth) {
-        let difference = marqueeWidth - nameDisplayWidth;
-        this.setState({scrollMarquee: true, scrollDifference: difference, gotWidth: true});
-      }
-    }
+  setScrollSize() {
+    setTimeout(() => {
+        window.requestAnimationFrame(() => {
+          let marqueeWidth = Math.ceil(this.marquee.getBoundingClientRect().width);
+          let nameDisplayWidth = this.nameDisplay.getBoundingClientRect().width;
+          if(marqueeWidth > nameDisplayWidth) {
+            let difference = Math.ceil(marqueeWidth - nameDisplayWidth);
+            this.setState({scrollMarquee: true, scrollDifference: difference, gotWidth: true});
+          }
+        })
+    }, 0);
   }
 
   setOpts(settings) {
