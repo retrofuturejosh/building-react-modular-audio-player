@@ -16,7 +16,6 @@ export class ReactAudioWrapper extends Component {
       currentAudioTime: "0:00",
       loaded: false,
       playHover: false,
-      pauseHover: false,
       playStarted: false,
       muteHover: false,
       playIcon: icons.playIcon,
@@ -26,7 +25,7 @@ export class ReactAudioWrapper extends Component {
       volumeIcon: icons.volumeIcon,
       muteIcon: icons.muteIcon,
       muteEngagedIcon: icons.muteEngagedIcon,
-      unMuteIcon: icons.unMuteIcon,
+      volumeEngagedIcon: icons.unMuteIcon,
       sliderClass: "slider",
       fontFamily: "sans-serif",
       fontWeight: "100",
@@ -57,6 +56,7 @@ export class ReactAudioWrapper extends Component {
     this.endPlay = this.endPlay.bind(this);
     this.setOpts = this.setOpts.bind(this);
     this.scrollMarquee = this.scrollMarquee.bind(this);
+    this.renderPlayIcon = this.renderPlayIcon.bind(this);
   }
 
   componentDidMount() {
@@ -152,7 +152,7 @@ export class ReactAudioWrapper extends Component {
     this.setState({
       playing: true,
       paused: false,
-      pauseHover: false});
+      playHover: false});
     this.handleProgress();
   }
 
@@ -163,14 +163,7 @@ export class ReactAudioWrapper extends Component {
       this.setState({
         playing: false,
         paused: true,
-        playHover: false,
-        pauseHover: true})
-    } else if (this.state.playStarted){
-      this.handlePlay();
-      this.setState({
-        playing: true,
-        paused: false,
-        playHover: true})
+        playHover: false})
     }
   }
 
@@ -224,7 +217,7 @@ export class ReactAudioWrapper extends Component {
     } else {
       this.handleVolume(null, false);
     }
-    this.setState({muted: !this.state.muted});
+    this.setState({muted: !this.state.muted, muteHover: false});
   }
 
   loadDuration(){
@@ -234,13 +227,11 @@ export class ReactAudioWrapper extends Component {
 
   handleHoverOver(e, type){
     if (type === 'play') this.setState({playHover: true});
-    if (type === 'pause' && this.state.playStarted) this.setState({pauseHover: true});
     if (type === 'mute') this.setState({muteHover: true})
   }
 
   handleHoverOut(e, type){
-    if (type === 'play' && !this.state.playing) this.setState({playHover: false});
-    if (type === 'pause' && !this.state.paused) this.setState({pauseHover: false});
+    if (type === 'play') this.setState({playHover: false});
     if (type === 'mute') this.setState({muteHover: false})
   }
 
@@ -248,6 +239,35 @@ export class ReactAudioWrapper extends Component {
     if(direction === 'left') {
       this.setState({scrollAmount: -this.state.scrollDifference});
     } else this.setState({scrollAmount: 0})
+  }
+
+  renderPlayIcon() {
+    //initial play button
+    if (!this.state.playStarted && !this.state.playHover) return this.state.playIcon;
+    //hover over play before track has started
+    else if(!this.state.playStarted && this.state.playHover) return this.state.playEngagedIcon;
+    //play has paused, no hover
+    else if(this.state.playStarted && !this.state.playHover && !this.state.playing) return this.state.pauseEngagedIcon
+    //play has paused, hovering
+    else if(this.state.playStarted && this.state.playHover && !this.state.playing) return this.state.playIcon;
+    //play has started, no hover
+    else if(this.state.playStarted && !this.state.playHover) return this.state.playEngagedIcon
+    //play has started, hovering
+    else if(this.state.playStarted && this.state.playHover) return this.state.pauseIcon;
+    //fallback
+    else return this.state.playIcon
+  }
+
+  renderMuteIcon() {
+    if (this.state.muted) {
+      if (this.state.muteHover) return this.state.volumeIcon;
+      else return this.state.muteEngagedIcon;
+    }
+    else {
+      if(this.state.muteHover) return this.state.muteIcon;
+      else if (this.state.playing) return this.state.volumeEngagedIcon
+      else return this.state.volumeIcon;
+    }
   }
 
   render() {
@@ -273,17 +293,10 @@ export class ReactAudioWrapper extends Component {
           />
           <div
             id="play"
-            onClick={this.handlePlay}
+            onClick={this.state.playing ? this.handlePause : this.handlePlay}
             onMouseOver={e => this.handleHoverOver(e, 'play')}
             onMouseLeave={e => this.handleHoverOut(e, 'play')}>
-            <img src={this.state.playHover ? this.state.playEngagedIcon : this.state.playIcon}/>
-          </div>
-          <div
-            id="pause"
-            onClick={this.handlePause}
-            onMouseOver={e => this.handleHoverOver(e, 'pause')}
-            onMouseLeave={e => this.handleHoverOut(e, 'pause')}>
-            <img src={this.state.pauseHover ? this.state.pauseEngagedIcon : this.state.pauseIcon}/>
+            <img src={this.renderPlayIcon()}/>
           </div>
         </div>
 
@@ -346,7 +359,8 @@ export class ReactAudioWrapper extends Component {
             onClick={this.handleMute}
             onMouseOver={e => this.handleHoverOver(e, 'mute')}
             onMouseOut={e => this.handleHoverOut(e, 'mute')}>
-            {this.state.muted ? 
+            <img src={this.renderMuteIcon()} />
+            {/* {this.state.muted ? 
               (
                 <img src={this.state.muteHover ? this.state.unMuteIcon : this.state.muteEngagedIcon}/>
               )
@@ -354,7 +368,7 @@ export class ReactAudioWrapper extends Component {
               (
                 <img src={this.state.muteHover ? this.state.muteIcon : this.state.volumeIcon}/>
               )
-            }
+            } */}
           </div>
           <input
             className={this.state.sliderClass}
