@@ -6,6 +6,8 @@ import volumeIcon from "./volume.png";
 import muteIcon from "./mute.png";
 import muteEngagedIcon from "./mute-dark.png";
 import unMuteIcon from "./volume-dark.png";
+import forwardIcon from "./forward.png";
+import forwardHoverIcon from "./forward-hover.png"
 
 export default { 
   playIcon,
@@ -16,4 +18,6 @@ export default {
   muteIcon,
   muteEngagedIcon,
   unMuteIcon,
+  forwardIcon,
+  forwardHoverIcon
    };

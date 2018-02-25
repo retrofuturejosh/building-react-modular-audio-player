@@ -19,6 +19,7 @@ export class ReactAudioWrapper extends Component {
       playHover: false,
       playStarted: false,
       muteHover: false,
+      forwardHover: false,
       playIcon: icons.playIcon,
       playEngagedIcon: icons.playEngagedIcon,
       pauseIcon: icons.pauseIcon,
@@ -27,6 +28,8 @@ export class ReactAudioWrapper extends Component {
       muteIcon: icons.muteIcon,
       muteEngagedIcon: icons.muteEngagedIcon,
       volumeEngagedIcon: icons.unMuteIcon,
+      forwardIcon: icons.forwardIcon,
+      forwardHoverIcon: icons.forwardHoverIcon,
       sliderClass: "slider",
       fontFamily: "sans-serif",
       fontWeight: "100",
@@ -116,14 +119,12 @@ export class ReactAudioWrapper extends Component {
     }
   }
 
-  endPlay() {
+  endPlay(e, skipped) {
     clearInterval(this.seekingInterval);
-    let nextTrackIdx;
-    if (this.state.currentTrackIdx === this.props.audioFiles.length-1) nextTrackIdx = 0;
-    else nextTrackIdx = this.state.currentTrackIdx + 1;
-
+    let endOfTracks = (this.state.currentTrackIdx === this.props.audioFiles.length-1) ?
+      true : false;
+    let nextTrackIdx = endOfTracks ? 0 : 1;
     this.setState({
-      playHover: false,
       currentAudioTime: "0:00",
       seekerVal: "0",
       currentTrackIdx: nextTrackIdx,
@@ -133,8 +134,15 @@ export class ReactAudioWrapper extends Component {
         marginLeft: "0"
       }
     }, () => {
-      this.setScrollSize();
-      this.handlePlay();
+      if(endOfTracks && !skipped) {
+        this.setState({
+          playHover: false,
+          playing: false})
+      }
+      else {
+        this.setScrollSize();
+        if (this.state.playing) this.handlePlay();
+      }
     });
   }
 
@@ -252,6 +260,9 @@ export class ReactAudioWrapper extends Component {
       case 'mute':
         this.setState({muteHover: true});
         break;
+      case 'forward':
+        this.setState({forwardHover: true});
+        break;
     }
   }
 
@@ -262,6 +273,9 @@ export class ReactAudioWrapper extends Component {
         break;
       case 'mute':
         this.setState({muteHover: false});
+        break;
+      case 'forward':
+        this.setState({forwardHover: false});
         break;
     }
   }
@@ -341,7 +355,7 @@ export class ReactAudioWrapper extends Component {
           height: this.state.playerHeight
           }}>
 
-      {/* Play/Pause Button */}
+      {/* Main Controls */}
         <div className="audio-player-controls">
           <audio
             src={this.props.audioFiles[this.state.currentTrackIdx].src}
@@ -350,6 +364,7 @@ export class ReactAudioWrapper extends Component {
             onPlay={this.startPlay}
             onEnded={this.endPlay}
           />
+        {/* Play/Pause */}
           <div
             id="play"
             onClick={this.state.playing ? this.handlePause : this.handlePlay}
@@ -359,6 +374,17 @@ export class ReactAudioWrapper extends Component {
             style={{height: this.state.iconSize}}
             src={this.renderPlayIcon()}/>
           </div>
+        {/* Skip */}
+          <div
+            id="forward"
+            onMouseOver={e => this.handleHoverOver(e, 'forward')}
+            onMouseLeave={e => this.handleHoverOut(e, 'forward')}
+            onClick={e => this.endPlay(e, true)}>
+            <img src={this.state.forwardHover ? 
+              this.state.forwardHoverIcon : this.state.forwardIcon}
+              style={{height: this.state.iconSize}}/>
+          </div>
+
         </div>
 
       {/* Artist/Name */}
