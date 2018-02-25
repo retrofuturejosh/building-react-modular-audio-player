@@ -32,12 +32,13 @@ export class ReactAudioWrapper extends Component {
       fontSize: "small",
       fontColor: "black",
       playerWidth: "40rem",
-      playerHeight: "auto",
       hideSeeking: false,
       scrollMarquee: false,
-      scrollAmount: 0,
       scrollDifference: 0,
-      gotWidth: false
+      gotWidth: false,
+      scrollStyle: {
+        marginLeft: "0"
+      }
     };
     this.seekingInterval = null;
     this.marquee = null;
@@ -155,8 +156,7 @@ export class ReactAudioWrapper extends Component {
     this.audioRef.play();
     this.setState({
       playing: true,
-      paused: false,
-      playHover: false});
+      paused: false,});
     this.handleProgress();
   }
 
@@ -166,8 +166,7 @@ export class ReactAudioWrapper extends Component {
       this.audioRef.pause();
       this.setState({
         playing: false,
-        paused: true,
-        playHover: false})
+        paused: true,})
     }
   }
 
@@ -220,7 +219,7 @@ export class ReactAudioWrapper extends Component {
     } else {
       this.handleVolume(null, false);
     }
-    this.setState({muted: !this.state.muted, muteHover: false});
+    this.setState({muted: !this.state.muted});
   }
 
   loadDuration(){
@@ -239,23 +238,29 @@ export class ReactAudioWrapper extends Component {
   }
 
   scrollMarquee(e, direction) {
-    if(direction === 'left') {
-      this.setState({scrollAmount: -this.state.scrollDifference});
-    } else this.setState({scrollAmount: 0})
+    if(direction === "left") {
+      this.setState({scrollStyle: {
+        marginLeft: -this.state.scrollDifference,
+        transition: "all 2s ease-in"
+      }})
+    } else this.setState({scrollStyle: {
+      marginLeft: "0",
+      transition: "all 0.3s ease-in"
+    }})
   }
 
   renderPlayIcon() {
     if(this.state.playStarted){
       if(this.state.playHover) {
         //play has started, hovering, playing
-        if(this.state.playing) return this.state.pauseIcon;
+        if(this.state.playing) return this.state.pauseEngagedIcon;
         //play has started, hovering, paused
-        else return this.state.playIcon;
+        else return this.state.playEngagedIcon;
       } else {
         //play has started, NOT hovering, playing
-        if(this.state.playing) return this.state.playEngagedIcon;
+        if(this.state.playing) return this.state.pauseIcon;
         //play has started, NOT hovering, paused
-        else return this.state.pauseEngagedIcon;
+        else return this.state.playIcon;
       }
     } else {
       //play has NOT started, hovering
@@ -267,11 +272,18 @@ export class ReactAudioWrapper extends Component {
 
   renderMuteIcon() {
     if (this.state.muted) {
-      if (this.state.muteHover) return this.state.volumeIcon;
+      if (this.state.muteHover) {
+        if(this.state.playing) return this.state.volumeEngagedIcon;
+        else return this.state.volumeIcon
+      }
+      if (!this.state.playing) return this.state.muteIcon;
       else return this.state.muteEngagedIcon;
     }
     else {
-      if(this.state.muteHover) return this.state.muteIcon;
+      if(this.state.muteHover) {
+        if(this.state.playing) return this.state.muteEngagedIcon;
+        else return this.state.muteIcon;
+      }
       else if (this.state.playing) return this.state.volumeEngagedIcon
       else return this.state.volumeIcon;
     }
@@ -313,7 +325,7 @@ export class ReactAudioWrapper extends Component {
             ref={(el) => this.nameDisplay = el }>
             <div className="marquee"
               ref={(el) => this.marquee = el }
-              style={{marginLeft: this.state.scrollAmount}}
+              style={this.state.scrollStyle}
               onMouseOver={this.state.scrollMarquee ? 
                 e => this.scrollMarquee(e, 'left')
                   :
