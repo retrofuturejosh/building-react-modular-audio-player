@@ -19,8 +19,9 @@ ReactDOM.render(
       // fontSize="larger"
       // fontColor="red"
       // fontWeight="bolder"
+      // iconSize="1em"
       // sliderClass="my-slider"
-      playerWidth="20rem"
+      // playerWidth="20rem"
       // hideSeeking={true}
       />,
   document.getElementById('app')

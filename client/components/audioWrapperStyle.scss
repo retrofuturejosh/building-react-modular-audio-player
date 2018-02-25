@@ -27,6 +27,7 @@ body {
     width: 25%;
     margin: 0;
     margin-right: 0.3em;
+    max-width: fit-content;
   }
   &-seeker {
     display: flex;
@@ -63,7 +64,6 @@ body {
 }
 
 img {
-  height: 1em;
   width: auto;
   margin-right: 0.3em;
 }

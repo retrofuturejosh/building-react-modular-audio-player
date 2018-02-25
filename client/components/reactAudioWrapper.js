@@ -31,7 +31,8 @@ export class ReactAudioWrapper extends Component {
       fontWeight: "100",
       fontSize: "small",
       fontColor: "black",
-      playerWidth: "40rem",
+      playerWidth: "20rem",
+      iconSize: "1rem",
       hideSeeking: false,
       scrollMarquee: false,
       scrollDifference: 0,
@@ -77,6 +78,7 @@ export class ReactAudioWrapper extends Component {
       'fontColor',
       'sliderClass',
       'playerWidth',
+      'iconSize'
     ]);
     this.setState(opts);
   }
@@ -273,18 +275,26 @@ export class ReactAudioWrapper extends Component {
   renderMuteIcon() {
     if (this.state.muted) {
       if (this.state.muteHover) {
+        //muted, hovering, playing
         if(this.state.playing) return this.state.volumeEngagedIcon;
+        //muted, hovering, paused
         else return this.state.volumeIcon
       }
-      if (!this.state.playing) return this.state.muteIcon;
-      else return this.state.muteEngagedIcon;
+      //muted, NOT hovering, playing
+      if (this.state.playing) return this.state.muteEngagedIcon;
+      //muted, NOT hovering, playing
+      else return this.state.muteIcon;
     }
     else {
       if(this.state.muteHover) {
+        //NOT muted, hovering, playing
         if(this.state.playing) return this.state.muteEngagedIcon;
+        //NOT muted, hovering, paused
         else return this.state.muteIcon;
       }
+      //NOT muted, NOT hovering, playing
       else if (this.state.playing) return this.state.volumeEngagedIcon
+      //NOT muted, NOT hovering, paused
       else return this.state.volumeIcon;
     }
   }
@@ -315,11 +325,13 @@ export class ReactAudioWrapper extends Component {
             onClick={this.state.playing ? this.handlePause : this.handlePlay}
             onMouseOver={e => this.handleHoverOver(e, 'play')}
             onMouseLeave={e => this.handleHoverOut(e, 'play')}>
-            <img src={this.renderPlayIcon()}/>
+            <img 
+            style={{height: this.state.iconSize}}
+            src={this.renderPlayIcon()}/>
           </div>
         </div>
 
-      {/* if there is a name or artist */}
+      {/* Artist/Name */}
         {this.props.name ?
           <div className="audio-player-track-name"
             ref={(el) => this.nameDisplay = el }>
@@ -350,7 +362,7 @@ export class ReactAudioWrapper extends Component {
           null
         }
 
-      {/* Seeking Div */}
+      {/* Seekinging Bar and Duration */}
         {this.props.hideSeeking ? 
           null
             :
@@ -378,7 +390,9 @@ export class ReactAudioWrapper extends Component {
             onClick={this.handleMute}
             onMouseOver={e => this.handleHoverOver(e, 'mute')}
             onMouseOut={e => this.handleHoverOut(e, 'mute')}>
-            <img src={this.renderMuteIcon()} />
+            <img 
+              style={{height: this.state.iconSize}}
+              src={this.renderMuteIcon()} />
           </div>
           <input
             className={this.state.sliderClass}
