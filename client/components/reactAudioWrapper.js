@@ -6,6 +6,7 @@ export class ReactAudioWrapper extends Component {
   constructor(props) {
     super(props)
     this.state = {
+      currentTrackIdx: 0,
       seekerVal: "0",
       volume: "75",
       playing: false,
@@ -118,12 +119,19 @@ export class ReactAudioWrapper extends Component {
 
   endPlay() {
     clearInterval(this.seekingInterval);
+    let nextTrackIdx;
+    if (this.state.currentTrackIdx === this.props.audioFiles.length-1) nextTrackIdx = 0;
+    else nextTrackIdx = this.state.currentTrackIdx + 1;
+
     this.setState({
       playing: false,
       playHover: false,
       playStarted: false,
       currentAudioTime: "0:00",
-      seekerVal: "0"
+      seekerVal: "0",
+      currentTrackIdx: nextTrackIdx
+    }, () => {
+      this.setScrollSize();
     });
   }
 
@@ -316,6 +324,9 @@ export class ReactAudioWrapper extends Component {
   }
 
   render() {
+    let title = this.props.audioFiles[this.state.currentTrackIdx].title;
+    let artist = this.props.audioFiles[this.state.currentTrackIdx].artist;
+
     return (
       <div className="audio-player"
         style={{
@@ -330,7 +341,7 @@ export class ReactAudioWrapper extends Component {
       {/* Play/Pause Button */}
         <div className="audio-player-controls">
           <audio
-            src={this.props.audioFile}
+            src={this.props.audioFiles[this.state.currentTrackIdx].src}
             ref={(audioRef) => { this.audioRef = audioRef; }}
             onLoadedMetadata={this.loadDuration}
             onPlay={this.startPlay}
@@ -348,7 +359,7 @@ export class ReactAudioWrapper extends Component {
         </div>
 
       {/* Artist/Name */}
-        {this.props.name ?
+        {title ?
           <div className="audio-player-track-name"
             ref={(el) => this.nameDisplay = el }>
             <div className="marquee"
@@ -363,13 +374,13 @@ export class ReactAudioWrapper extends Component {
                     :
                   null}>
 
-              {this.props.artist ? 
-                (`${this.props.artist} - `)
+              {artist ? 
+                (`${artist} - `)
                   : 
                 null
               }
-              {this.props.name ? 
-                (this.props.name)
+              {title ? 
+                (title)
                   :
                 null}
             </div>
