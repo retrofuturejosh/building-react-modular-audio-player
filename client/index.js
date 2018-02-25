@@ -9,8 +9,8 @@ const audioFiles = [
     artist: "Kimmi Moore"
   },
   {
-    src: "/mp3Example.mp3",
-    title: "Maiiiii Headdddd",
+    src: "/One Night.mp3",
+    title: "One Night",
     artist: "Kimmi Moorrrrrrrre"
   }
 ]

@@ -37,7 +37,6 @@ export class ReactAudioWrapper extends Component {
       hideSeeking: false,
       scrollMarquee: false,
       scrollDifference: 0,
-      gotWidth: false,
       scrollStyle: {
         marginLeft: "0"
       }
@@ -124,14 +123,18 @@ export class ReactAudioWrapper extends Component {
     else nextTrackIdx = this.state.currentTrackIdx + 1;
 
     this.setState({
-      playing: false,
       playHover: false,
-      playStarted: false,
       currentAudioTime: "0:00",
       seekerVal: "0",
-      currentTrackIdx: nextTrackIdx
+      currentTrackIdx: nextTrackIdx,
+      scrollMarquee: false,
+      scrollDifference: 0,
+      scrollStyle: {
+        marginLeft: "0"
+      }
     }, () => {
       this.setScrollSize();
+      this.handlePlay();
     });
   }
 
