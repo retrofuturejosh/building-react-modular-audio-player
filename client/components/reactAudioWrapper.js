@@ -32,7 +32,7 @@ export class ReactAudioWrapper extends Component {
       fontWeight: "100",
       fontSize: "small",
       fontColor: "black",
-      playerWidth: "10em",
+      playerWidth: "40em",
       playerHeight: "5em",
       hideSeeking: false,
       scrollMarquee: false,
@@ -262,13 +262,38 @@ export class ReactAudioWrapper extends Component {
           height: this.state.playerHeight
           }}>
 
+      {/* Play/Pause Button */}
+        <div className="audio-player-controls">
+          <audio
+            src={this.props.audioFile}
+            ref={(audioRef) => { this.audioRef = audioRef; }}
+            onLoadedMetadata={this.loadDuration}
+            onPlay={this.startPlay}
+            onEnded={this.endPlay}
+          />
+          <div
+            id="play"
+            onClick={this.handlePlay}
+            onMouseOver={e => this.handleHoverOver(e, 'play')}
+            onMouseLeave={e => this.handleHoverOut(e, 'play')}>
+            <img src={this.state.playHover ? this.state.playEngagedIcon : this.state.playIcon}/>
+          </div>
+          <div
+            id="pause"
+            onClick={this.handlePause}
+            onMouseOver={e => this.handleHoverOver(e, 'pause')}
+            onMouseLeave={e => this.handleHoverOut(e, 'pause')}>
+            <img src={this.state.pauseHover ? this.state.pauseEngagedIcon : this.state.pauseIcon}/>
+          </div>
+        </div>
+
       {/* if there is a name or artist */}
         {this.props.name ?
           <div className="audio-player-track-name"
             ref={(el) => this.nameDisplay = el }>
             <div className="marquee"
               ref={(el) => this.marquee = el }
-              style={{marginLeft: this.state.scrollAmount}}
+              style={{marginLeft: this.state.scrollAmount, marginRight: -this.state.scrollAmount}}
               onMouseOver={this.state.scrollMarquee ? 
                 e => this.scrollMarquee(e, 'left')
                   :
@@ -293,31 +318,31 @@ export class ReactAudioWrapper extends Component {
           null
         }
 
+      {/* Seeking Div */}
+        {this.props.hideSeeking ? 
+          null
+            :
+          (<div className="audio-player-seeker">
+            <input
+              className={this.state.sliderClass}
+              type="range"
+              min="0"
+              max="100"
+              step="1"
+              value={this.state.seekerVal}
+              onChange={this.handleSeekSlider}
+              onMouseUp={this.handleSeek}
+            />
+            <div className="current-time">
+              {`${this.state.currentAudioTime}/${this.state.duration}`}
+            </div>
+          </div>)
+        }
 
-        <div className="audio-player-top">
-          <audio
-            src={this.props.audioFile}
-            ref={(audioRef) => { this.audioRef = audioRef; }}
-            onLoadedMetadata={this.loadDuration}
-            onPlay={this.startPlay}
-            onEnded={this.endPlay}
-          />
+        {/* volume controls */}
+        <div className="audio-player-volume">
           <div
-            id="play"
-            onClick={this.handlePlay}
-            onMouseOver={e => this.handleHoverOver(e, 'play')}
-            onMouseLeave={e => this.handleHoverOut(e, 'play')}>
-            <img src={this.state.playHover ? this.state.playEngagedIcon : this.state.playIcon}/>
-          </div>
-          <div
-            id="pause"
-            onClick={this.handlePause}
-            onMouseOver={e => this.handleHoverOver(e, 'pause')}
-            onMouseLeave={e => this.handleHoverOut(e, 'pause')}>
-            <img src={this.state.pauseHover ? this.state.pauseEngagedIcon : this.state.pauseIcon}/>
-          </div>
-          <div
-            id="volume"
+            id="volume-button"
             onClick={this.handleMute}
             onMouseOver={e => this.handleHoverOver(e, 'mute')}
             onMouseOut={e => this.handleHoverOut(e, 'mute')}>
@@ -340,33 +365,8 @@ export class ReactAudioWrapper extends Component {
             value={this.state.volume}
             onChange={this.handleVolume}
           />
-        </div>
-
-      {/* Seeking Div */}
-      {this.props.hideSeeking ? 
-        null
-          :
-        (<div className="audio-player-bottom">
-          <div className="current-time">
-            {this.state.currentAudioTime}
           </div>
-          <input
-            className={this.state.sliderClass}
-            type="range"
-            min="0"
-            max="100"
-            step="1"
-            value={this.state.seekerVal}
-            onChange={this.handleSeekSlider}
-            onMouseUp={this.handleSeek}
-          />
-        <div className="duration">
-          {this.state.duration}
         </div>
-      </div>)
-      }
-
-      </div>
     )
   }
 }
