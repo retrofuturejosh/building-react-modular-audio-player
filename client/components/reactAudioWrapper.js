@@ -31,12 +31,13 @@ export class ReactAudioWrapper extends Component {
       fontWeight: "100",
       fontSize: "small",
       fontColor: "black",
-      playerWidth: "40em",
-      playerHeight: "5em",
+      playerWidth: "40rem",
+      playerHeight: "auto",
       hideSeeking: false,
       scrollMarquee: false,
       scrollAmount: 0,
-      scrollDifference: 0
+      scrollDifference: 0,
+      gotWidth: false
     };
     this.seekingInterval = null;
     this.marquee = null;
@@ -75,16 +76,19 @@ export class ReactAudioWrapper extends Component {
       'fontColor',
       'sliderClass',
       'playerWidth',
-      'playerHeight'
     ]);
     this.setState(opts);
+  }
 
-    let marqueeWidth = this.marquee.getBoundingClientRect().width
-    let nameDisplayWidth = this.nameDisplay.getBoundingClientRect().width
+  componentDidUpdate() {
+    if(!this.state.gotWidth) {
+      let marqueeWidth = this.marquee.getBoundingClientRect().width
+      let nameDisplayWidth = this.nameDisplay.getBoundingClientRect().width
 
-    if(marqueeWidth > nameDisplayWidth) {
-      let difference = marqueeWidth - nameDisplayWidth;
-      this.setState({scrollMarquee: true, scrollDifference: difference});
+      if(marqueeWidth > nameDisplayWidth) {
+        let difference = marqueeWidth - nameDisplayWidth;
+        this.setState({scrollMarquee: true, scrollDifference: difference, gotWidth: true});
+      }
     }
   }
 
@@ -197,7 +201,6 @@ export class ReactAudioWrapper extends Component {
       //set state.mute to false if sliding up input from  mute
         this.setState({muted: false})
       }
-
     //when calling function from handleMute()
     } else if (muting) {
       //when muting, move volume slider to 0 and set volume to 0
@@ -282,7 +285,7 @@ export class ReactAudioWrapper extends Component {
           fontWeight: this.state.fontWeight,
           color: this.state.fontColor,
           fontSize: this.state.fontSize,
-          width: this.state.playerWidth,
+          width: `${this.state.playerWidth}`,
           height: this.state.playerHeight
           }}>
 
@@ -310,7 +313,7 @@ export class ReactAudioWrapper extends Component {
             ref={(el) => this.nameDisplay = el }>
             <div className="marquee"
               ref={(el) => this.marquee = el }
-              style={{marginLeft: this.state.scrollAmount, marginRight: -this.state.scrollAmount}}
+              style={{marginLeft: this.state.scrollAmount}}
               onMouseOver={this.state.scrollMarquee ? 
                 e => this.scrollMarquee(e, 'left')
                   :
@@ -364,15 +367,6 @@ export class ReactAudioWrapper extends Component {
             onMouseOver={e => this.handleHoverOver(e, 'mute')}
             onMouseOut={e => this.handleHoverOut(e, 'mute')}>
             <img src={this.renderMuteIcon()} />
-            {/* {this.state.muted ? 
-              (
-                <img src={this.state.muteHover ? this.state.unMuteIcon : this.state.muteEngagedIcon}/>
-              )
-              :
-              (
-                <img src={this.state.muteHover ? this.state.muteIcon : this.state.volumeIcon}/>
-              )
-            } */}
           </div>
           <input
             className={this.state.sliderClass}

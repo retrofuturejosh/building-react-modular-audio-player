@@ -17,20 +17,20 @@ body {
   cursor: default;
   align-items: left;
   justify-content: left;
-  width: 100%;
+  // width: 100%;
   align-items: center;
 
   &-track-name {
     overflow-x: scroll;
     overflow-y: hidden;
     white-space: nowrap;
-    width: 10%;
+    width: 25%;
     margin: 0;
     margin-right: 0.3em;
   }
   &-seeker {
     display: flex;
-    width: 25%;
+    width: 50%;
   }
   &-controls {
     display: flex;
@@ -38,12 +38,17 @@ body {
   }
   &-volume {
     display: flex;
-    width: 10%;
+    width: 25%;
   }
 }
 
+#volume-button {
+  display: flex;
+}
+
 .marquee {
-  width: fit-content;
+  width: auto;
+  min-width: max-content;
   transition: all 2s;
 }
 

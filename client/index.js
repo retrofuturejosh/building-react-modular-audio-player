@@ -20,8 +20,7 @@ ReactDOM.render(
       // fontColor="red"
       // fontWeight="bolder"
       // sliderClass="my-slider"
-      // playerWidth="30em"
-      // playerHeight="10em"
+      playerWidth="20rem"
       // hideSeeking={true}
       />,
   document.getElementById('app')
