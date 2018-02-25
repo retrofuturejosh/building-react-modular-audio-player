@@ -94,11 +94,11 @@ export class ReactAudioWrapper extends Component {
   setScrollSize() {
     setTimeout(() => {
         window.requestAnimationFrame(() => {
-          let marqueeWidth = Math.ceil(this.marquee.getBoundingClientRect().width);
-          let nameDisplayWidth = this.nameDisplay.getBoundingClientRect().width;
+          let marqueeWidth = this.nameDisplay.scrollWidth;
+          let nameDisplayWidth = this.nameDisplay.offsetWidth;
           if(marqueeWidth > nameDisplayWidth) {
-            let difference = Math.ceil(marqueeWidth - nameDisplayWidth);
-            this.setState({scrollMarquee: true, scrollDifference: difference, gotWidth: true});
+            let difference = marqueeWidth - nameDisplayWidth;
+            this.setState({scrollMarquee: true, scrollDifference: difference});
           }
         })
     }, 0);
@@ -288,10 +288,12 @@ export class ReactAudioWrapper extends Component {
         marginLeft: -this.state.scrollDifference,
         transition: "all 2s ease-in"
       }})
-    } else this.setState({scrollStyle: {
+    } else {
+      this.setState({scrollStyle: {
       marginLeft: "0",
       transition: "all 0.3s ease-in"
     }})
+    }
   }
 
   renderPlayIcon() {
@@ -377,34 +379,35 @@ export class ReactAudioWrapper extends Component {
             src={this.renderPlayIcon()}/>
           </div>
         {/* Skip */}
-          <div
-            id="forward"
-            onMouseOver={e => this.handleHoverOver(e, 'forward')}
-            onMouseLeave={e => this.handleHoverOut(e, 'forward')}
-            onClick={e => this.endPlay(e, true)}>
-            <img src={this.state.forwardHover ? 
-              this.state.forwardHoverIcon : this.state.forwardIcon}
-              style={{height: this.state.iconSize}}/>
-          </div>
-
+          {this.props.hideSkip ? 
+            null
+              :
+            <div
+              id="forward"
+              onMouseOver={e => this.handleHoverOver(e, 'forward')}
+              onMouseLeave={e => this.handleHoverOut(e, 'forward')}
+              onClick={e => this.endPlay(e, true)}>
+              <img src={this.state.forwardHover ? 
+                this.state.forwardHoverIcon : this.state.forwardIcon}
+                style={{height: this.state.iconSize}}/>
+            </div>}
         </div>
 
       {/* Artist/Name */}
         {title ?
           <div className="audio-player-track-name"
-            ref={(el) => this.nameDisplay = el }>
+            ref={(el) => this.nameDisplay = el }
+            onMouseOver={this.state.scrollMarquee ? 
+              e => this.scrollMarquee(e, 'left')
+                :
+              null}
+              onMouseOut={this.state.scrollMarquee ? 
+                e => this.scrollMarquee(e, 'right')
+                  :
+                null}>
             <div className="marquee"
               ref={(el) => this.marquee = el }
-              style={this.state.scrollStyle}
-              onMouseOver={this.state.scrollMarquee ? 
-                e => this.scrollMarquee(e, 'left')
-                  :
-                null}
-                onMouseOut={this.state.scrollMarquee ? 
-                  e => this.scrollMarquee(e, 'right')
-                    :
-                  null}>
-
+              style={this.state.scrollStyle}>
               {artist ? 
                 (`${artist} - `)
                   : 

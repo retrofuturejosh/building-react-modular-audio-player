@@ -10,7 +10,7 @@ body {
 //audio player
 .audio-player {
   ::-webkit-scrollbar {
-    display: none
+    display: none;
   }
   display: flex;
   flex-direction: row;
@@ -23,6 +23,8 @@ body {
   &-track-name {
     overflow-x: scroll;
     overflow-y: hidden;
+    -ms-overflow-style: none;  // IE 10+
+    overflow: -moz-scrollbars-none;
     white-space: nowrap;
     width: 25%;
     margin: 0;
@@ -57,7 +59,7 @@ body {
   margin-left: 0.25em;
 }
 
-.current-time, .duration, #play, #pause, #volume {
+.current-time, .duration, #play, #pause, #volume-button, #forward {
   display: flex;
   flex-direction: column;
   justify-content: center;

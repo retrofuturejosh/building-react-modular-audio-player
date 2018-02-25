@@ -37,6 +37,7 @@ ReactDOM.render(
       // sliderClass="my-slider"
       playerWidth="30rem"
       // hideSeeking={true}
+      hideSkip={true}
       />,
   document.getElementById('app')
 )
