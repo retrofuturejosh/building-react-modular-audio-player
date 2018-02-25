@@ -4,9 +4,9 @@ import { ReactAudioWrapper } from './components/reactAudioWrapper'
 
 ReactDOM.render(
     <ReactAudioWrapper
-      mp3="/mp3Example.mp3"
-      // name="My Head"
-      // artist="Kimmi Moore"
+      audioFile="/mp3Example.mp3"
+      name="My Head"
+      artist="Kimmi Moore"
       // playIcon="/play-light.png"
       // playEngagedIcon="/play-dark.png"
       // pauseIcon="/pause-light.png"
@@ -21,7 +21,7 @@ ReactDOM.render(
       // fontWeight="bolder"
       // sliderClass="my-slider"
       // playerWidth="20em"
-      // playerHeight="2em"
+      // playerHeight="10em"
       // hideSeeking={true}
       />,
   document.getElementById('app')

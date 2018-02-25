@@ -25,6 +25,7 @@ body {
     width: 100%;
     flex-grow: 2;
     height: fit-content;
+    margin: 0 auto;
   }
   &-top, &-bottom {
     display: flex;
@@ -36,6 +37,25 @@ body {
   }
 }
 
+.marquee {
+  width: fit-content;
+  transition: all 2s;
+}
+
+// .marquee:hover {
+//   transform: translateX(-100%);
+//   transition: all 5s;
+// }
+
+// /* Make it move */
+// @keyframes marquee {
+//   0% { 
+//     transform: translate(0, 0); 
+//   }
+//   100% {
+//     transform: translate(-100%, 0);
+//   }
+// }
 
 
 .current-time {

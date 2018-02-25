@@ -34,9 +34,14 @@ export class ReactAudioWrapper extends Component {
       fontColor: "black",
       playerWidth: "10em",
       playerHeight: "5em",
-      hideSeeking: false
+      hideSeeking: false,
+      scrollMarquee: false,
+      scrollAmount: 0,
+      scrollDifference: 0
     };
     this.seekingInterval = null;
+    this.marquee = null;
+    this.nameDisplay = null;
     this.handlePlay = this.handlePlay.bind(this);
     this.handlePause = this.handlePause.bind(this);
     this.handleSeekSlider = this.handleSeekSlider.bind(this);
@@ -51,6 +56,7 @@ export class ReactAudioWrapper extends Component {
     this.startPlay = this.startPlay.bind(this);
     this.endPlay = this.endPlay.bind(this);
     this.setOpts = this.setOpts.bind(this);
+    this.scrollMarquee = this.scrollMarquee.bind(this);
   }
 
   componentDidMount() {
@@ -72,6 +78,14 @@ export class ReactAudioWrapper extends Component {
       'playerHeight'
     ]);
     this.setState(opts);
+
+    let marqueeWidth = this.marquee.getBoundingClientRect().width
+    let nameDisplayWidth = this.nameDisplay.getBoundingClientRect().width
+
+    if(marqueeWidth > nameDisplayWidth) {
+      let difference = marqueeWidth - nameDisplayWidth;
+      this.setState({scrollMarquee: true, scrollDifference: difference});
+    }
   }
 
   setOpts(settings) {
@@ -230,8 +244,13 @@ export class ReactAudioWrapper extends Component {
     if (type === 'mute') this.setState({muteHover: false})
   }
 
-  render() {
+  scrollMarquee(e, direction) {
+    if(direction === 'left') {
+      this.setState({scrollAmount: -this.state.scrollDifference});
+    } else this.setState({scrollAmount: 0})
+  }
 
+  render() {
     return (
       <div className="audio-player"
         style={{
@@ -245,16 +264,30 @@ export class ReactAudioWrapper extends Component {
 
       {/* if there is a name or artist */}
         {this.props.name ?
-          <div className="audio-player-track-name">
-            {this.props.artist ? 
-              (`${this.props.artist} - `)
-                : 
-              null
-            }
-            {this.props.name ? 
-              (this.props.name)
-                :
-              null}
+          <div className="audio-player-track-name"
+            ref={(el) => this.nameDisplay = el }>
+            <div className="marquee"
+              ref={(el) => this.marquee = el }
+              style={{marginLeft: this.state.scrollAmount}}
+              onMouseOver={this.state.scrollMarquee ? 
+                e => this.scrollMarquee(e, 'left')
+                  :
+                null}
+                onMouseOut={this.state.scrollMarquee ? 
+                  e => this.scrollMarquee(e, 'right')
+                    :
+                  null}>
+
+              {this.props.artist ? 
+                (`${this.props.artist} - `)
+                  : 
+                null
+              }
+              {this.props.name ? 
+                (this.props.name)
+                  :
+                null}
+            </div>
           </div>
             :
           null
@@ -263,7 +296,7 @@ export class ReactAudioWrapper extends Component {
 
         <div className="audio-player-top">
           <audio
-            src={this.props.mp3}
+            src={this.props.audioFile}
             ref={(audioRef) => { this.audioRef = audioRef; }}
             onLoadedMetadata={this.loadDuration}
             onPlay={this.startPlay}
