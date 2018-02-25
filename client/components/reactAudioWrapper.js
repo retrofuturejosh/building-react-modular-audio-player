@@ -82,7 +82,7 @@ export class ReactAudioWrapper extends Component {
       'iconSize'
     ]);
     this.setState(opts, () => {
-      this.setScrollSize()
+      this.setScrollSize();
     });
   }
 
@@ -124,7 +124,7 @@ export class ReactAudioWrapper extends Component {
       playStarted: false,
       currentAudioTime: "0:00",
       seekerVal: "0"
-    })
+    });
   }
 
   handleProgress() {
@@ -172,7 +172,7 @@ export class ReactAudioWrapper extends Component {
       this.audioRef.pause();
       this.setState({
         playing: false,
-        paused: true,})
+        paused: true});
     }
   }
 
@@ -234,13 +234,25 @@ export class ReactAudioWrapper extends Component {
   }
 
   handleHoverOver(e, type){
-    if (type === 'play') this.setState({playHover: true});
-    if (type === 'mute') this.setState({muteHover: true})
+    switch (type) {
+      case 'play':
+        this.setState({playHover: true});
+        break;
+      case 'mute':
+        this.setState({muteHover: true});
+        break;
+    }
   }
 
   handleHoverOut(e, type){
-    if (type === 'play') this.setState({playHover: false});
-    if (type === 'mute') this.setState({muteHover: false})
+    switch (type) {
+      case 'play':
+        this.setState({playHover: false});
+        break;
+      case 'mute':
+        this.setState({muteHover: false});
+        break;
+    }
   }
 
   scrollMarquee(e, direction) {
