@@ -49,7 +49,6 @@ export class ReactAudioWrapper extends Component {
       }
     };
     this.seekingInterval = null;
-    this.marquee = null;
     this.nameDisplay = null;
     this.handlePlay = this.handlePlay.bind(this);
     this.handlePause = this.handlePause.bind(this);
@@ -433,6 +432,7 @@ export class ReactAudioWrapper extends Component {
       {/* Artist/Name */}
         {title ?
           <div className="audio-player-track-name"
+            style={this.props.hideSeeking ? {width: "50%"} : null}
             ref={(el) => this.nameDisplay = el }
             onMouseOver={this.state.scrollMarquee ? 
               e => this.scrollMarquee(e, 'left')
@@ -443,7 +443,6 @@ export class ReactAudioWrapper extends Component {
                   :
                 null}>
             <div className="marquee"
-              ref={(el) => this.marquee = el }
               style={this.state.scrollStyle}>
               {artist ? 
                 (`${artist} - `)
@@ -482,7 +481,8 @@ export class ReactAudioWrapper extends Component {
         }
 
         {/* volume controls */}
-        <div className="audio-player-volume">
+        <div className="audio-player-volume"
+          style={this.props.hideSeeking ? {width: "50%"} : null}>
           <div
             id="volume-button"
             onClick={this.handleMute}
