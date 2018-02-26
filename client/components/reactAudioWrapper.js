@@ -16,10 +16,12 @@ export class ReactAudioWrapper extends Component {
       duration: "0:00",
       currentAudioTime: "0:00",
       loaded: false,
+      loop: false,
       playHover: false,
       playStarted: false,
       muteHover: false,
       forwardHover: false,
+      loopHover: false,
       playIcon: icons.playIcon,
       playEngagedIcon: icons.playEngagedIcon,
       pauseIcon: icons.pauseIcon,
@@ -30,6 +32,8 @@ export class ReactAudioWrapper extends Component {
       muteEngagedIcon: icons.muteEngagedIcon,
       forwardIcon: icons.forwardIcon,
       forwardHoverIcon: icons.forwardHoverIcon,
+      loopIcon: icons.loopIcon,
+      loopEngagedIcon: icons.loopEngagedIcon,
       sliderClass: "slider",
       fontFamily: "sans-serif",
       fontWeight: "100",
@@ -64,6 +68,7 @@ export class ReactAudioWrapper extends Component {
     this.scrollMarquee = this.scrollMarquee.bind(this);
     this.renderPlayIcon = this.renderPlayIcon.bind(this);
     this.setScrollSize = this.setScrollSize.bind(this);
+    this.handleLoop = this.handleLoop.bind(this);
   }
 
   componentDidMount() {
@@ -78,6 +83,8 @@ export class ReactAudioWrapper extends Component {
       'muteEngagedIcon',
       'forwardIcon',
       'forwardHoverIcon',
+      'loopIcon',
+      'loopEngagedIcon',
       'fontFamily',
       'fontWeight',
       'fontSize',
@@ -126,6 +133,10 @@ export class ReactAudioWrapper extends Component {
     let endOfTracks = (this.state.currentTrackIdx === this.props.audioFiles.length-1) ?
       true : false;
     let nextTrackIdx = endOfTracks ? 0 : 1;
+    if (this.state.loop) {
+      nextTrackIdx = this.state.currentTrackIdx;
+      endOfTracks = false;
+    }
     this.setState({
       currentAudioTime: "0:00",
       seekerVal: "0",
@@ -136,12 +147,13 @@ export class ReactAudioWrapper extends Component {
         marginLeft: "0"
       }
     }, () => {
-      if(endOfTracks && !skipped) {
+      if(endOfTracks && !skipped && !this.props.loopAll) {
         this.setState({
           playHover: false,
           playing: false})
       }
       else {
+        if (this.state.loop) this.audioRef.currentTime = 0;
         if (this.state.playing) this.handlePlay();
       }
       this.setScrollSize();
@@ -249,6 +261,10 @@ export class ReactAudioWrapper extends Component {
     this.setState({muted: !this.state.muted});
   }
 
+  handleLoop(){
+    this.setState({loop: !this.state.loop, loopHover: false})
+  }
+
   loadDuration(){
     let duration = this.secondsToClock(this.audioRef.duration);
     this.setState({duration})
@@ -265,6 +281,9 @@ export class ReactAudioWrapper extends Component {
       case 'forward':
         this.setState({forwardHover: true});
         break;
+      case 'loop':
+        this.setState({loopHover: true});
+        break;
     }
   }
 
@@ -278,6 +297,9 @@ export class ReactAudioWrapper extends Component {
         break;
       case 'forward':
         this.setState({forwardHover: false});
+        break;
+      case 'loop':
+        this.setState({loopHover: false});
         break;
     }
   }
@@ -389,6 +411,21 @@ export class ReactAudioWrapper extends Component {
               onClick={e => this.endPlay(e, true)}>
               <img src={this.state.forwardHover ? 
                 this.state.forwardHoverIcon : this.state.forwardIcon}
+                style={{height: this.state.iconSize}}/>
+            </div>}
+        {/* Loop */}
+          {this.props.hideLoop ? 
+            null
+              :
+            <div
+              id="loop"
+              onMouseOver={e => this.handleHoverOver(e, 'loop')}
+              onMouseLeave={e => this.handleHoverOut(e, 'loop')}
+              onClick={this.handleLoop}>
+              <img src={this.state.loopHover ? 
+                this.state.loop ? this.state.loopIcon : this.state.loopEngagedIcon
+                 : 
+                this.state.loop ? this.state.loopEngagedIcon : this.state.loopIcon}
                 style={{height: this.state.iconSize}}/>
             </div>}
         </div>

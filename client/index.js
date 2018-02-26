@@ -18,9 +18,6 @@ const audioFiles = [
 ReactDOM.render(
     <ReactAudioWrapper
       audioFiles={audioFiles}
-            // audioFile="/My Head.mp3"
-            // name="My Head"
-            // artist="Kimmi Moore"
       // playIcon="/play-light.png"
       // playEngagedIcon="/play-dark.png"
       // pauseIcon="/pause-light.png"
@@ -29,15 +26,19 @@ ReactDOM.render(
       // muteIcon="/mute.png"
       // muteEngagedIcon="/mute-dark.png"
       // volumeEngagedIcon="/volume-dark.png"
+      // forwardIcon="/forward-ref.png"
+      // forwardHoverIcon="/forward-hover-ref.png"
       // fontFamily="serif"
       // fontSize="larger"
       // fontColor="red"
       // fontWeight="bolder"
       // iconSize="1em"
       // sliderClass="my-slider"
-      playerWidth="30rem"
+      // playerWidth="30rem"
       // hideSeeking={true}
-      hideSkip={true}
+      // hideSkip={true}
+      hideLoop={false}
+      // loopAll={false}
       />,
   document.getElementById('app')
 )
