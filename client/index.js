@@ -10,8 +10,8 @@ const audioFiles = [
   },
   {
     src: "/One Night.mp3",
-    title: "One Night",
-    artist: "Kimmi Moorrrrrrrre"
+    artist: "Kimmi Moooooooooooooooooooooore",
+    title: "One Night"
   }
 ]
 
@@ -37,8 +37,8 @@ ReactDOM.render(
       // playerWidth="30rem"
       // hideSeeking={true}
       // hideSkip={true}
-      hideLoop={false}
-      // loopAll={false}
+      // hideLoop={false}
+      loopPlaylist={true}
       />,
   document.getElementById('app')
 )

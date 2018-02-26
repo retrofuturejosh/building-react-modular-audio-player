@@ -147,7 +147,7 @@ export class ReactAudioWrapper extends Component {
         marginLeft: "0"
       }
     }, () => {
-      if(endOfTracks && !skipped && !this.props.loopAll) {
+      if(endOfTracks && !skipped && !this.props.loopPlaylist) {
         this.setState({
           playHover: false,
           playing: false})
