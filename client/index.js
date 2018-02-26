@@ -35,7 +35,7 @@ ReactDOM.render(
       // iconSize="1em"
       // sliderClass="my-slider"
       // playerWidth="30rem"
-      hideSeeking={true}
+      // hideSeeking={true}
       // hideSkip={true}
       // hideLoop={true}
       // loopPlaylist={true}ß
