@@ -10,6 +10,8 @@ import forwardIcon from "./forward.png";
 import forwardHoverIcon from "./forward-hover.png"
 import loopIcon from "./loop.png"
 import loopEngagedIcon from "./loop-engaged.png"
+import rewindIcon from "./rewind.png"
+import rewindHoverIcon from "./rewind-dark.png"
 
 export default { 
   playIcon,
@@ -22,6 +24,8 @@ export default {
   volumeEngaged,
   forwardIcon,
   forwardHoverIcon,
+  rewindIcon,
+  rewindHoverIcon,
   loopIcon,
   loopEngagedIcon
 };
