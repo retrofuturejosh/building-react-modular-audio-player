@@ -21,6 +21,7 @@ export class ReactAudioWrapper extends Component {
       playStarted: false,
       muteHover: false,
       forwardHover: false,
+      rewindHover: false,
       loopHover: false,
       playIcon: icons.playIcon,
       playEngagedIcon: icons.playEngagedIcon,
@@ -32,6 +33,8 @@ export class ReactAudioWrapper extends Component {
       muteEngagedIcon: icons.muteEngagedIcon,
       forwardIcon: icons.forwardIcon,
       forwardHoverIcon: icons.forwardHoverIcon,
+      rewindIcon: icons.rewindIcon,
+      rewindHoverIcon: icons.rewindHoverIcon,
       loopIcon: icons.loopIcon,
       loopEngagedIcon: icons.loopEngagedIcon,
       sliderClass: "slider",
@@ -280,6 +283,9 @@ export class ReactAudioWrapper extends Component {
       case 'forward':
         this.setState({forwardHover: true});
         break;
+      case 'rewind':
+        this.setState({rewindHover: true});
+        break;
       case 'loop':
         this.setState({loopHover: true});
         break;
@@ -296,6 +302,9 @@ export class ReactAudioWrapper extends Component {
         break;
       case 'forward':
         this.setState({forwardHover: false});
+        break;
+      case 'rewind':
+        this.setState({rewindHover: false});
         break;
       case 'loop':
         this.setState({loopHover: false});
@@ -399,6 +408,21 @@ export class ReactAudioWrapper extends Component {
             style={{height: this.state.iconSize}}
             src={this.renderPlayIcon()}/>
           </div>
+
+      {/* Rewind */}
+        {this.props.hideRewind ? 
+            null
+              :
+            <div
+              id="rewind"
+              onMouseOver={e => this.handleHoverOver(e, 'rewind')}
+              onMouseLeave={e => this.handleHoverOut(e, 'rewind')}
+              >
+              <img src={this.state.rewindHover ? 
+                this.state.rewindHoverIcon : this.state.rewindIcon}
+                style={{height: this.state.iconSize}}/>
+            </div>}
+
         {/* Skip */}
           {this.props.hideSkip ? 
             null
@@ -412,6 +436,7 @@ export class ReactAudioWrapper extends Component {
                 this.state.forwardHoverIcon : this.state.forwardIcon}
                 style={{height: this.state.iconSize}}/>
             </div>}
+
         {/* Loop */}
           {this.props.hideLoop ? 
             null
