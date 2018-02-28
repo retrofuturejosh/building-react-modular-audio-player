@@ -220,7 +220,7 @@ export class ReactAudioWrapper extends Component {
       this.props.audioFiles.length-1 : this.state.currentTrackIdx - 1;
 
     if (this.state.recentlyRewound || !currentTime) {
-      clearTimeout(this.rewindTimeout)
+      clearTimeout(this.rewindTimeout);
       this.setState({
         currentAudioTime: "0:00",
         seekerVal: "0",
@@ -234,8 +234,14 @@ export class ReactAudioWrapper extends Component {
         if (this.state.playing) this.handlePlay();
         this.setScrollSize();
       });
-    } else if (this.state.playing && currentTime) {
+    } else if (currentTime) {
       this.audioRef.currentTime = 0;
+      if (!this.state.playing) {
+        this.setState({
+          currentAudioTime: "0:00",
+          seekerVal: "0",
+        })
+      }
     }
     this.setState({recentlyRewound: true});
     this.rewindTimeout = setTimeout(() => {
