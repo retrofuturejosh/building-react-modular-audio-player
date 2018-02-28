@@ -28,6 +28,8 @@ ReactDOM.render(
       // volumeEngagedIcon="/volume-dark.png"
       // forwardIcon="/forward-ref.png"
       // forwardHoverIcon="/forward-hover-ref.png"
+      // rewindIcon="/forward-ref.png"
+      // rewindHoverIcon="/forward-hover-ref.png"
       // fontFamily="serif"
       // fontSize="larger"
       // fontColor="red"
@@ -38,7 +40,8 @@ ReactDOM.render(
       // hideSeeking={true}
       // hideSkip={true}
       // hideLoop={true}
-      // loopPlaylist={true}ß
+      // loopPlaylist={true}
+      // hideRewind={true}
       />,
   document.getElementById('app')
 )

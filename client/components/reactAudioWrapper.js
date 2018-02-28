@@ -88,6 +88,8 @@ export class ReactAudioWrapper extends Component {
       'muteEngagedIcon',
       'forwardIcon',
       'forwardHoverIcon',
+      'rewindIcon',
+      'rewindHoverIcon',
       'loopIcon',
       'loopEngagedIcon',
       'fontFamily',
@@ -240,7 +242,7 @@ export class ReactAudioWrapper extends Component {
         this.setState({
           currentAudioTime: "0:00",
           seekerVal: "0",
-        })
+        });
       }
     }
     this.setState({recentlyRewound: true});
