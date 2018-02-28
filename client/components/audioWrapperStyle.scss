@@ -26,22 +26,25 @@ body {
     -ms-overflow-style: none;  // IE 10+
     overflow: -moz-scrollbars-none;
     white-space: nowrap;
-    width: 25%;
+    width: 32%;
     margin: 0;
     margin-right: 0.3em;
     // max-width: fit-content;
   }
   &-seeker {
     display: flex;
-    width: 50%;
+    width: 35%;
   }
-  &-controls {
+  &-controls, &-time {
     display: flex;
     width: fit-content;
   }
   &-volume {
     display: flex;
-    width: 25%;
+    width: 33%;
+  }
+  &-time, &-seeker {
+    margin-right: 0.3em;
   }
 }
 

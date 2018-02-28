@@ -542,9 +542,13 @@ export class ReactAudioWrapper extends Component {
               onChange={this.handleSeekSlider}
               onMouseUp={this.handleSeek}
             />
-            <div className="current-time">
-              {`${this.state.currentAudioTime}/${this.state.duration}`}
-            </div>
+          </div>)
+        }
+        {this.props.hideTime ?
+          null
+            :
+        (<div className="audio-player-time">
+            {`${this.state.currentAudioTime}/${this.state.duration}`}
           </div>)
         }
 

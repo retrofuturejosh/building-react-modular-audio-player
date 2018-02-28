@@ -36,12 +36,13 @@ ReactDOM.render(
       // fontWeight="bolder"
       // iconSize="1em"
       // sliderClass="my-slider"
-      playerWidth="30rem"
+      playerWidth="20rem"
       // hideSeeking={true}
       // hideSkip={true}
       // hideLoop={true}
       // loopPlaylist={true}
       // hideRewind={true}
+      hideTime={true}
       />,
   document.getElementById('app')
 )
