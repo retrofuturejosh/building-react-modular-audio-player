@@ -48,6 +48,7 @@ export class ReactAudioWrapper extends Component {
       hideSeeking: false,
       scrollMarquee: false,
       scrollDifference: 0,
+      scrollTime: 0,
       scrollStyle: {
         marginLeft: "0"
       }
@@ -111,8 +112,9 @@ export class ReactAudioWrapper extends Component {
           let marqueeWidth = this.nameDisplay.scrollWidth;
           let nameDisplayWidth = this.nameDisplay.offsetWidth;
           if(marqueeWidth > nameDisplayWidth) {
+            let scrollTime = Math.round((marqueeWidth / nameDisplayWidth) * 1.7);
             let difference = marqueeWidth - nameDisplayWidth;
-            this.setState({scrollMarquee: true, scrollDifference: difference});
+            this.setState({scrollMarquee: true, scrollDifference: difference, scrollTime});
           }
         })
     }, 0);
@@ -353,11 +355,10 @@ export class ReactAudioWrapper extends Component {
   }
 
   scrollMarquee(e, direction) {
-    let transitionTime = Math.floor(this.nameDisplay.scrollWidth / 70);
     if(direction === "left") {
       this.setState({scrollStyle: {
         marginLeft: -this.state.scrollDifference,
-        transition: `all ${transitionTime}s ease-in`
+        transition: `all ${this.state.scrollTime}s ease-in`
       }})
     } else {
       this.setState({scrollStyle: {
