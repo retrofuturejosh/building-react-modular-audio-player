@@ -353,10 +353,11 @@ export class ReactAudioWrapper extends Component {
   }
 
   scrollMarquee(e, direction) {
+    let transitionTime = Math.floor(this.nameDisplay.scrollWidth / 70);
     if(direction === "left") {
       this.setState({scrollStyle: {
         marginLeft: -this.state.scrollDifference,
-        transition: "all 2s ease-in"
+        transition: `all ${transitionTime}s ease-in`
       }})
     } else {
       this.setState({scrollStyle: {

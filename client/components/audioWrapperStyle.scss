@@ -29,7 +29,7 @@ body {
     width: 25%;
     margin: 0;
     margin-right: 0.3em;
-    max-width: fit-content;
+    // max-width: fit-content;
   }
   &-seeker {
     display: flex;
@@ -52,6 +52,7 @@ body {
 .marquee {
   width: auto;
   min-width: max-content;
+  margin-right: 0.3em;
 }
 
 .current-time {
