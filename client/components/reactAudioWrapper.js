@@ -15,6 +15,7 @@ export class ReactAudioWrapper extends Component {
       volumePreMute: "75",
       duration: "0:00",
       currentAudioTime: "0:00",
+      recentlyRewound: false,
       loaded: false,
       loop: false,
       playHover: false,
@@ -51,6 +52,7 @@ export class ReactAudioWrapper extends Component {
         marginLeft: "0"
       }
     };
+    this.rewindTimeout = null;
     this.seekingInterval = null;
     this.nameDisplay = null;
     this.handlePlay = this.handlePlay.bind(this);
@@ -71,6 +73,7 @@ export class ReactAudioWrapper extends Component {
     this.renderPlayIcon = this.renderPlayIcon.bind(this);
     this.setScrollSize = this.setScrollSize.bind(this);
     this.handleLoop = this.handleLoop.bind(this);
+    this.handleRewind = this.handleRewind.bind(this);
   }
 
   componentDidMount() {
@@ -209,6 +212,35 @@ export class ReactAudioWrapper extends Component {
         playing: false,
         paused: true});
     }
+  }
+
+  handleRewind() {
+    let currentTime = this.audioRef.currentTime;
+    let prevTrackIdx = (this.state.currentTrackIdx === 0) ?
+      this.props.audioFiles.length-1 : this.state.currentTrackIdx - 1;
+
+    if (this.state.recentlyRewound || !currentTime) {
+      clearTimeout(this.rewindTimeout)
+      this.setState({
+        currentAudioTime: "0:00",
+        seekerVal: "0",
+        currentTrackIdx: prevTrackIdx,
+        scrollMarquee: false,
+        scrollDifference: 0,
+        scrollStyle: {
+          marginLeft: "0"
+        }
+      }, () => {
+        if (this.state.playing) this.handlePlay();
+        this.setScrollSize();
+      });
+    } else if (this.state.playing && currentTime) {
+      this.audioRef.currentTime = 0;
+    }
+    this.setState({recentlyRewound: true});
+    this.rewindTimeout = setTimeout(() => {
+      this.setState({recentlyRewound: false});
+    }, 1200);
   }
 
   handleSeekSlider(event) {
@@ -417,6 +449,7 @@ export class ReactAudioWrapper extends Component {
               id="rewind"
               onMouseOver={e => this.handleHoverOver(e, 'rewind')}
               onMouseLeave={e => this.handleHoverOut(e, 'rewind')}
+              onClick={this.handleRewind}
               >
               <img src={this.state.rewindHover ? 
                 this.state.rewindHoverIcon : this.state.rewindIcon}
