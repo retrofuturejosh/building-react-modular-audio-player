@@ -25,7 +25,8 @@ export function mountComponent() {
     'iconSize'
   ]);
   this.setState(opts, () => {
-    this.setScrollSize();
+    if(!this.props.hideName) this.setScrollSize();
+    this.setPercentages();
   });
 }
 
@@ -77,4 +78,14 @@ export function setAudio() {
     onPlay={this.startPlay}
     onEnded={this.endPlay}
   />
+}
+
+export function setPercentages() {
+  if(this.props.hideSeeking && this.props.hideName) {
+    this.setState({volumeWidth: "100%"});
+  } else if (this.props.hideSeeking) {
+    this.setState({volumeWidth: "50%", nameWidth: "50%"})
+  } else if (this.props.hideName) {
+    this.setState({volumeWidth: "50%", seekWidth: "50%"})
+  }
 }

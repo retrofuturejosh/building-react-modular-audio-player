@@ -5,11 +5,14 @@ const SeekBar = (props) => {
     sliderClass,
     seekerVal,
     handleSeekSlider,
-    handleSeek
+    handleSeek,
+    width
   } = props;
 
   return (
-    <div className="audio-player-seeker">
+    <div className="audio-player-seeker"
+      style={{width}}
+    >
       <input
         className={sliderClass}
         type="range"

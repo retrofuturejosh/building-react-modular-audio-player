@@ -48,6 +48,7 @@ export class AudioPlayer extends Component {
     this.setOpts = functions.setOpts.bind(this);
     this.setStyle = functions.setStyle.bind(this);
     this.setAudio = functions.setAudio.bind(this);
+    this.setPercentages = functions.setPercentages.bind(this);
     this.startPlay = functions.startPlay.bind(this);
     this.endPlay = functions.endPlay.bind(this);
     this.handlePlay = functions.handlePlay.bind(this);
@@ -110,10 +111,10 @@ export class AudioPlayer extends Component {
           }
   
         {/* Track Name and Artist */}
-          {title ?
-            this.componentObj.name()
-              :
+          {this.props.hideName ?
             null
+              :
+            this.componentObj.name()
           }
   
         {/* Seeking Bar*/}

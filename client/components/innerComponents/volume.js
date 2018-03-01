@@ -10,12 +10,13 @@ const Volume = (props) => {
     renderMuteIcon,
     sliderClass,
     volume,
-    handleVolume
+    handleVolume,
+    width
   } = props;
 
   return (
     <div className="audio-player-volume"
-      style={hideSeeking ? {width: "50%"} : null}
+      style={{width}}
     >
       <div
         id="volume-button"

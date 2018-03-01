@@ -4,7 +4,8 @@ import {
   setNameDisplayRef,
   setOpts ,
   setStyle,
-  setAudio
+  setAudio,
+  setPercentages
 } from './setUp';
 
 import {
@@ -53,6 +54,7 @@ export default {
   setOpts,
   setStyle,
   setAudio,
+  setPercentages,
   startPlay,
   endPlay,
   handlePlay,

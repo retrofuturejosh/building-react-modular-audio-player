@@ -50,6 +50,7 @@ ReactDOM.render(
       // loopPlaylist={true}
       // hideRewind={true}
       // hideTime={true}
+      hideName={true}
       />
       <AudioPlayer
         audioFiles={audioFiles2}

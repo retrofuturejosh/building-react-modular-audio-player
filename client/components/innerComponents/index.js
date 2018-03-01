@@ -67,6 +67,7 @@ export function renderName() {
     scrollStyle={this.state.scrollStyle}
     artist={this.props.audioFiles[this.state.currentTrackIdx].artist}
     title={this.props.audioFiles[this.state.currentTrackIdx].title}
+    width={this.state.nameWidth}
   />
 }
 
@@ -76,6 +77,7 @@ export function renderSeekBar() {
     seekerVal={this.state.seekerVal}
     handleSeekSlider={this.handleSeekSlider}
     handleSeek={this.handleSeek}
+    width={this.state.seekWidth}
   />
 }
 
@@ -97,5 +99,6 @@ export function renderVolume() {
     sliderClass={this.state.sliderClass}
     volume={this.state.volume}
     handleVolume={this.handleVolume}
+    width={this.state.volumeWidth}
   />
 }

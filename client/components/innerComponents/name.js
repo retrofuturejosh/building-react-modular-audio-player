@@ -8,12 +8,13 @@ const Name = (props) => {
     scrollMarqueeFunc,
     scrollStyle,
     artist,
-    title  
+    title,
+    width  
   } = props;
 
   return (
     <div className="audio-player-track-name"
-      style={hideSeeking ? {width: "50%"} : null}
+      style={{width}}
       ref={setNameDisplayRef}
       onMouseOver={scrollMarquee ? 
         e => scrollMarqueeFunc(e, 'left')
@@ -31,10 +32,7 @@ const Name = (props) => {
             : 
           null
         }
-        {title ? 
-          (title)
-            :
-          null}
+        {title}
     </div>
   </div>
   )
