@@ -1,6 +1,7 @@
 import React, { Component } from 'react';
 
-import { Play } from './play'
+import { Play } from './play';
+import { Rewind } from './rewind'
 import './audioWrapperStyle.scss';
 import icons from './assets/index';
 
@@ -432,49 +433,41 @@ export class ReactAudioWrapper extends Component {
           width: `${this.state.playerWidth}`,
           height: this.state.playerHeight
           }}>
+        <audio
+          src={this.props.audioFiles[this.state.currentTrackIdx].src}
+          ref={(audioRef) => { this.audioRef = audioRef; }}
+          onLoadedMetadata={this.loadDuration}
+          onPlay={this.startPlay}
+          onEnded={this.endPlay}
+        />
 
       {/* Main Controls */}
         <div className="audio-player-controls">
-          <audio
-            src={this.props.audioFiles[this.state.currentTrackIdx].src}
-            ref={(audioRef) => { this.audioRef = audioRef; }}
-            onLoadedMetadata={this.loadDuration}
-            onPlay={this.startPlay}
-            onEnded={this.endPlay}
-          />
-        {/* Play/Pause */}
-          {/* <div
-            id="play"
-            onClick={this.state.playing ? this.handlePause : this.handlePlay}
-            onMouseOver={e => this.handleHoverOver(e, 'play')}
-            onMouseLeave={e => this.handleHoverOut(e, 'play')}>
-            <img 
-            style={{height: this.state.iconSize}}
-            src={this.renderPlayIcon()}/>
-          </div> */}
-          <Play 
-            playing={this.state.playing}
-            handlePause={this.handlePause}
-            handlePlay={this.handlePlay}
-            handleHoverOver={this.handleHoverOver}
-            handleHoverOut={this.handleHoverOut}
-            renderPlayIcon={this.renderPlayIcon}
-            iconSize={this.state.iconSize}/>
+      {/* Play/Pause */}
+        <Play 
+          playing={this.state.playing}
+          handlePause={this.handlePause}
+          handlePlay={this.handlePlay}
+          handleHoverOver={this.handleHoverOver}
+          handleHoverOut={this.handleHoverOut}
+          renderPlayIcon={this.renderPlayIcon}
+          iconSize={this.state.iconSize}
+        />
 
       {/* Rewind */}
         {this.props.hideRewind ? 
-            null
-              :
-            <div
-              id="rewind"
-              onMouseOver={e => this.handleHoverOver(e, 'rewind')}
-              onMouseLeave={e => this.handleHoverOut(e, 'rewind')}
-              onClick={this.handleRewind}
-              >
-              <img src={this.state.rewindHover ? 
-                this.state.rewindHoverIcon : this.state.rewindIcon}
-                style={{height: this.state.iconSize}}/>
-            </div>}
+          null
+            :
+          <Rewind 
+            handleHoverOver={this.handleHoverOver}
+            handleHoverOut={this.handleHoverOut}
+            handleRewind={this.handleRewind}
+            rewindHover={this.state.rewindHover}
+            rewindHoverIcon={this.state.rewindHoverIcon}
+            rewindIcon={this.state.rewindIcon}
+            iconSize={this.state.iconSize}
+          />
+        }
 
         {/* Skip */}
           {this.props.hideSkip ? 
