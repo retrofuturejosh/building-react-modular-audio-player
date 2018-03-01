@@ -6,6 +6,7 @@ import { Forward } from './forward';
 import { Loop } from './loop';
 import { Name } from './name';
 import { SeekBar } from './seekBar';
+import { Time } from './time'
 import './audioWrapperStyle.scss';
 import icons from './assets/index';
 
@@ -539,9 +540,10 @@ export class ReactAudioWrapper extends Component {
         {this.props.hideTime ?
           null
             :
-        (<div className="audio-player-time">
-            {`${this.state.currentAudioTime}/${this.state.duration}`}
-          </div>)
+          <Time
+            currentAudioTime={this.state.currentAudioTime}
+            duration={this.state.duration}
+          />
         }
 
         {/* volume controls */}
