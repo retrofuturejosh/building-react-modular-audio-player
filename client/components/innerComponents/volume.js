@@ -29,15 +29,17 @@ const Volume = (props) => {
           src={renderMuteIcon()}
         />
       </div>
-      <input
-        className={sliderClass}
-        type="range"
-        min="0"
-        max="100"
-        step="1"
-        value={volume}
-        onChange={handleVolume}
-      />
+      <div className="slide-container">
+        <input
+          className={sliderClass}
+          type="range"
+          min="0"
+          max="100"
+          step="1"
+          value={volume}
+          onChange={handleVolume}
+        />
+      </div>
     </div>
   )
 }

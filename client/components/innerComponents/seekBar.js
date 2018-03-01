@@ -13,6 +13,7 @@ const SeekBar = (props) => {
     <div className="audio-player-seeker"
       style={{width}}
     >
+      <div className="slide-container">
       <input
         className={sliderClass}
         type="range"
@@ -23,6 +24,7 @@ const SeekBar = (props) => {
         onChange={handleSeekSlider}
         onMouseUp={handleSeek}
       />
+      </div>
   </div>
   )
 }

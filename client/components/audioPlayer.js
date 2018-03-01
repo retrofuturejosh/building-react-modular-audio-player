@@ -89,7 +89,7 @@ export class AudioPlayer extends Component {
 
       {/* Main Controls */}
         {/* Play/Pause */}
-          {this.componentObj.play()}
+          {this.componentObj.play('first')}
         
         {/* Rewind */}
           {this.props.hideRewind ? 

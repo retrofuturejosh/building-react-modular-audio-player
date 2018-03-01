@@ -6,7 +6,7 @@ const audioFiles = [
   {
     src: "/My Head.mp3",
     title: "My Head",
-    artist: "Kimmi Moore"
+    artist: "Kimmi More"
   },
   {
     src: "/One Night.mp3",
@@ -55,8 +55,8 @@ ReactDOM.render(
       <AudioPlayer
         audioFiles={audioFiles2}
         iconSize="2em"
-        playerWidth="10em"
-        rearrange={['play', 'volume', 'time']}
+        playerWidth="15em"
+        rearrange={['volume', 'time', 'seek', 'play']}
       />
       </div>,
   document.getElementById('app')
