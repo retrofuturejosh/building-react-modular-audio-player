@@ -38,7 +38,7 @@ ReactDOM.render(
       // sliderClass="my-slider"
       playerWidth="20rem"
       // hideSeeking={true}
-      // hideSkip={true}
+      // hideForward={true}
       // hideLoop={true}
       // loopPlaylist={true}
       // hideRewind={true}

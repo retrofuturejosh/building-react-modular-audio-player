@@ -1,6 +1,6 @@
 import React from 'react';
 
-export const Rewind = (props) => {
+export const Forward = (props) => {
   let {
     handleHoverOver,
     handleHoverOut,
