@@ -14,17 +14,17 @@ export const Loop = (props) => {
 
   return (
     <div
-      // id="loop"
-      // onMouseOver={e => handleHoverOver(e, 'loop')}
-      // onMouseLeave={e => handleHoverOut(e, 'loop')}
-      // onClick={handleLoop}
+      id="loop"
+      onMouseOver={e => handleHoverOver(e, 'loop')}
+      onMouseLeave={e => handleHoverOut(e, 'loop')}
+      onClick={handleLoop}
     >
-      {/* <img src={loopHover ? 
+      <img src={loopHover ? 
         loop ? loopIcon : loopEngagedIcon
           : 
         loop ? loopEngagedIcon : loopIcon}
         style={{height: iconSize}}
-      /> */}
+      />
     </div>
   )
 }

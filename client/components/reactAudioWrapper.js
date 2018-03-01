@@ -3,6 +3,7 @@ import React, { Component } from 'react';
 import { Play } from './play';
 import { Rewind } from './rewind'
 import { Forward } from './forward';
+import { Loop } from './loop'
 import './audioWrapperStyle.scss';
 import icons from './assets/index';
 
@@ -470,7 +471,7 @@ export class ReactAudioWrapper extends Component {
           />
         }
 
-        {/* Skip */}
+        {/* Forward */}
           {this.props.hideForward ? 
             null
               :
@@ -489,17 +490,17 @@ export class ReactAudioWrapper extends Component {
           {this.props.hideLoop ? 
             null
               :
-            <div
-              id="loop"
-              onMouseOver={e => this.handleHoverOver(e, 'loop')}
-              onMouseLeave={e => this.handleHoverOut(e, 'loop')}
-              onClick={this.handleLoop}>
-              <img src={this.state.loopHover ? 
-                this.state.loop ? this.state.loopIcon : this.state.loopEngagedIcon
-                 : 
-                this.state.loop ? this.state.loopEngagedIcon : this.state.loopIcon}
-                style={{height: this.state.iconSize}}/>
-            </div>}
+            <Loop 
+              handleHoverOver={this.handleHoverOver}
+              handleHoverOut={this.handleHoverOut}
+              handleLoop={this.handleLoop}
+              loopHover={this.state.loopHover}
+              loop={this.state.loop}
+              loopIcon={this.state.loopIcon}
+              loopEngagedIcon={this.state.loopEngagedIcon}
+              iconSize={this.state.iconSize}
+            />
+          }
         </div>
 
       {/* Artist/Name */}
