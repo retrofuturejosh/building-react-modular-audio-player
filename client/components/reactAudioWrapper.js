@@ -6,7 +6,8 @@ import { Forward } from './forward';
 import { Loop } from './loop';
 import { Name } from './name';
 import { SeekBar } from './seekBar';
-import { Time } from './time'
+import { Time } from './time';
+import { Volume } from './volume';
 import './audioWrapperStyle.scss';
 import icons from './assets/index';
 
@@ -80,6 +81,7 @@ export class ReactAudioWrapper extends Component {
     this.setOpts = this.setOpts.bind(this);
     this.scrollMarquee = this.scrollMarquee.bind(this);
     this.renderPlayIcon = this.renderPlayIcon.bind(this);
+    this.renderMuteIcon = this.renderMuteIcon.bind(this);
     this.setScrollSize = this.setScrollSize.bind(this);
     this.handleLoop = this.handleLoop.bind(this);
     this.handleRewind = this.handleRewind.bind(this);
@@ -526,7 +528,7 @@ export class ReactAudioWrapper extends Component {
           null
         }
 
-      {/* Seekinging Bar and Duration */}
+      {/* Seeking Bar*/}
         {this.props.hideSeeking ? 
           null
             :
@@ -537,6 +539,8 @@ export class ReactAudioWrapper extends Component {
             handleSeek={this.handleSeek}
           />
         }
+      
+      {/* Current Time / Duration */}
         {this.props.hideTime ?
           null
             :
@@ -546,29 +550,19 @@ export class ReactAudioWrapper extends Component {
           />
         }
 
-        {/* volume controls */}
-        <div className="audio-player-volume"
-          style={this.props.hideSeeking ? {width: "50%"} : null}>
-          <div
-            id="volume-button"
-            onClick={this.handleMute}
-            onMouseOver={e => this.handleHoverOver(e, 'mute')}
-            onMouseOut={e => this.handleHoverOut(e, 'mute')}>
-            <img 
-              style={{height: this.state.iconSize}}
-              src={this.renderMuteIcon()} />
-          </div>
-          <input
-            className={this.state.sliderClass}
-            type="range"
-            min="0"
-            max="100"
-            step="1"
-            value={this.state.volume}
-            onChange={this.handleVolume}
-          />
-          </div>
-        </div>
+      {/* volume controls */}
+        <Volume 
+          hideSeeking={this.props.hideSeeking}
+          handleMute={this.handleMute}
+          handleHoverOver={this.handleHoverOver}
+          handleHoverOut={this.handleHoverOut}
+          iconSize={this.state.iconSize}
+          renderMuteIcon={this.renderMuteIcon}
+          sliderClass={this.state.sliderClass}
+          volume={this.state.volume}
+          handleVolume={this.handleVolume}
+        />
+      </div>
     )
   }
 }
