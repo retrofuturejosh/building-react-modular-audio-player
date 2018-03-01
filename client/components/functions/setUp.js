@@ -1,3 +1,5 @@
+import React from 'react';
+
 export function mountComponent() {
   let opts = this.setOpts([
     'playIcon',
@@ -54,4 +56,25 @@ export function setScrollSize() {
 
 export function setNameDisplayRef(el) {
   this.nameDisplay = el 
+}
+
+export function setStyle() {
+  return {
+    fontFamily: this.state.fontFamily,
+    fontWeight: this.state.fontWeight,
+    color: this.state.fontColor,
+    fontSize: this.state.fontSize,
+    width: `${this.state.playerWidth}`,
+    height: this.state.playerHeight
+  }
+}
+
+export function setAudio() {
+  return <audio
+    src={this.props.audioFiles[this.state.currentTrackIdx].src}
+    ref={(audioRef) => { this.audioRef = audioRef; }}
+    onLoadedMetadata={this.loadDuration}
+    onPlay={this.startPlay}
+    onEnded={this.endPlay}
+  />
 }

@@ -2,7 +2,9 @@ import {
   setScrollSize,
   mountComponent,
   setNameDisplayRef,
-  setOpts 
+  setOpts ,
+  setStyle,
+  setAudio
 } from './setUp';
 
 import {
@@ -49,6 +51,8 @@ export default {
   mountComponent,
   setNameDisplayRef,
   setOpts,
+  setStyle,
+  setAudio,
   startPlay,
   endPlay,
   handlePlay,
