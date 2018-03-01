@@ -3,7 +3,8 @@ import React, { Component } from 'react';
 import { Play } from './play';
 import { Rewind } from './rewind'
 import { Forward } from './forward';
-import { Loop } from './loop'
+import { Loop } from './loop';
+import { Name } from './name';
 import './audioWrapperStyle.scss';
 import icons from './assets/index';
 
@@ -80,6 +81,7 @@ export class ReactAudioWrapper extends Component {
     this.setScrollSize = this.setScrollSize.bind(this);
     this.handleLoop = this.handleLoop.bind(this);
     this.handleRewind = this.handleRewind.bind(this);
+    this.setNameDisplayRef = this.setNameDisplayRef.bind(this);
   }
 
   componentDidMount() {
@@ -123,6 +125,10 @@ export class ReactAudioWrapper extends Component {
           }
         })
     }, 0);
+  }
+
+  setNameDisplayRef(el) {
+    this.nameDisplay = el 
   }
 
   setOpts(settings) {
@@ -503,32 +509,42 @@ export class ReactAudioWrapper extends Component {
           }
         </div>
 
-      {/* Artist/Name */}
+      {/* Track Name and Artist */}
         {title ?
-          <div className="audio-player-track-name"
-            style={this.props.hideSeeking ? {width: "50%"} : null}
-            ref={(el) => this.nameDisplay = el }
-            onMouseOver={this.state.scrollMarquee ? 
-              e => this.scrollMarquee(e, 'left')
-                :
-              null}
-              onMouseOut={this.state.scrollMarquee ? 
-                e => this.scrollMarquee(e, 'right')
-                  :
-                null}>
-            <div className="marquee"
-              style={this.state.scrollStyle}>
-              {artist ? 
-                (`${artist} - `)
-                  : 
-                null
-              }
-              {title ? 
-                (title)
-                  :
-                null}
-            </div>
-          </div>
+          <Name 
+            hideSeeking={this.props.hideSeeking}
+            setNameDisplayRef={this.setNameDisplayRef}
+            scrollMarquee={this.state.scrollMarquee}
+            scrollMarqueeFunc={this.scrollMarquee}
+            scrollStyle={this.state.scrollStyle}
+            artist={artist}
+            title={title}
+          />
+
+          // <div className="audio-player-track-name"
+          //   style={this.props.hideSeeking ? {width: "50%"} : null}
+          //   ref={this.setNameDisplayRef}
+          //   onMouseOver={this.state.scrollMarquee ? 
+          //     e => this.scrollMarquee(e, 'left')
+          //       :
+          //     null}
+          //     onMouseOut={this.state.scrollMarquee ? 
+          //       e => this.scrollMarquee(e, 'right')
+          //         :
+          //       null}>
+          //   <div className="marquee"
+          //     style={this.state.scrollStyle}>
+          //     {artist ? 
+          //       (`${artist} - `)
+          //         : 
+          //       null
+          //     }
+          //     {title ? 
+          //       (title)
+          //         :
+          //       null}
+          //   </div>
+          // </div>
             :
           null
         }
