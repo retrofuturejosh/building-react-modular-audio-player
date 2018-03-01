@@ -1,5 +1,7 @@
 import React from 'react';
 
+import { marginPositions } from '../functions/renderVisualElements'
+
 const Play = (props) => {
   let {
     playing,
@@ -8,10 +10,13 @@ const Play = (props) => {
     handleHoverOver,
     handleHoverOut,
     iconSize,
-    renderPlayIcon
+    renderPlayIcon,
+    position
   } = props;
+  let style = marginPositions(position);
   return (
     <div
+      style={style}
       id="play"
       onClick={playing ? handlePause : handlePlay}
       onMouseOver={e => handleHoverOver(e, 'play')}

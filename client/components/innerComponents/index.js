@@ -8,9 +8,11 @@ import { default as Name } from './name';
 import { default as SeekBar } from './seekBar';
 import { default as Time } from './time';
 import { default as Volume } from './volume';
+import { default as CustomArrange } from './customArrange'
 
-export function renderPlay() {
+export function renderPlay(position) {
   return <Play 
+    position={position}
     playing={this.state.playing}
     handlePause={this.handlePause}
     handlePlay={this.handlePlay}
@@ -100,5 +102,14 @@ export function renderVolume() {
     volume={this.state.volume}
     handleVolume={this.handleVolume}
     width={this.state.volumeWidth}
+  />
+}
+
+export function renderCustomArrange() {
+  return <CustomArrange 
+    order={this.props.rearrange}
+    setStyle={this.setStyle}
+    setAudio={this.setAudio}
+    componentObj={this.componentObj}
   />
 }

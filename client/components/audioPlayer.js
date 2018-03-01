@@ -10,7 +10,8 @@ import {
   renderName, 
   renderSeekBar, 
   renderTime, 
-  renderVolume } from './innerComponents/index'
+  renderVolume,
+  renderCustomArrange } from './innerComponents/index'
 
 //methods
 import functions from './functions/index';
@@ -69,6 +70,7 @@ export class AudioPlayer extends Component {
     this.renderPlayIcon = functions.renderPlayIcon.bind(this);
     this.renderMuteIcon = functions.renderMuteIcon.bind(this);
     this.handleLoop = functions.handleLoop.bind(this);
+    this.renderCustomArrange = renderCustomArrange.bind(this);
   }
 
   componentDidMount() {
@@ -137,15 +139,7 @@ export class AudioPlayer extends Component {
       )
     } else {
       //Custom Arrangement
-      return (
-        <div className="audio-player"
-          style={this.setStyle()}>
-          {this.setAudio()}
-          {this.props.rearrange.map(component => {
-            return this.componentObj[component]()
-          })}
-        </div>
-      )
+      return this.renderCustomArrange();
     }
   }
 }

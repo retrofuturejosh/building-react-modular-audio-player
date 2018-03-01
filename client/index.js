@@ -55,8 +55,8 @@ ReactDOM.render(
       <AudioPlayer
         audioFiles={audioFiles2}
         iconSize="2em"
-        playerWidth="2em"
-        rearrange={['play']}
+        playerWidth="10em"
+        rearrange={['play', 'volume', 'time']}
       />
       </div>,
   document.getElementById('app')

@@ -59,3 +59,10 @@ export function renderMuteIcon() {
     else return this.state.volumeIcon;
   }
 }
+
+export function marginPositions(position) {
+  let style = {};
+  if(position === 'first') style = {marginLeft: "0"};
+  if(position === 'last') style={marginRight: "0"};
+  return style;
+}
