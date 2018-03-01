@@ -76,7 +76,8 @@ export class ReactAudioWrapper extends Component {
   render() {
     let title = this.props.audioFiles[this.state.currentTrackIdx].title;
 
-    if (!this.props.reArrage){
+    if (!this.props.reArrage) {
+      //DEFAULT PLAYER VIEW
       return (
         <div className="audio-player"
           style={this.setStyle()}>
