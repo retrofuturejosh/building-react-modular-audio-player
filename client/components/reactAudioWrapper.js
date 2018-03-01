@@ -1,4 +1,6 @@
 import React, { Component } from 'react';
+
+import { Play } from './play'
 import './audioWrapperStyle.scss';
 import icons from './assets/index';
 
@@ -441,7 +443,7 @@ export class ReactAudioWrapper extends Component {
             onEnded={this.endPlay}
           />
         {/* Play/Pause */}
-          <div
+          {/* <div
             id="play"
             onClick={this.state.playing ? this.handlePause : this.handlePlay}
             onMouseOver={e => this.handleHoverOver(e, 'play')}
@@ -449,7 +451,15 @@ export class ReactAudioWrapper extends Component {
             <img 
             style={{height: this.state.iconSize}}
             src={this.renderPlayIcon()}/>
-          </div>
+          </div> */}
+          <Play 
+            playing={this.state.playing}
+            handlePause={this.handlePause}
+            handlePlay={this.handlePlay}
+            handleHoverOver={this.handleHoverOver}
+            handleHoverOut={this.handleHoverOut}
+            renderPlayIcon={this.renderPlayIcon}
+            iconSize={this.state.iconSize}/>
 
       {/* Rewind */}
         {this.props.hideRewind ? 
