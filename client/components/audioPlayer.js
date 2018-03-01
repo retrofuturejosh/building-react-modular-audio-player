@@ -1,4 +1,5 @@
 import React, { Component } from 'react';
+import PropTypes from 'prop-types';
 
 //Functions that render dumb components
 import { 
@@ -77,15 +78,14 @@ export class AudioPlayer extends Component {
   render() {
     let title = this.props.audioFiles[this.state.currentTrackIdx].title;
 
-    if (!this.props.reArrage) {
+    if (!this.props.rearrange) {
       //DEFAULT PLAYER VIEW
       return (
         <div className="audio-player"
           style={this.setStyle()}>
           {this.setAudio()}
 
-        {/* Main Controls */}
-
+      {/* Main Controls */}
         {/* Play/Pause */}
           {this.componentObj.play()}
         
@@ -110,34 +110,40 @@ export class AudioPlayer extends Component {
             this.componentObj.loop()
           }
   
-        {/* Track Name and Artist */}
+      {/* Track Name and Artist */}
           {this.props.hideName ?
             null
               :
             this.componentObj.name()
           }
   
-        {/* Seeking Bar*/}
+      {/* Seeking Bar*/}
           {this.props.hideSeeking ? 
             null
               :
             this.componentObj.seek()
           }
         
-        {/* Current Time / Duration */}
+      {/* Current Time / Duration */}
           {this.props.hideTime ?
             null
               :
             this.componentObj.time()
           }
   
-        {/* volume controls */}
+      {/* Volume Controls */}
           {this.componentObj.volume()}
         </div>
       )
     } else {
+      //Custom Arrangement
       return (
-        <div>
+        <div className="audio-player"
+          style={this.setStyle()}>
+          {this.setAudio()}
+          {this.props.rearrange.map(component => {
+            return this.componentObj[component]()
+          })}
         </div>
       )
     }

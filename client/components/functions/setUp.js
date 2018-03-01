@@ -44,12 +44,14 @@ export function setOpts(settings) {
 export function setScrollSize() {
   setTimeout(() => {
       window.requestAnimationFrame(() => {
-        let marqueeWidth = this.nameDisplay.scrollWidth;
-        let nameDisplayWidth = this.nameDisplay.offsetWidth;
-        if(marqueeWidth > nameDisplayWidth) {
-          let scrollTime = Math.round((marqueeWidth / nameDisplayWidth) * 1.7);
-          let difference = marqueeWidth - nameDisplayWidth;
-          this.setState({scrollMarquee: true, scrollDifference: difference, scrollTime});
+        if (this.nameDisplay){
+          let marqueeWidth = this.nameDisplay.scrollWidth;
+          let nameDisplayWidth = this.nameDisplay.offsetWidth;
+          if(marqueeWidth > nameDisplayWidth) {
+            let scrollTime = Math.round((marqueeWidth / nameDisplayWidth) * 1.7);
+            let difference = marqueeWidth - nameDisplayWidth;
+            this.setState({scrollMarquee: true, scrollDifference: difference, scrollTime});
+          }
         }
       })
   }, 0);
@@ -60,7 +62,7 @@ export function setNameDisplayRef(el) {
 }
 
 export function setStyle() {
-  return {
+  let style =  {
     fontFamily: this.state.fontFamily,
     fontWeight: this.state.fontWeight,
     color: this.state.fontColor,
@@ -68,6 +70,7 @@ export function setStyle() {
     width: `${this.state.playerWidth}`,
     height: this.state.playerHeight
   }
+  return style;
 }
 
 export function setAudio() {
@@ -81,7 +84,9 @@ export function setAudio() {
 }
 
 export function setPercentages() {
-  if(this.props.hideSeeking && this.props.hideName) {
+  if (this.props.rearrange) {
+    this.setState({volumeWidth: "100%", nameWidth: "100%", seekWidth: "100%"})
+  } else if(this.props.hideSeeking && this.props.hideName) {
     this.setState({volumeWidth: "100%"});
   } else if (this.props.hideSeeking) {
     this.setState({volumeWidth: "50%", nameWidth: "50%"})

@@ -1,6 +1,6 @@
 import React from 'react';
 import ReactDOM from 'react-dom';
-import { AudioPlayer } from './components/reactAudioWrapper'
+import { AudioPlayer } from './components/audioPlayer'
 
 const audioFiles = [
   {
@@ -43,19 +43,20 @@ ReactDOM.render(
       // fontWeight="bolder"
       // iconSize="2em"
       // sliderClass="my-slider"
-      playerWidth="20rem"
+      playerWidth="25rem"
       // hideSeeking={true}
       // hideForward={true}
       // hideLoop={true}
       // loopPlaylist={true}
       // hideRewind={true}
       // hideTime={true}
-      hideName={true}
+      // hideName={true}
       />
       <AudioPlayer
         audioFiles={audioFiles2}
         iconSize="2em"
-        playerWidth="25rem"
+        playerWidth="2em"
+        rearrange={['play']}
       />
       </div>,
   document.getElementById('app')
