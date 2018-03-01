@@ -455,31 +455,31 @@ export class ReactAudioWrapper extends Component {
 
       {/* Main Controls */}
         <div className="audio-player-controls">
-      {/* Play/Pause */}
-        <Play 
-          playing={this.state.playing}
-          handlePause={this.handlePause}
-          handlePlay={this.handlePlay}
-          handleHoverOver={this.handleHoverOver}
-          handleHoverOut={this.handleHoverOut}
-          renderPlayIcon={this.renderPlayIcon}
-          iconSize={this.state.iconSize}
-        />
-
-      {/* Rewind */}
-        {this.props.hideRewind ? 
-          null
-            :
-          <Rewind 
+        {/* Play/Pause */}
+          <Play 
+            playing={this.state.playing}
+            handlePause={this.handlePause}
+            handlePlay={this.handlePlay}
             handleHoverOver={this.handleHoverOver}
             handleHoverOut={this.handleHoverOut}
-            handleRewind={this.handleRewind}
-            rewindHover={this.state.rewindHover}
-            rewindHoverIcon={this.state.rewindHoverIcon}
-            rewindIcon={this.state.rewindIcon}
+            renderPlayIcon={this.renderPlayIcon}
             iconSize={this.state.iconSize}
           />
-        }
+
+        {/* Rewind */}
+          {this.props.hideRewind ? 
+            null
+              :
+            <Rewind 
+              handleHoverOver={this.handleHoverOver}
+              handleHoverOut={this.handleHoverOut}
+              handleRewind={this.handleRewind}
+              rewindHover={this.state.rewindHover}
+              rewindHoverIcon={this.state.rewindHoverIcon}
+              rewindIcon={this.state.rewindIcon}
+              iconSize={this.state.iconSize}
+            />
+          }
 
         {/* Forward */}
           {this.props.hideForward ? 
