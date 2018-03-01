@@ -1,6 +1,6 @@
 import React from 'react';
 import ReactDOM from 'react-dom';
-import { ReactAudioWrapper } from './components/reactAudioWrapper'
+import { AudioPlayer } from './components/reactAudioWrapper'
 
 const audioFiles = [
   {
@@ -23,7 +23,7 @@ const audioFiles2 = [
 
 ReactDOM.render(
     <div>
-    <ReactAudioWrapper
+    <AudioPlayer
       audioFiles={audioFiles}
       // playIcon="/play-light.png"
       // playEngagedIcon="/play-dark.png"
@@ -51,7 +51,7 @@ ReactDOM.render(
       // hideRewind={true}
       // hideTime={true}
       />
-      <ReactAudioWrapper
+      <AudioPlayer
         audioFiles={audioFiles2}
         iconSize="2em"
         playerWidth="25rem"

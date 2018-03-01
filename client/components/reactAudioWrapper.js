@@ -21,7 +21,7 @@ import { default as initialState } from './initialState'
 import './audioWrapperStyle.scss';
 
 
-export class ReactAudioWrapper extends Component {
+export class AudioPlayer extends Component {
   constructor(props) {
     super(props)
     this.state = initialState;
@@ -132,6 +132,11 @@ export class ReactAudioWrapper extends Component {
   
         {/* volume controls */}
           {this.componentObj.volume()}
+        </div>
+      )
+    } else {
+      return (
+        <div>
         </div>
       )
     }
