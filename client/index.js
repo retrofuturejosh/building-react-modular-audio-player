@@ -15,7 +15,14 @@ const audioFiles = [
   }
 ]
 
+const audioFiles2 = [
+  { src: "/One Night.mp3",
+  artist: "YAAAAAAAAAAS Kween",
+  title: "Yas Kween" }
+]
+
 ReactDOM.render(
+    <div>
     <ReactAudioWrapper
       audioFiles={audioFiles}
       // playIcon="/play-light.png"
@@ -34,7 +41,7 @@ ReactDOM.render(
       // fontSize="larger"
       // fontColor="red"
       // fontWeight="bolder"
-      // iconSize="1em"
+      // iconSize="2em"
       // sliderClass="my-slider"
       playerWidth="20rem"
       // hideSeeking={true}
@@ -43,6 +50,12 @@ ReactDOM.render(
       // loopPlaylist={true}
       // hideRewind={true}
       // hideTime={true}
-      />,
+      />
+      <ReactAudioWrapper
+        audioFiles={audioFiles2}
+        iconSize="2em"
+        playerWidth="25rem"
+      />
+      </div>,
   document.getElementById('app')
 )

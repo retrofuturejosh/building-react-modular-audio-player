@@ -10,430 +10,88 @@ import { SeekBar } from './seekBar';
 import { Time } from './time';
 import { Volume } from './volume';
 
+import { 
+    initialState,
+    setScrollSize,
+    mountComponent,
+    setNameDisplayRef,
+    setOpts 
+  } from './functions/setUp';
+import {
+    startPlay,
+    endPlay,
+    handlePlay,
+    handlePause 
+  } from './functions/playPause';
+import {
+    handleProgress,
+    handleSeek,
+    handleSeekSlider
+  } from './functions/seek';
+import {
+    setTime,
+    secondsToClock,
+    loadDuration
+  } from './functions/time';
+import {
+    handleVolume,
+    handleMute
+  } from './functions/volume';
+import {
+    handleRewind
+  } from './functions/rewind';
+import {
+    handleHoverOver,
+    handleHoverOut
+  } from './functions/hover';
+import {
+  renderPlayIcon,
+  renderMuteIcon,
+  scrollMarquee
+} from './functions/renderVisualElements';
+import {
+  handleLoop
+} from './functions/loop';
+
 //Style Sheet
 import './audioWrapperStyle.scss';
-
-//Icons
-import icons from './assets/index';
 
 export class ReactAudioWrapper extends Component {
   constructor(props) {
     super(props)
-    this.state = {
-      currentTrackIdx: 0,
-      seekerVal: "0",
-      volume: "75",
-      playing: false,
-      paused: false,
-      muted: false,
-      volumePreMute: "75",
-      duration: "0:00",
-      currentAudioTime: "0:00",
-      recentlyRewound: false,
-      loaded: false,
-      loop: false,
-      playHover: false,
-      playStarted: false,
-      muteHover: false,
-      forwardHover: false,
-      rewindHover: false,
-      loopHover: false,
-      playIcon: icons.playIcon,
-      playEngagedIcon: icons.playEngagedIcon,
-      pauseIcon: icons.pauseIcon,
-      pauseEngagedIcon: icons.pauseEngagedIcon,
-      volumeIcon: icons.volumeIcon,
-      volumeEngagedIcon: icons.volumeEngaged,
-      muteIcon: icons.muteIcon,
-      muteEngagedIcon: icons.muteEngagedIcon,
-      forwardIcon: icons.forwardIcon,
-      forwardHoverIcon: icons.forwardHoverIcon,
-      rewindIcon: icons.rewindIcon,
-      rewindHoverIcon: icons.rewindHoverIcon,
-      loopIcon: icons.loopIcon,
-      loopEngagedIcon: icons.loopEngagedIcon,
-      sliderClass: "slider",
-      fontFamily: "sans-serif",
-      fontWeight: "100",
-      fontSize: "small",
-      fontColor: "black",
-      playerWidth: "20rem",
-      iconSize: "1rem",
-      hideSeeking: false,
-      scrollMarquee: false,
-      scrollDifference: 0,
-      scrollTime: 0,
-      scrollStyle: {
-        marginLeft: "0"
-      }
-    };
+    this.state = initialState;
     this.rewindTimeout = null;
     this.seekingInterval = null;
     this.nameDisplay = null;
-    this.handlePlay = this.handlePlay.bind(this);
-    this.handlePause = this.handlePause.bind(this);
-    this.handleSeekSlider = this.handleSeekSlider.bind(this);
-    this.handleSeek = this.handleSeek.bind(this);
-    this.handleVolume = this.handleVolume.bind(this);
-    this.handleProgress = this.handleProgress.bind(this);
-    this.handleMute = this.handleMute.bind(this);
-    this.setTime = this.setTime.bind(this);
-    this.loadDuration = this.loadDuration.bind(this);
-    this.handleHoverOver = this.handleHoverOver.bind(this);
-    this.handleHoverOut = this.handleHoverOut.bind(this);
-    this.startPlay = this.startPlay.bind(this);
-    this.endPlay = this.endPlay.bind(this);
-    this.setOpts = this.setOpts.bind(this);
-    this.scrollMarquee = this.scrollMarquee.bind(this);
-    this.renderPlayIcon = this.renderPlayIcon.bind(this);
-    this.renderMuteIcon = this.renderMuteIcon.bind(this);
-    this.setScrollSize = this.setScrollSize.bind(this);
-    this.handleLoop = this.handleLoop.bind(this);
-    this.handleRewind = this.handleRewind.bind(this);
-    this.setNameDisplayRef = this.setNameDisplayRef.bind(this);
+
+    //binding functions
+    this.mountComponent = mountComponent.bind(this);
+    this.setScrollSize = setScrollSize.bind(this);
+    this.setNameDisplayRef = setNameDisplayRef.bind(this);
+    this.setOpts = setOpts.bind(this);
+    this.startPlay = startPlay.bind(this);
+    this.endPlay = endPlay.bind(this);
+    this.handlePlay = handlePlay.bind(this);
+    this.handlePause = handlePause.bind(this);
+    this.handleProgress = handleProgress.bind(this);
+    this.handleSeekSlider = handleSeekSlider.bind(this);
+    this.handleSeek = handleSeek.bind(this);
+    this.setTime = setTime.bind(this);
+    this.secondsToClock = secondsToClock.bind(this);
+    this.loadDuration = loadDuration.bind(this);
+    this.handleVolume = handleVolume.bind(this);
+    this.handleMute = handleMute.bind(this);
+    this.handleRewind = handleRewind.bind(this);
+    this.handleHoverOver = handleHoverOver.bind(this);
+    this.handleHoverOut = handleHoverOut.bind(this);
+    this.scrollMarquee = scrollMarquee.bind(this);
+    this.renderPlayIcon = renderPlayIcon.bind(this);
+    this.renderMuteIcon = renderMuteIcon.bind(this);
+    this.handleLoop = handleLoop.bind(this);
   }
 
   componentDidMount() {
-    let opts = this.setOpts([
-      'playIcon',
-      'playEngagedIcon',
-      'pauseIcon',
-      'pauseEngagedIcon',
-      'volumeIcon',
-      'volumeEngagedIcon',
-      'muteIcon',
-      'muteEngagedIcon',
-      'forwardIcon',
-      'forwardHoverIcon',
-      'rewindIcon',
-      'rewindHoverIcon',
-      'loopIcon',
-      'loopEngagedIcon',
-      'fontFamily',
-      'fontWeight',
-      'fontSize',
-      'fontColor',
-      'sliderClass',
-      'playerWidth',
-      'iconSize'
-    ]);
-    this.setState(opts, () => {
-      this.setScrollSize();
-    });
-  }
-
-  setScrollSize() {
-    setTimeout(() => {
-        window.requestAnimationFrame(() => {
-          let marqueeWidth = this.nameDisplay.scrollWidth;
-          let nameDisplayWidth = this.nameDisplay.offsetWidth;
-          if(marqueeWidth > nameDisplayWidth) {
-            let scrollTime = Math.round((marqueeWidth / nameDisplayWidth) * 1.7);
-            let difference = marqueeWidth - nameDisplayWidth;
-            this.setState({scrollMarquee: true, scrollDifference: difference, scrollTime});
-          }
-        })
-    }, 0);
-  }
-
-  setNameDisplayRef(el) {
-    this.nameDisplay = el 
-  }
-
-  setOpts(settings) {
-    let opts = {};
-    settings.forEach(setting => {
-      opts[setting] = this.props[setting] ?
-        this.props[setting]
-          :
-        this.state[setting];
-    })
-    return opts;
-  }
-
-  startPlay() {
-    if (!this.state.playStarted) {
-      this.setState({playStarted: true})
-    }
-  }
-
-  endPlay(e, skipped) {
-    clearInterval(this.seekingInterval);
-    let endOfTracks = (this.state.currentTrackIdx === this.props.audioFiles.length-1) ?
-      true : false;
-    let nextTrackIdx = endOfTracks ? 0 : 1;
-    if (this.state.loop) {
-      nextTrackIdx = this.state.currentTrackIdx;
-      endOfTracks = false;
-    }
-    this.setState({
-      currentAudioTime: "0:00",
-      seekerVal: "0",
-      currentTrackIdx: nextTrackIdx,
-      scrollMarquee: false,
-      scrollDifference: 0,
-      scrollStyle: {
-        marginLeft: "0"
-      }
-    }, () => {
-      if(endOfTracks && !skipped && !this.props.loopPlaylist) {
-        this.setState({
-          playHover: false,
-          playing: false})
-      }
-      else {
-        if (this.state.loop) this.audioRef.currentTime = 0;
-        if (this.state.playing) this.handlePlay();
-      }
-      this.setScrollSize();
-    });
-  }
-
-  handleProgress() {
-    if (this.seekingInterval) {
-      clearInterval(this.seekingInterval);
-    }
-    this.seekingInterval = setInterval( () => {
-      this.setTime();
-      let currentAudioTime = (this.audioRef.currentTime / this.audioRef.duration) * 100;
-      this.setState({seekerVal: currentAudioTime});
-    }, 500);
-  }
-
-  setTime(seekTo){
-    let time;
-    if (seekTo || seekTo === 0) {
-      time = seekTo;
-    } else {
-      time = this.audioRef.currentTime;
-    }
-    let currentAudioTime = this.secondsToClock(time);
-    this.setState({ currentAudioTime });
-  }
-
-  secondsToClock(time){
-    let minutes = Math.floor(time / 60);
-    let seconds = Math.floor(time - minutes * 60);
-    if (seconds < 10) {
-      seconds = '0' + seconds;
-    }
-    return `${minutes}:${seconds}`;
-  }
-
-  handlePlay() {
-    this.audioRef.play();
-    this.setState({
-      playing: true,
-      paused: false,});
-    this.handleProgress();
-  }
-
-  handlePause() {
-    if (this.state.playing) {
-      clearInterval(this.seekingInterval);
-      this.audioRef.pause();
-      this.setState({
-        playing: false,
-        paused: true});
-    }
-  }
-
-  handleRewind() {
-    let currentTime = this.audioRef.currentTime;
-    let prevTrackIdx = (this.state.currentTrackIdx === 0) ?
-      this.props.audioFiles.length-1 : this.state.currentTrackIdx - 1;
-
-    if (this.state.recentlyRewound || !currentTime) {
-      clearTimeout(this.rewindTimeout);
-      this.setState({
-        currentAudioTime: "0:00",
-        seekerVal: "0",
-        currentTrackIdx: prevTrackIdx,
-        scrollMarquee: false,
-        scrollDifference: 0,
-        scrollStyle: {
-          marginLeft: "0"
-        }
-      }, () => {
-        if (this.state.playing) this.handlePlay();
-        this.setScrollSize();
-      });
-    } else if (currentTime) {
-      this.audioRef.currentTime = 0;
-      if (!this.state.playing) {
-        this.setState({
-          currentAudioTime: "0:00",
-          seekerVal: "0",
-        });
-      }
-    }
-    this.setState({recentlyRewound: true});
-    this.rewindTimeout = setTimeout(() => {
-      this.setState({recentlyRewound: false});
-    }, 1200);
-  }
-
-  handleSeekSlider(event) {
-    let seekTo = this.audioRef.duration * (event.target.value / 100);
-    clearInterval(this.seekingInterval);
-    this.setTime(seekTo);
-    this.setState({seekerVal: event.target.value});
-  }
-
-  handleSeek(event){
-    let seekTo = this.audioRef.duration * (event.target.value / 100);
-    this.audioRef.currentTime = seekTo;
-    if (this.state.playing) {
-      this.handleProgress();
-    }
-  }
-
-  handleVolume(event, muting) {
-    //when handleVolume is called from range onChange
-    if (event) {
-      //for pure volume sliding
-      let newVolume = (event.target.value < 1) ? 0 : event.target.value
-      this.setState({volume: newVolume});
-      this.audioRef.volume = newVolume / 100;
-
-      //set state.mute to true if sliding to less than 1
-      if (newVolume < 1) {
-        this.setState({muted: true});
-      } else if (this.state.muted) {
-      //set state.mute to false if sliding up input from  mute
-        this.setState({muted: false})
-      }
-    //when calling function from handleMute()
-    } else if (muting) {
-      //when muting, move volume slider to 0 and set volume to 0
-      this.setState({volumePreMute: this.state.volume, volume: "0"})
-      this.audioRef.volume = 0;
-    } else  {
-      //when unmuting, return volume and slider to previous position before mute
-      this.setState({volume: this.state.volumePreMute})
-      this.audioRef.volume = this.state.volumePreMute / 100;
-    }
-  }
-
-
-  handleMute(event) {
-    if (!this.state.muted) {
-      this.handleVolume(null, true);
-    } else {
-      this.handleVolume(null, false);
-    }
-    this.setState({muted: !this.state.muted});
-  }
-
-  handleLoop(){
-    this.setState({loop: !this.state.loop, loopHover: false})
-  }
-
-  loadDuration(){
-    let duration = this.secondsToClock(this.audioRef.duration);
-    this.setState({duration})
-  }
-
-  handleHoverOver(e, type){
-    switch (type) {
-      case 'play':
-        this.setState({playHover: true});
-        break;
-      case 'mute':
-        this.setState({muteHover: true});
-        break;
-      case 'forward':
-        this.setState({forwardHover: true});
-        break;
-      case 'rewind':
-        this.setState({rewindHover: true});
-        break;
-      case 'loop':
-        this.setState({loopHover: true});
-        break;
-    }
-  }
-
-  handleHoverOut(e, type){
-    switch (type) {
-      case 'play':
-        this.setState({playHover: false});
-        break;
-      case 'mute':
-        this.setState({muteHover: false});
-        break;
-      case 'forward':
-        this.setState({forwardHover: false});
-        break;
-      case 'rewind':
-        this.setState({rewindHover: false});
-        break;
-      case 'loop':
-        this.setState({loopHover: false});
-        break;
-    }
-  }
-
-  scrollMarquee(e, direction) {
-    if(direction === "left") {
-      this.setState({scrollStyle: {
-        marginLeft: -this.state.scrollDifference,
-        transition: `all ${this.state.scrollTime}s ease-in`
-      }})
-    } else {
-      this.setState({scrollStyle: {
-      marginLeft: "0",
-      transition: "all 0.3s ease-in"
-    }})
-    }
-  }
-
-  renderPlayIcon() {
-    if(this.state.playStarted){
-      if(this.state.playHover) {
-        //play has started, hovering, playing
-        if(this.state.playing) return this.state.pauseEngagedIcon;
-        //play has started, hovering, paused
-        else return this.state.playEngagedIcon;
-      } else {
-        //play has started, NOT hovering, playing
-        if(this.state.playing) return this.state.pauseIcon;
-        //play has started, NOT hovering, paused
-        else return this.state.playIcon;
-      }
-    } else {
-      //play has NOT started, hovering
-      if(this.state.playHover) return this.state.playEngagedIcon;
-      //play has NOT started, NOT hovering
-      else return this.state.playIcon;
-    }
-  }
-
-  renderMuteIcon() {
-    if (this.state.muted) {
-      if (this.state.muteHover) {
-        //muted, hovering, playing
-        if(this.state.playing) return this.state.volumeEngagedIcon;
-        //muted, hovering, paused
-        else return this.state.volumeIcon
-      }
-      //muted, NOT hovering, playing
-      if (this.state.playing) return this.state.muteEngagedIcon;
-      //muted, NOT hovering, playing
-      else return this.state.muteIcon;
-    }
-    else {
-      if(this.state.muteHover) {
-        //NOT muted, hovering, playing
-        if(this.state.playing) return this.state.muteEngagedIcon;
-        //NOT muted, hovering, paused
-        else return this.state.muteIcon;
-      }
-      //NOT muted, NOT hovering, playing
-      else if (this.state.playing) return this.state.volumeEngagedIcon
-      //NOT muted, NOT hovering, paused
-      else return this.state.volumeIcon;
-    }
+    this.mountComponent();
   }
 
   render() {
