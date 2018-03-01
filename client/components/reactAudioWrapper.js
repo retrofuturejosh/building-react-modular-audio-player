@@ -1,5 +1,6 @@
 import React, { Component } from 'react';
 
+//Dumb Components
 import { Play } from './play';
 import { Rewind } from './rewind'
 import { Forward } from './forward';
@@ -8,7 +9,11 @@ import { Name } from './name';
 import { SeekBar } from './seekBar';
 import { Time } from './time';
 import { Volume } from './volume';
+
+//Style Sheet
 import './audioWrapperStyle.scss';
+
+//Icons
 import icons from './assets/index';
 
 export class ReactAudioWrapper extends Component {
