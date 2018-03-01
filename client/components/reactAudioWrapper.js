@@ -1,7 +1,8 @@
 import React, { Component } from 'react';
 
 import { Play } from './play';
-import { Rewind } from './rewind'
+import { Rewind } from './rewind';
+import { Forward } from './forward';
 import './audioWrapperStyle.scss';
 import icons from './assets/index';
 
@@ -443,6 +444,7 @@ export class ReactAudioWrapper extends Component {
 
       {/* Main Controls */}
         <div className="audio-player-controls">
+        
       {/* Play/Pause */}
         <Play 
           playing={this.state.playing}
@@ -469,19 +471,20 @@ export class ReactAudioWrapper extends Component {
           />
         }
 
-        {/* Skip */}
-          {this.props.hideSkip ? 
-            null
-              :
-            <div
-              id="forward"
-              onMouseOver={e => this.handleHoverOver(e, 'forward')}
-              onMouseLeave={e => this.handleHoverOut(e, 'forward')}
-              onClick={e => this.endPlay(e, true)}>
-              <img src={this.state.forwardHover ? 
-                this.state.forwardHoverIcon : this.state.forwardIcon}
-                style={{height: this.state.iconSize}}/>
-            </div>}
+      {/* Skip */}
+        {this.props.hideSkip ? 
+          null
+            :
+          <Forward 
+            handleHoverOver={this.handleHoverOver}
+            handleHoverOut={this.handleHoverOut}
+            endPlay={this.endPlay}
+            forwardHover={this.state.forwardHover}
+            forwardIcon={this.state.forwardIcon}
+            forwardHoverIcon={this.state.forwardHoverIcon}
+            iconSize={this.state.iconSize}
+          />
+        }
 
         {/* Loop */}
           {this.props.hideLoop ? 
