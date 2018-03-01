@@ -5,6 +5,7 @@ import { Rewind } from './rewind'
 import { Forward } from './forward';
 import { Loop } from './loop';
 import { Name } from './name';
+import { SeekBar } from './seekBar';
 import './audioWrapperStyle.scss';
 import icons from './assets/index';
 
@@ -520,31 +521,6 @@ export class ReactAudioWrapper extends Component {
             artist={artist}
             title={title}
           />
-
-          // <div className="audio-player-track-name"
-          //   style={this.props.hideSeeking ? {width: "50%"} : null}
-          //   ref={this.setNameDisplayRef}
-          //   onMouseOver={this.state.scrollMarquee ? 
-          //     e => this.scrollMarquee(e, 'left')
-          //       :
-          //     null}
-          //     onMouseOut={this.state.scrollMarquee ? 
-          //       e => this.scrollMarquee(e, 'right')
-          //         :
-          //       null}>
-          //   <div className="marquee"
-          //     style={this.state.scrollStyle}>
-          //     {artist ? 
-          //       (`${artist} - `)
-          //         : 
-          //       null
-          //     }
-          //     {title ? 
-          //       (title)
-          //         :
-          //       null}
-          //   </div>
-          // </div>
             :
           null
         }
@@ -553,18 +529,12 @@ export class ReactAudioWrapper extends Component {
         {this.props.hideSeeking ? 
           null
             :
-          (<div className="audio-player-seeker">
-            <input
-              className={this.state.sliderClass}
-              type="range"
-              min="0"
-              max="100"
-              step="1"
-              value={this.state.seekerVal}
-              onChange={this.handleSeekSlider}
-              onMouseUp={this.handleSeek}
-            />
-          </div>)
+          <SeekBar 
+            sliderClass={this.state.sliderClass}
+            seekerVal={this.state.seekerVal}
+            handleSeekSlider={this.handleSeekSlider}
+            handleSeek={this.handleSeek}
+          />
         }
         {this.props.hideTime ?
           null

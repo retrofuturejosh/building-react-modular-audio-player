@@ -42,7 +42,7 @@ ReactDOM.render(
       // hideLoop={true}
       // loopPlaylist={true}
       // hideRewind={true}
-      hideTime={true}
+      // hideTime={true}
       />,
   document.getElementById('app')
 )
