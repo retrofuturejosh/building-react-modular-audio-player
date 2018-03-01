@@ -1,6 +1,6 @@
 import React from 'react';
 
-export const Loop = (props) => {
+const Loop = (props) => {
   let {
     handleHoverOver,
     handleHoverOut,
@@ -28,6 +28,8 @@ export const Loop = (props) => {
     </div>
   )
 }
+
+export default Loop;
 
 
 

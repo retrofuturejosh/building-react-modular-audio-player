@@ -1,59 +1,15 @@
 import React, { Component } from 'react';
 
 //Dumb Components
-import { Play } from './play';
-import { Rewind } from './rewind'
-import { Forward } from './forward';
-import { Loop } from './loop';
-import { Name } from './name';
-import { SeekBar } from './seekBar';
-import { Time } from './time';
-import { Volume } from './volume';
+import { Play, Rewind, Forward, Loop, Name, SeekBar, Time, Volume } from './innerComponents/index'
 
-import { 
-    initialState,
-    setScrollSize,
-    mountComponent,
-    setNameDisplayRef,
-    setOpts 
-  } from './functions/setUp';
-import {
-    startPlay,
-    endPlay,
-    handlePlay,
-    handlePause 
-  } from './functions/playPause';
-import {
-    handleProgress,
-    handleSeek,
-    handleSeekSlider
-  } from './functions/seek';
-import {
-    setTime,
-    secondsToClock,
-    loadDuration
-  } from './functions/time';
-import {
-    handleVolume,
-    handleMute
-  } from './functions/volume';
-import {
-    handleRewind
-  } from './functions/rewind';
-import {
-    handleHoverOver,
-    handleHoverOut
-  } from './functions/hover';
-import {
-  renderPlayIcon,
-  renderMuteIcon,
-  scrollMarquee
-} from './functions/renderVisualElements';
-import {
-  handleLoop
-} from './functions/loop';
+//functions
+import functions from './functions/index';
 
-//Style Sheet
+//initial state
+import { default as initialState } from './initialState'
+
+//style Sheet
 import './audioWrapperStyle.scss';
 
 export class ReactAudioWrapper extends Component {
@@ -65,29 +21,29 @@ export class ReactAudioWrapper extends Component {
     this.nameDisplay = null;
 
     //binding functions
-    this.mountComponent = mountComponent.bind(this);
-    this.setScrollSize = setScrollSize.bind(this);
-    this.setNameDisplayRef = setNameDisplayRef.bind(this);
-    this.setOpts = setOpts.bind(this);
-    this.startPlay = startPlay.bind(this);
-    this.endPlay = endPlay.bind(this);
-    this.handlePlay = handlePlay.bind(this);
-    this.handlePause = handlePause.bind(this);
-    this.handleProgress = handleProgress.bind(this);
-    this.handleSeekSlider = handleSeekSlider.bind(this);
-    this.handleSeek = handleSeek.bind(this);
-    this.setTime = setTime.bind(this);
-    this.secondsToClock = secondsToClock.bind(this);
-    this.loadDuration = loadDuration.bind(this);
-    this.handleVolume = handleVolume.bind(this);
-    this.handleMute = handleMute.bind(this);
-    this.handleRewind = handleRewind.bind(this);
-    this.handleHoverOver = handleHoverOver.bind(this);
-    this.handleHoverOut = handleHoverOut.bind(this);
-    this.scrollMarquee = scrollMarquee.bind(this);
-    this.renderPlayIcon = renderPlayIcon.bind(this);
-    this.renderMuteIcon = renderMuteIcon.bind(this);
-    this.handleLoop = handleLoop.bind(this);
+    this.mountComponent = functions.mountComponent.bind(this);
+    this.setScrollSize = functions.setScrollSize.bind(this);
+    this.setNameDisplayRef = functions.setNameDisplayRef.bind(this);
+    this.setOpts = functions.setOpts.bind(this);
+    this.startPlay = functions.startPlay.bind(this);
+    this.endPlay = functions.endPlay.bind(this);
+    this.handlePlay = functions.handlePlay.bind(this);
+    this.handlePause = functions.handlePause.bind(this);
+    this.handleProgress = functions.handleProgress.bind(this);
+    this.handleSeekSlider = functions.handleSeekSlider.bind(this);
+    this.handleSeek = functions.handleSeek.bind(this);
+    this.setTime = functions.setTime.bind(this);
+    this.secondsToClock = functions.secondsToClock.bind(this);
+    this.loadDuration = functions.loadDuration.bind(this);
+    this.handleVolume = functions.handleVolume.bind(this);
+    this.handleMute = functions.handleMute.bind(this);
+    this.handleRewind = functions.handleRewind.bind(this);
+    this.handleHoverOver = functions.handleHoverOver.bind(this);
+    this.handleHoverOut = functions.handleHoverOut.bind(this);
+    this.scrollMarquee = functions.scrollMarquee.bind(this);
+    this.renderPlayIcon = functions.renderPlayIcon.bind(this);
+    this.renderMuteIcon = functions.renderMuteIcon.bind(this);
+    this.handleLoop = functions.handleLoop.bind(this);
   }
 
   componentDidMount() {

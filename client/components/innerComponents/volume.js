@@ -1,6 +1,6 @@
 import React from 'react';
 
-export const Volume = (props) => {
+const Volume = (props) => {
   let {
     hideSeeking,
     handleMute,
@@ -41,5 +41,4 @@ export const Volume = (props) => {
   )
 }
 
-
-
+export default Volume;

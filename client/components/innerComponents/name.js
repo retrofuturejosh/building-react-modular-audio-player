@@ -1,6 +1,6 @@
 import React from 'react';
 
-export const Name = (props) => {
+const Name = (props) => {
   let {
     hideSeeking,
     setNameDisplayRef,
@@ -40,5 +40,4 @@ export const Name = (props) => {
   )
 }
 
-
-
+export default Name;

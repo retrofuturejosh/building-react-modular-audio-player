@@ -1,6 +1,6 @@
 import React from 'react';
 
-export const Time = (props) => {
+const Time = (props) => {
   let {
     currentAudioTime,
     duration
@@ -12,3 +12,5 @@ export const Time = (props) => {
     </div>
   )
 }
+
+export default Time;

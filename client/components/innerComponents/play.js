@@ -1,6 +1,6 @@
 import React from 'react';
 
-export const Play = (props) => {
+const Play = (props) => {
   let {
     playing,
     handlePause,
@@ -22,3 +22,5 @@ export const Play = (props) => {
     </div>
   )
 }
+
+export default Play;

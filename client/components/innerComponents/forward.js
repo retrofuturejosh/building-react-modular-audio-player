@@ -1,6 +1,6 @@
 import React from 'react';
 
-export const Forward = (props) => {
+const Forward = (props) => {
   let {
     handleHoverOver,
     handleHoverOut,
@@ -24,5 +24,7 @@ export const Forward = (props) => {
     </div>
   )
 }
+
+export default Forward;
 
 

@@ -1,6 +1,6 @@
 import React from 'react';
 
-export const Rewind = (props) => {
+const Rewind = (props) => {
   let {
     handleHoverOver,
     handleHoverOut,
@@ -24,3 +24,5 @@ export const Rewind = (props) => {
     </div>
   )
 }
+
+export default Rewind;

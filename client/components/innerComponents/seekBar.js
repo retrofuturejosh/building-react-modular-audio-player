@@ -1,6 +1,6 @@
 import React from 'react';
 
-export const SeekBar = (props) => {
+const SeekBar = (props) => {
   let {
     sliderClass,
     seekerVal,
@@ -23,3 +23,5 @@ export const SeekBar = (props) => {
   </div>
   )
 }
+
+export default SeekBar;
