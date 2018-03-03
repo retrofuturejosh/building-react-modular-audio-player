@@ -7,12 +7,12 @@ const audioFiles = [
     src: "/My Head.mp3",
     title: "My Head",
     artist: "Kimmi More"
-  },
-  {
-    src: "/One Night.mp3",
-    artist: "Kimmi Moooooooooooooooooooooore",
-    title: "One Night"
   }
+  // {
+  //   src: "/One Night.mp3",
+  //   artist: "Kimmi Moooooooooooooooooooooore",
+  //   title: "One Night"
+  // }
 ]
 
 const audioFiles2 = [
@@ -52,12 +52,12 @@ ReactDOM.render(
       // hideTime={true}
       // hideName={true}
       />
-      <AudioPlayer
+      {/* <AudioPlayer
         audioFiles={audioFiles2}
-        iconSize="2em"
-        playerWidth="15em"
-        rearrange={['volume', 'time', 'seek', 'play']}
-      />
+        iconSize="1em"
+        playerWidth="20em"
+        rearrange={[['play', 'loop', 'name', 'volume'], ['rewind', 'seek', 'forward', 'time']]}
+      /> */}
       </div>,
   document.getElementById('app')
 )

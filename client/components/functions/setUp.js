@@ -61,7 +61,7 @@ export function setNameDisplayRef(el) {
   this.nameDisplay = el 
 }
 
-export function setStyle() {
+export function setStyle(tier) {
   let style =  {
     fontFamily: this.state.fontFamily,
     fontWeight: this.state.fontWeight,
@@ -69,6 +69,10 @@ export function setStyle() {
     fontSize: this.state.fontSize,
     width: `${this.state.playerWidth}`,
     height: this.state.playerHeight
+  }
+  if (tier) {
+    style.display = "flex";
+    style.flexDirection = "column";
   }
   return style;
 }

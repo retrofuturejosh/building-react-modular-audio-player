@@ -29,7 +29,7 @@ export function endPlay(e, skipped) {
         playing: false})
     }
     else {
-      if (this.state.loop) this.audioRef.currentTime = 0;
+      if (this.state.loop || skipped) this.audioRef.currentTime = 0;
       if (this.state.playing) this.handlePlay();
     }
     this.setScrollSize();
