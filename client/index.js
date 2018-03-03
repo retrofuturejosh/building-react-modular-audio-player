@@ -7,12 +7,12 @@ const audioFiles = [
     src: "/My Head.mp3",
     title: "My Head",
     artist: "Kimmi More"
+  },
+  {
+    src: "/One Night.mp3",
+    artist: "Kimmi Moooooooooooooooooooooore",
+    title: "One Night"
   }
-  // {
-  //   src: "/One Night.mp3",
-  //   artist: "Kimmi Moooooooooooooooooooooore",
-  //   title: "One Night"
-  // }
 ]
 
 const audioFiles2 = [
@@ -21,9 +21,43 @@ const audioFiles2 = [
   title: "Yas Kween" }
 ]
 
+const rearrangeTest = [
+  { className: "One",
+    style: {marginBottom: "0.3em"},
+    innerComponents: [
+      { type: "name" }
+    ]
+  }, 
+  { className: "Two",
+    style: {marginBottom: "0.3em"},
+    innerComponents: [
+      { type: "play",
+        style: {width: "fit-content"} },
+      { type: "rewind",
+        style: {width: "fit-content"} }, 
+      { type: "forward",
+        style: {width: "fit-content"} },
+      { type: "loop",
+        style: {width: "fit-content"}}
+    ]
+  }, 
+  { className: "Three",
+    style: {marginBottom: "0.3em"},
+    innerComponents: [
+      { type: "time",
+        style: {width: "fit-content"} },
+      { type: "seek"}
+    ]
+  },
+  { className: "Four",
+  innerComponents: [
+      {type : "volume"}
+    ]
+  }  
+]
+
 ReactDOM.render(
-    <div>
-    <AudioPlayer
+    /* <AudioPlayer
       audioFiles={audioFiles}
       // playIcon="/play-light.png"
       // playEngagedIcon="/play-dark.png"
@@ -51,13 +85,15 @@ ReactDOM.render(
       // hideRewind={true}
       // hideTime={true}
       // hideName={true}
-      />
-      {/* <AudioPlayer
+      /> */
+      /* <AudioPlayer
+        audioFiles={audioFiles}
+      /> */
+      <AudioPlayer
         audioFiles={audioFiles2}
-        iconSize="1em"
+        iconSize="1.5rem"
         playerWidth="20em"
-        rearrange={[['play', 'loop', 'name', 'volume'], ['rewind', 'seek', 'forward', 'time']]}
-      /> */}
-      </div>,
+        rearrange={rearrangeTest}
+      />,
   document.getElementById('app')
 )

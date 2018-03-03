@@ -8,51 +8,63 @@ const CustomArrange = (props) => {
     componentObj
   } = props;
   let componentCheck = {};
-  let tier = false;
-  if(Array.isArray(order[0])) tier = true;
+  let defaultTierStyle = {
+    display: "flex", 
+    flexDirection: "row", 
+    justifyContent: "left",
+    alignContent: "left",
+    width: "100%"
+  };
+  let defaultInnerComponentStyle = {
+    display: "flex", 
+    alignItems: "center", 
+    justifyContent: "left",
+    width: "100%" 
+  };
+
+  let appendStyle = (originalStyle, additions) => {
+    let newStyle = Object.assign({}, originalStyle)
+    if (additions) {
+      Object.keys(additions).forEach(styleElement => {
+        newStyle[styleElement] = additions[styleElement]
+      })
+    }
+    return newStyle;
+  }
 
   return (
-    <div className="audio-player"
-      style={setStyle(tier)}>
+    <div 
+      className="audio-player"
+      style={setStyle(true)}
+    >
       {setAudio()}
-      {order.map((component, idx) => {
-        if (Array.isArray(component)) {
+      {order.map((tier, idx) => {
+        let tierStyle = appendStyle(defaultTierStyle, tier.style)
           return (
           <div 
-            className={`level${idx}`}
-            style={{
-              display: "flex", 
-              flexDirection: "row", 
-              justifyContent: "left",
-              alignContent: "left",
-              width: "100%",}}
+            className={tier.className}
+            style={tierStyle}
             key={`level${idx}`}
           >
-            {component.map((innerComponent, idx) => {
-              if (componentCheck[innerComponent]) return null
-              componentCheck[innerComponent] = true;
-              let maxWidth= "100%";
-              if(innerComponent === 'name') maxWidth = "50%"
+            {tier.innerComponents.map((innerComponent, idx) => {
+              let type = innerComponent.type;
+              let currentStyle = appendStyle(defaultInnerComponentStyle, innerComponent.style)
+              if (componentCheck[type]) return null
+              componentCheck[type] = true;
               return (
                 <div 
-                  key={idx}
-                  style={{
-                  display: "flex", 
-                  alignItems: "center", 
-                  justifyContent: "left",
-                  maxWidth }}
+                  key={`innerComponent${idx}`}
+                  style={currentStyle}
                 > 
-                  {componentObj[innerComponent]()} 
+                  {componentObj[type]()} 
                 </div>
               )
             })}
-          </div>)
-        }
-        if (componentCheck[component]) return null
-        componentCheck[component] = true;
-        return <div key={idx}> {componentObj[component]()} </div>
-      })}
-    </div>    
+          </div>
+          )
+        })
+      }
+    </div>
   )
 }
 
