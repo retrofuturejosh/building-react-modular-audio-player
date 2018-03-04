@@ -1,5 +1,8 @@
 import React from 'react';
 
+//prop types
+import { customArrangePropTypes } from '../spec/propTypes'
+
 const CustomArrange = (props) => {
   let {
     order,
@@ -67,5 +70,7 @@ const CustomArrange = (props) => {
     </div>
   )
 }
+
+CustomArrange.propTypes = customArrangePropTypes;
 
 export default CustomArrange;

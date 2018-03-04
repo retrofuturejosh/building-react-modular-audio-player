@@ -1,5 +1,22 @@
 import PropTypes from 'prop-types';
 
+const rearrangeProps = PropTypes.arrayOf(PropTypes.shape({
+  className: PropTypes.string.isRequired,
+  style: PropTypes.object,
+  innerComponents: PropTypes.arrayOf(PropTypes.shape({
+    type: PropTypes.oneOf([
+      "name", 
+      "play", 
+      "rewind", 
+      "forward", 
+      "loop", 
+      "time", 
+      "seek", 
+      "volume"]),
+    style: PropTypes.object
+  }))
+}));
+
 export const audioPlayerPropTypes = {
   audioFiles: PropTypes.arrayOf(PropTypes.shape({
       src: PropTypes.string.isRequired,
@@ -32,20 +49,20 @@ export const audioPlayerPropTypes = {
   hideRewind: PropTypes.bool,
   hideTime: PropTypes.bool,
   hideName: PropTypes.bool,
-  rearrange: PropTypes.arrayOf(PropTypes.shape({
-    className: PropTypes.string.isRequired,
-    style: PropTypes.object,
-    innerComponents: PropTypes.arrayOf(PropTypes.shape({
-      type: PropTypes.oneOf([
-        "name", 
-        "play", 
-        "rewind", 
-        "forward", 
-        "loop", 
-        "time", 
-        "seek", 
-        "volume"]),
-      style: PropTypes.object
-    }))
-  }))
+  rearrange: rearrangeProps
+}
+
+export const customArrangePropTypes = {
+  order: rearrangeProps,
+  setStyle: PropTypes.func,
+  setAudio: PropTypes.func,
+  componentObj: PropTypes.shape({
+    play: PropTypes.func.isRequired,
+    rewind: PropTypes.func.isRequired,
+    forward: PropTypes.func.isRequired,
+    loop: PropTypes.func.isRequired,
+    name: PropTypes.func.isRequired,
+    time: PropTypes.func.isRequired,
+    volume: PropTypes.func.isRequired,
+  })
 }
