@@ -10,7 +10,7 @@ const audioFiles = [
   },
   {
     src: "/One Night.mp3",
-    artist: "Kimmi Moooooooooooooooooooooore",
+    // artist: "Kimmi Moooooooooooooooooooooore",
     title: "One Night"
   }
 ]
@@ -86,14 +86,15 @@ ReactDOM.render(
       // hideTime={true}
       // hideName={true}
       /> */
-      /* <AudioPlayer
-        audioFiles={audioFiles}
-      /> */
+      // <AudioPlayer
+      //   audioFiles={audioFiles}
+      // />
       <AudioPlayer
         audioFiles={audioFiles2}
         iconSize="1.5rem"
-        playerWidth="20em"
+        playerWidth="10em"
         rearrange={rearrangeTest}
-      />,
+      />
+      ,
   document.getElementById('app')
 )
