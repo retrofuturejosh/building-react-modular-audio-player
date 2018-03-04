@@ -1,6 +1,6 @@
 import PropTypes from 'prop-types';
 
-const rearrangeProps = PropTypes.arrayOf(PropTypes.shape({
+let rearrangeProps = PropTypes.arrayOf(PropTypes.shape({
   className: PropTypes.string.isRequired,
   style: PropTypes.object,
   innerComponents: PropTypes.arrayOf(PropTypes.shape({
@@ -17,62 +17,104 @@ const rearrangeProps = PropTypes.arrayOf(PropTypes.shape({
   }))
 }));
 
+let str = PropTypes.string;
+let bool = PropTypes.bool;
+let requiredFunc = PropTypes.func.isRequired
+
+let handleHoverOut = requiredFunc;
+let handleHoverOver = requiredFunc;
+let playIcon = str;
+let playEngagedIcon = str;
+let pauseIcon = str;
+let pauseEngagedIcon = str;
+let volumeIcon = str;
+let volumeEngagedIcon = str;
+let muteIcon = str;
+let muteEngagedIcon = str;
+let forwardIcon = str;
+let forwardHoverIcon = str;
+let rewindIcon = str;
+let rewindHoverIcon = str;
+let loopIcon = str;
+let loopEngagedIcon = str;
+let fontFamily = str;
+let fontSize = str;
+let fontColor = str;
+let fontWeight = str;
+let iconSize = str;
+let sliderClass = str;
+let playerWidth = str;
+let hideSeeking = bool;
+
 export const audioPlayerPropTypes = {
   audioFiles: PropTypes.arrayOf(PropTypes.shape({
-      src: PropTypes.string.isRequired,
-      title: PropTypes.string,
-      artist: PropTypes.string
+      src: str.isRequired,
+      title: str,
+      artist: str
     })).isRequired,
-  playIcon: PropTypes.string,
-  playEngagedIcon: PropTypes.string,
-  pauseIcon: PropTypes.string,
-  pauseEngagedIcon: PropTypes.string,
-  volumeIcon: PropTypes.string,
-  volumeEngagedIcon: PropTypes.string,
-  muteIcon: PropTypes.string,
-  muteEngagedIcon: PropTypes.string,
-  forwardIcon: PropTypes.string,
-  forwardHoverIcon: PropTypes.string,
-  rewindIcon: PropTypes.string,
-  rewindHoverIcon: PropTypes.string,
-  fontFamily: PropTypes.string,
-  fontSize: PropTypes.string,
-  fontColor: PropTypes.string,
-  fontWeight: PropTypes.string,
-  iconSize: PropTypes.string,
-  sliderClass: PropTypes.string,
-  playerWidth: PropTypes.string,
-  hideSeeking: PropTypes.bool,
-  hideForward: PropTypes.bool,
-  hideLoop: PropTypes.bool,
-  loopPlaylist: PropTypes.bool,
-  hideRewind: PropTypes.bool,
-  hideTime: PropTypes.bool,
-  hideName: PropTypes.bool,
+  playIcon,
+  playEngagedIcon,
+  pauseIcon,
+  pauseEngagedIcon,
+  volumeIcon,
+  volumeEngagedIcon,
+  muteIcon,
+  muteEngagedIcon,
+  forwardIcon,
+  forwardHoverIcon,
+  rewindIcon,
+  rewindHoverIcon,
+  loopIcon,
+  loopEngagedIcon,
+  fontFamily,
+  fontSize,
+  fontColor,
+  fontWeight,
+  iconSize,
+  sliderClass,
+  playerWidth,
+  hideSeeking,
+  hideForward: bool,
+  hideLoop: bool,
+  loopPlaylist: bool,
+  hideRewind: bool,
+  hideTime: bool,
+  hideName: bool,
   rearrange: rearrangeProps
 }
 
 export const customArrangePropTypes = {
   order: rearrangeProps,
-  setStyle: PropTypes.func,
-  setAudio: PropTypes.func,
+  setStyle: requiredFunc,
+  setAudio: requiredFunc,
   componentObj: PropTypes.shape({
-    play: PropTypes.func.isRequired,
-    rewind: PropTypes.func.isRequired,
-    forward: PropTypes.func.isRequired,
-    loop: PropTypes.func.isRequired,
-    name: PropTypes.func.isRequired,
-    time: PropTypes.func.isRequired,
-    volume: PropTypes.func.isRequired,
+    play: requiredFunc,
+    rewind: requiredFunc,
+    forward: requiredFunc,
+    loop: requiredFunc,
+    name: requiredFunc,
+    time: requiredFunc,
+    volume: requiredFunc,
   })
 }
 
 export const forwardPropTypes = {
-  handleHoverOver: PropTypes.func.isRequired,
-  handleHoverOut: PropTypes.func.isRequired,
-  endPlay: PropTypes.func.isRequired,
-  forwardHover: PropTypes.bool.isRequired,
-  forwardIcon: PropTypes.string,
-  forwardHoverIcon: PropTypes.string,
-  iconSize: PropTypes.string
+  handleHoverOver,
+  handleHoverOut,
+  endPlay: requiredFunc,
+  forwardHover: bool.isRequired,
+  forwardIcon,
+  forwardHoverIcon,
+  iconSize
+}
+
+export const loopPropTypes = {
+  handleHoverOver,
+  handleHoverOut,
+  iconSize,
+  handleLoop: requiredFunc,
+  loopIcon,
+  loopEngagedIcon,
+  loopHover: bool.isRequired,
+  loop: bool.isRequired
 }
