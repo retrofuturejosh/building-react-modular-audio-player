@@ -16,9 +16,9 @@ This is the react audio player solution you've been looking for! It looks great 
 
 Only required prop is an ARRAY of audioFile OBJECTs, which follow the pattern
 ```
-  { src="/linkToAudioFile",
-    title="Toxic",
-    artist="Britney Spears" }
+  { src: "/linkToAudioFile",
+    title: "Toxic",
+    artist: "Britney Spears" }
 ```
 
 Within the audioFile object, only src is required, title and artist are optional. If you only want to include a single piece of text as the name, set it as the title with no artist.
