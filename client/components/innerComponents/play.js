@@ -1,5 +1,8 @@
 import React from 'react';
 
+import { playPropTypes } from '../spec/propTypes'
+
+
 const Play = (props) => {
   let {
     playing,
@@ -23,5 +26,7 @@ const Play = (props) => {
     </div>
   )
 }
+
+Play.propTypes = playPropTypes;
 
 export default Play;

@@ -1,5 +1,9 @@
 import React from 'react';
 
+//prop types 
+import { rewindPropTypes } from '../spec/propTypes'
+
+
 const Rewind = (props) => {
   let {
     handleHoverOver,
@@ -24,5 +28,7 @@ const Rewind = (props) => {
     </div>
   )
 }
+
+Rewind.propTypes = rewindPropTypes;
 
 export default Rewind;

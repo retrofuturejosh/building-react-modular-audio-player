@@ -1,5 +1,8 @@
 import React from 'react';
 
+//prop types 
+import { seekBarPropTypes } from '../spec/propTypes'
+
 const SeekBar = (props) => {
   let {
     sliderClass,
@@ -28,5 +31,7 @@ const SeekBar = (props) => {
   </div>
   )
 }
+
+SeekBar.propTypes = seekBarPropTypes;
 
 export default SeekBar;

@@ -130,3 +130,30 @@ export const namePropTypes = {
   width: str
 }
 
+export const playPropTypes = {
+  playing: bool.isRequired,
+  handlePause: requiredFunc,
+  handlePlay: requiredFunc,
+  handleHoverOver,
+  handleHoverOut,
+  iconSize,
+  renderPlayIcon: requiredFunc
+}
+
+export const rewindPropTypes = {
+  handleHoverOut,
+  handleHoverOver,
+  handleRewind: requiredFunc,
+  rewindHover: bool.isRequired,
+  rewindHoverIcon,
+  rewindIcon,
+  iconSize
+}
+
+export const seekBarPropTypes = {
+  sliderClass,
+  seekerVal: str.isRequired,
+  handleSeekSlider: requiredFunc,
+  handleSeek: requiredFunc,
+  width: str.isRequired
+}
