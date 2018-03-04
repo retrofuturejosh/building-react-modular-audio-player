@@ -1,4 +1,5 @@
 import React from 'react';
+import { forwardPropTypes } from '../spec/propTypes'
 
 const Forward = (props) => {
   let {
@@ -24,6 +25,8 @@ const Forward = (props) => {
     </div>
   )
 }
+
+Forward.propTypes = forwardPropTypes;
 
 export default Forward;
 

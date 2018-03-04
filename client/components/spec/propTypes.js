@@ -66,3 +66,13 @@ export const customArrangePropTypes = {
     volume: PropTypes.func.isRequired,
   })
 }
+
+export const forwardPropTypes = {
+  handleHoverOver: PropTypes.func.isRequired,
+  handleHoverOut: PropTypes.func.isRequired,
+  endPlay: PropTypes.func.isRequired,
+  forwardHover: PropTypes.bool.isRequired,
+  forwardIcon: PropTypes.string,
+  forwardHoverIcon: PropTypes.string,
+  iconSize: PropTypes.string
+}
