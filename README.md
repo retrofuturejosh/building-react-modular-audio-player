@@ -1,4 +1,4 @@
-# react_html5_audio_wrapper
+#React Custom Audio Player
 
 
 Under Construction!!!!!!
@@ -6,12 +6,13 @@ Under Construction!!!!!!
 This is the react audio player solution you've been looking for! It looks great with almost no learning curve, and setup is fast 'n easy. If you want more options, it's highly customizable and easily styled.
 
 
-Features
+##Features
+
 •Single component, ready for use instantly
 •Customizable, moduluar, and stylable. Add your own icons/buttons, change the order, decide which subcomponents/buttons are rendered
 
 
-Setup
+##Setup
 
 Only required prop is an ARRAY of audioFile OBJECTs, which follow the pattern
   { src="/linkToAudioFile",
@@ -20,7 +21,7 @@ Only required prop is an ARRAY of audioFile OBJECTs, which follow the pattern
   }
 Within the audioFile object, only src is required, title and artist are optional. If you only want to include a single piece of text as the name, set it as the title with no artist.
 
-Below is a simple example.
+###Below is a simple example.
 
 ```
 import AudioPlayer from 'react-custom-audio-player';
@@ -44,7 +45,7 @@ import AudioPlayer from 'react-custom-audio-player';
 />
 ```
 
-Acceptable Props
+##Acceptable Props
 
 | Prop Name  | Value Type | Default Value | isRequired | Explanation |
 | ---------- | ---------- | ------------- | ---------- | ----------- |
