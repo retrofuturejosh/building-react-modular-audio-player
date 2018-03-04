@@ -1,7 +1,7 @@
 # React Custom Audio Player
 
 
-Under Construction!!!!!!
+## CURRENTLY UNDER CONSTRUCTION!!!!!!
 
 This is the react audio player solution you've been looking for! It looks great with almost no learning curve, and setup is fast 'n easy. If you want more options, it's highly customizable and easily styled.
 
@@ -15,10 +15,12 @@ This is the react audio player solution you've been looking for! It looks great 
 ## Setup
 
 Only required prop is an ARRAY of audioFile OBJECTs, which follow the pattern
+
   { src="/linkToAudioFile",
     title="Toxic",
     artist="Britney Spears"
   }
+  
 Within the audioFile object, only src is required, title and artist are optional. If you only want to include a single piece of text as the name, set it as the title with no artist.
 
 ### Below is a simple example.
