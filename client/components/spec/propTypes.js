@@ -1,5 +1,11 @@
 import PropTypes from 'prop-types';
 
+//shorten PropTypes
+let str = PropTypes.string;
+let bool = PropTypes.bool;
+let requiredFunc = PropTypes.func.isRequired
+
+//for more than one component
 let rearrangeProps = PropTypes.arrayOf(PropTypes.shape({
   className: PropTypes.string.isRequired,
   style: PropTypes.object,
@@ -16,11 +22,6 @@ let rearrangeProps = PropTypes.arrayOf(PropTypes.shape({
     style: PropTypes.object
   }))
 }));
-
-let str = PropTypes.string;
-let bool = PropTypes.bool;
-let requiredFunc = PropTypes.func.isRequired
-
 let handleHoverOut = requiredFunc;
 let handleHoverOver = requiredFunc;
 let playIcon = str;
@@ -37,10 +38,6 @@ let rewindIcon = str;
 let rewindHoverIcon = str;
 let loopIcon = str;
 let loopEngagedIcon = str;
-let fontFamily = str;
-let fontSize = str;
-let fontColor = str;
-let fontWeight = str;
 let iconSize = str;
 let sliderClass = str;
 let playerWidth = str;
@@ -66,14 +63,14 @@ export const audioPlayerPropTypes = {
   rewindHoverIcon,
   loopIcon,
   loopEngagedIcon,
-  fontFamily,
-  fontSize,
-  fontColor,
-  fontWeight,
   iconSize,
   sliderClass,
   playerWidth,
   hideSeeking,
+  fontFamily: str,
+  fontSize: str,
+  fontColor: str,
+  fontWeight: str,
   hideForward: bool,
   hideLoop: bool,
   loopPlaylist: bool,
@@ -81,7 +78,7 @@ export const audioPlayerPropTypes = {
   hideTime: bool,
   hideName: bool,
   rearrange: rearrangeProps
-}
+};
 
 export const customArrangePropTypes = {
   order: rearrangeProps,
@@ -96,7 +93,7 @@ export const customArrangePropTypes = {
     time: requiredFunc,
     volume: requiredFunc,
   })
-}
+};
 
 export const forwardPropTypes = {
   handleHoverOver,
@@ -106,7 +103,7 @@ export const forwardPropTypes = {
   forwardIcon,
   forwardHoverIcon,
   iconSize
-}
+};
 
 export const loopPropTypes = {
   handleHoverOver,
@@ -117,7 +114,7 @@ export const loopPropTypes = {
   loopEngagedIcon,
   loopHover: bool.isRequired,
   loop: bool.isRequired
-}
+};
 
 export const namePropTypes = {
   hideSeeking,
@@ -128,7 +125,7 @@ export const namePropTypes = {
   artist: str,
   title: str,
   width: str
-}
+};
 
 export const playPropTypes = {
   playing: bool.isRequired,
@@ -138,7 +135,7 @@ export const playPropTypes = {
   handleHoverOut,
   iconSize,
   renderPlayIcon: requiredFunc
-}
+};
 
 export const rewindPropTypes = {
   handleHoverOut,
@@ -148,7 +145,7 @@ export const rewindPropTypes = {
   rewindHoverIcon,
   rewindIcon,
   iconSize
-}
+};
 
 export const seekBarPropTypes = {
   sliderClass,
@@ -156,12 +153,12 @@ export const seekBarPropTypes = {
   handleSeekSlider: requiredFunc,
   handleSeek: requiredFunc,
   width: str.isRequired
-}
+};
 
 export const timePropTypes = {
   currentAudioTime: str.isRequired,
   duration: str.isRequired
-}
+};
 
 export const volumePropTypes = {
   hideSeeking,
@@ -174,4 +171,4 @@ export const volumePropTypes = {
   volume: str.isRequired,
   handleVolume: requiredFunc,
   width: str.isRequired
-}
+};
