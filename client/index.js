@@ -32,13 +32,13 @@ const rearrangeTest = [
     style: {marginBottom: "0.3em"},
     innerComponents: [
       { type: "play",
-        style: {width: "fit-content"} },
+        style: {justifyContent: "center"}},
       { type: "rewind",
-        style: {width: "fit-content"} }, 
+        style: {justifyContent: "center"}}, 
       { type: "forward",
-        style: {width: "fit-content"} },
+        style: {justifyContent: "center"}},
       { type: "loop",
-        style: {width: "fit-content"}}
+        style: {justifyContent: "center"}}
     ]
   }, 
   { className: "Three",
@@ -94,6 +94,7 @@ ReactDOM.render(
         iconSize="1.5rem"
         playerWidth="10em"
         rearrange={rearrangeTest}
+        fontSize="1.5rem"
       />
       ,
   document.getElementById('app')
