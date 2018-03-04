@@ -14,7 +14,7 @@ This is the react audio player solution you've been looking for! It looks great 
 
 ## Setup
 
-Only required prop is an ARRAY of audioFile OBJECTs, which follow the pattern
+Only required prop is an ARRAY of audioFile OBJECTs, which follows the pattern
 ```
   [{ src: "/linkToAudioFile",
     title: "Toxic",
@@ -29,8 +29,7 @@ Within the audioFile object, only src is required, title and artist are optional
 import AudioPlayer from 'react-custom-audio-player';
 
 //inside render() function
-<AudioPlayer 
-  audioFiles=[
+let playlist = [
     { src="/music.mp3",
       title="Song",
       artist="Singer" },
@@ -38,6 +37,9 @@ import AudioPlayer from 'react-custom-audio-player';
       title="Only A Single Name" },
     { src="/musicWithNoTitleorArtist.mp3" }
   ]
+  
+<AudioPlayer 
+  audioFiles={playlist}
 />
 ```
 
