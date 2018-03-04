@@ -29,5 +29,3 @@ const Forward = (props) => {
 Forward.propTypes = forwardPropTypes;
 
 export default Forward;
-
-

@@ -118,3 +118,15 @@ export const loopPropTypes = {
   loopHover: bool.isRequired,
   loop: bool.isRequired
 }
+
+export const namePropTypes = {
+  hideSeeking,
+  setNameDisplayRef: requiredFunc,
+  scrollMarquee: bool.isRequired,
+  scrollMarqueeFunc: requiredFunc,
+  scrollStyle: PropTypes.object,
+  artist: str,
+  title: str,
+  width: str
+}
+

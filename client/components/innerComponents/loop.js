@@ -36,7 +36,3 @@ const Loop = (props) => {
 Loop.propTypes = loopPropTypes;
 
 export default Loop;
-
-
-
-

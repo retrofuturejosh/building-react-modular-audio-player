@@ -1,5 +1,9 @@
 import React from 'react';
 
+//prop types
+import { namePropTypes } from '../spec/propTypes'
+
+
 const Name = (props) => {
   let {
     hideSeeking,
@@ -37,5 +41,7 @@ const Name = (props) => {
   </div>
   )
 }
+
+Name.propTypes = namePropTypes;
 
 export default Name;
