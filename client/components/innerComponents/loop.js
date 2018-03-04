@@ -3,7 +3,6 @@ import React from 'react';
 //prop types
 import { loopPropTypes } from '../spec/propTypes'
 
-
 const Loop = (props) => {
   let {
     handleHoverOver,

@@ -1,4 +1,6 @@
 import React from 'react';
+
+//prop types
 import { forwardPropTypes } from '../spec/propTypes'
 
 const Forward = (props) => {

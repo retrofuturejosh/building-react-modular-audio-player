@@ -1,5 +1,8 @@
 import React from 'react';
 
+//prop types 
+import { timePropTypes } from '../spec/propTypes'
+
 const Time = (props) => {
   let {
     currentAudioTime,
@@ -12,5 +15,7 @@ const Time = (props) => {
     </div>
   )
 }
+
+Time.propTypes = timePropTypes;
 
 export default Time;

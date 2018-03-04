@@ -1,5 +1,8 @@
 import React from 'react';
 
+//prop types 
+import { volumePropTypes } from '../spec/propTypes'
+
 const Volume = (props) => {
   let {
     hideSeeking,
@@ -43,5 +46,7 @@ const Volume = (props) => {
     </div>
   )
 }
+
+Volume.propTypes = volumePropTypes;
 
 export default Volume;

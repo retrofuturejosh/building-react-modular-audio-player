@@ -1,7 +1,7 @@
 import React from 'react';
 
+//prop types
 import { playPropTypes } from '../spec/propTypes'
-
 
 const Play = (props) => {
   let {

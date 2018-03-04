@@ -3,7 +3,6 @@ import React from 'react';
 //prop types 
 import { rewindPropTypes } from '../spec/propTypes'
 
-
 const Rewind = (props) => {
   let {
     handleHoverOver,

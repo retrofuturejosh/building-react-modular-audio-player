@@ -157,3 +157,21 @@ export const seekBarPropTypes = {
   handleSeek: requiredFunc,
   width: str.isRequired
 }
+
+export const timePropTypes = {
+  currentAudioTime: str.isRequired,
+  duration: str.isRequired
+}
+
+export const volumePropTypes = {
+  hideSeeking,
+  handleMute: requiredFunc,
+  handleHoverOver,
+  handleHoverOut,
+  iconSize,
+  renderMuteIcon: requiredFunc,
+  sliderClass: str.isRequired,
+  volume: str.isRequired,
+  handleVolume: requiredFunc,
+  width: str.isRequired
+}
