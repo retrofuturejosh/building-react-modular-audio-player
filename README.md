@@ -48,4 +48,7 @@ Acceptable Props
 
 | Prop Name  | Value Type | Default Value | isRequired | Explanation |
 | ---------- | ---------- | ------------- | ---------- | ----------- |
-| audioFiles | array of objects | no default value | yes | array of audioFile objects following the pattern { src: "required string pointing to audio file", title: "optional title of track", artist:"optional artist name"} |
+| audioFiles | array of objects | no default value | yes | array of audioFile objects following the pattern 
+{ src: "required string pointing to audio file",
+  title: "optional title of track", 
+  artist:"optional artist name" } |
