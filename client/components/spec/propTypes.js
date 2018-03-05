@@ -25,9 +25,9 @@ let rearrangeProps = PropTypes.arrayOf(PropTypes.shape({
 let handleHoverOut = requiredFunc;
 let handleHoverOver = requiredFunc;
 let playIcon = str;
-let playEngagedIcon = str;
+let playHoverIcon = str;
 let pauseIcon = str;
-let pauseEngagedIcon = str;
+let pauseHoverIcon = str;
 let volumeIcon = str;
 let volumeEngagedIcon = str;
 let muteIcon = str;
@@ -50,9 +50,9 @@ export const audioPlayerPropTypes = {
       artist: str
     })).isRequired,
   playIcon,
-  playEngagedIcon,
+  playHoverIcon,
   pauseIcon,
-  pauseEngagedIcon,
+  pauseHoverIcon,
   volumeIcon,
   volumeEngagedIcon,
   muteIcon,

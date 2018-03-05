@@ -60,9 +60,9 @@ ReactDOM.render(
     /* <AudioPlayer
       audioFiles={audioFiles}
       // playIcon="/play-light.png"
-      // playEngagedIcon="/play-dark.png"
+      // playHoverIcon="/play-dark.png"
       // pauseIcon="/pause-light.png"
-      // pauseEngagedIcon="pause-dark.png"
+      // pauseHoverIcon="pause-dark.png"
       // volumeIcon="/volume.png"
       // muteIcon="/mute.png"
       // muteEngagedIcon="/mute-dark.png"

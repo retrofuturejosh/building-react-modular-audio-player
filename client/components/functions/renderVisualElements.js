@@ -16,9 +16,9 @@ export function renderPlayIcon() {
   if(this.state.playStarted){
     if(this.state.playHover) {
       //play has started, hovering, playing
-      if(this.state.playing) return this.state.pauseEngagedIcon;
+      if(this.state.playing) return this.state.pauseHoverIcon;
       //play has started, hovering, paused
-      else return this.state.playEngagedIcon;
+      else return this.state.playHoverIcon;
     } else {
       //play has started, NOT hovering, playing
       if(this.state.playing) return this.state.pauseIcon;
@@ -27,7 +27,7 @@ export function renderPlayIcon() {
     }
   } else {
     //play has NOT started, hovering
-    if(this.state.playHover) return this.state.playEngagedIcon;
+    if(this.state.playHover) return this.state.playHoverIcon;
     //play has NOT started, NOT hovering
     else return this.state.playIcon;
   }

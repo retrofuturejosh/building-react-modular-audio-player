@@ -1,7 +1,7 @@
 import playIcon from "./play-light.png";
-import playEngagedIcon from "./play-dark.png";
+import playHoverIcon from "./play-dark.png";
 import pauseIcon from "./pause-light.png";
-import pauseEngagedIcon from "./pause-dark.png";
+import pauseHoverIcon from "./pause-dark.png";
 import volumeIcon from "./volume.png";
 import muteIcon from "./mute.png";
 import muteEngagedIcon from "./mute-dark.png";
@@ -15,9 +15,9 @@ import rewindHoverIcon from "./rewind-dark.png"
 
 export default { 
   playIcon,
-  playEngagedIcon,
+  playHoverIcon,
   pauseIcon,
-  pauseEngagedIcon,
+  pauseHoverIcon,
   volumeIcon,
   muteIcon,
   muteEngagedIcon,

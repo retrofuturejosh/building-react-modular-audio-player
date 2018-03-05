@@ -3,11 +3,11 @@ import React from 'react';
 export function mountComponent() {
   let opts = this.setOpts([
     'playIcon',
-    'playEngagedIcon',
+    'playHoverIcon',
     'pauseIcon',
-    'pauseEngagedIcon',
+    'pauseHoverIcon',
     'volumeIcon',
-    'volumeEngagedIcon',
+    'volumeHoverIcon',
     'muteIcon',
     'muteEngagedIcon',
     'forwardIcon',
