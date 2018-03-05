@@ -55,4 +55,11 @@ let playlist = [
 | hideRewind | bool | false | no | prevents the rewind/previous icon from being rendered |
 | hideTime | bool | false | no | prevents the current time/duration from being rendered|
 | hideName | bool | false | no | prevents the scrolling marquee that displays track name and artist from being rendered |
-| iconSize | string | "1rem" | no | icon images' heights are set to size entered, widths are set to auto, prop can be set to any acceptable css unit |
+| loopPlaylist | bool | false | no | causes the playlist to continue playing again after the last track finishes |
+| sliderClass | string | "slider" | no | sets the className of the volume and seeking input range elements for easier css styling |
+| playIcon | string | included in module | no | accepts a string referencing an img src that will be rendered as the default initial play button |
+| playEngagedIcon | string | included in module | no | accepts a string referencing an img src that will be rendered as the play button when mouse is hovering, note: enter the same string as playIcon if you don't want the icon to change when hovering |
+| pauseIcon | string | included in module | no | accepts a string referencing an img src that will be rendered as the default pause button when track is not playing |
+| pauseEngagedIcon | string | included in module | no | accepts a string referencing an img src that will be rendered as the pause button when mouse is hovering, note: enter the same string as playIcon if you don't want the icon to change when hovering |
+| iconSize | string | "1rem" | no | iconSize can be set to any acceptable css unit, icon images' heights are set to size entered, widths are set to auto |
+
