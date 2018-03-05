@@ -79,7 +79,7 @@ let playlist = [
 | fontSize | string | "small" | no | can be set to any acceptable css font-size, changes font-size of the scrolling title/artist marquee and time/duration |
 | fontColor | string | "black" | no | can be set to any acceptable css color, changes color of the scrolling title/artist marquee and time/duration fonts |
 
-##Rearrange Prop
+## Rearrange Prop
 
 The rearrange prop allows you to render subcomponents in any order you wish. It also allows you to build your audioplayer in multiple columns called tiers. 
 
