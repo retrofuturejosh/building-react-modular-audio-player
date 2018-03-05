@@ -9,16 +9,17 @@ This is the react audio player solution you've been looking for! It looks great 
 ## Features
 
 * Single component, ready for use instantly
-* Customizable, modular, and styleable. Add your own icons/buttons, change the order, decide which subcomponents/buttons are rendered
+* Customizable, modular, and styleable
+* Add your own icons/buttons, change the order, decide which subcomponents/buttons are rendered
 
 
 ## Setup
 
 Only required prop is an ARRAY of audioFile OBJECTs, which follows the pattern
 ```
-  [{ src: "/linkToAudioFile",
-    title: "Toxic",
-    artist: "Britney Spears" }]
+[{ src: "/linkToAudioFile",
+  title: "Toxic",
+  artist: "Britney Spears" }]
 ```
 
 Within the audioFile object, only src is required, title and artist are optional. If you only want to include a single piece of text as the name, set it as the title with no artist.
@@ -48,3 +49,4 @@ let playlist = [
 | Prop Name  | Value Type | Default Value | isRequired | Explanation |
 | ---------- | ---------- | ------------- | ---------- | ----------- |
 | audioFiles | array of objects | no default value | yes | array of audioFile objects following the pattern { src: "required string pointing to audio file", title: "optional title of track", artist:"optional artist name"} |
+| iconSize | string | "1rem" | icon imgages' height height are set to size entered, width set to auto. can be set to any acceptable css unit |
