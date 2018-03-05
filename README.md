@@ -57,9 +57,18 @@ let playlist = [
 | hideName | bool | false | no | prevents the scrolling marquee that displays track name and artist from being rendered |
 | loopPlaylist | bool | false | no | causes the playlist to continue playing again after the last track finishes |
 | sliderClass | string | "slider" | no | sets the className of the volume and seeking input range elements for easier css styling |
-| playIcon | string | included in module | no | accepts a string referencing an img src that will be rendered as the default initial play button |
-| playHoverIcon | string | included in module | no | accepts a string referencing an img src that will be rendered as the play button when mouse is hovering, note: enter the same string as playIcon if you don't want the icon to change when hovering |
-| pauseIcon | string | included in module | no | accepts a string referencing an img src that will be rendered as the default pause button when track is not playing |
-| pauseHoverIcon | string | included in module | no | accepts a string referencing an img src that will be rendered as the pause button when mouse is hovering, note: enter the same string as playIcon if you don't want the icon to change when hovering |
+| playIcon | string | included in module | no | accepts a string referencing an img src that will be rendered as the default initial play icon |
+| playHoverIcon | string | included in module | no | accepts a string referencing an img src that will be rendered as the play icon when mouse is hovering, note: enter the same string as playIcon if you don't want the icon to change when hovering |
+| pauseIcon | string | included in module | no | accepts a string referencing an img src that will be rendered as the default pause icon |
+| pauseHoverIcon | string | included in module | no | accepts a string referencing an img src that will be rendered as the pause icon when mouse is hovering, note: enter the same string as pauseIcon if you don't want the icon to change when hovering |
+| forwardIcon | string | included in module | no | accepts a string referencing an img src that will be rendered as the default forward icon |
+| forwardHoverIcon | string | included in module | no | accepts a string referencing an img src that will be rendered as the forward icon when mouse is hovering, note: enter the same string as forwardIcon if you don't want the icon to change when hovering |
+| rewindIcon | string | included in module | no | accepts a string referencing an img src that will be rendered as the default rewind icon |
+| rewindHoverIcon | string | included in module | no | accepts a string referencing an img src that will be rendered as the rewind icon when mouse is hovering, note: enter the same string as rewindIcon if you don't want the icon to change when hovering |
+| volumeIcon | string | included in module | no | accepts a string referencing an img src that will be rendered as the default volume icon when track is not playing |
+| volumeEngagedIcon | string | included in module | no | accepts a string referencing an img src that will be rendered as the volume icon when track is playing, note: enter the same string as volumeIcon if you don't want the icon to change when track is playing|
+| muteIcon | string | included in module | no | accepts a string referencing an img src that will be rendered as the default mute icon when track is not playing |
+| muteEngagedIcon | string | included in module | no | accepts a string referencing an img src that will be rendered as the mute icon when track is playing, note: enter the same string as muteIcon if you don't want the icon to change when track is playing |
+
 | iconSize | string | "1rem" | no | iconSize can be set to any acceptable css unit, icon images' heights are set to size entered, widths are set to auto |
 
