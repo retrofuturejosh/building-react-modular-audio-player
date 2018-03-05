@@ -49,6 +49,7 @@ let playlist = [
 | Prop Name  | Value Type | Default Value | isRequired | Explanation |
 | ---------- | ---------- | ------------- | ---------- | ----------- |
 | audioFiles | array of objects | no default value | yes | array of audioFile objects following the pattern { src: "required string pointing to audio file", title: "optional title of track", artist:"optional artist name"} |
+| playerWidth | string | "20rem" | no | sets the width of the player, can be set to any acceptable css unit |
 | hideSeeking | bool | false | no | prevents the seeking bar from being rendered |
 | hideForward | bool | false | no | prevents the skip forward icon from being rendered |
 | hideLoop | bool | false | no | prevents the loop current track icon being rendered |
@@ -69,6 +70,8 @@ let playlist = [
 | volumeEngagedIcon | string | included in module | no | accepts a string referencing an img src that will be rendered as the volume icon when track is playing, note: enter the same string as volumeIcon if you don't want the icon to change when track is playing|
 | muteIcon | string | included in module | no | accepts a string referencing an img src that will be rendered as the default mute icon when track is not playing |
 | muteEngagedIcon | string | included in module | no | accepts a string referencing an img src that will be rendered as the mute icon when track is playing, note: enter the same string as muteIcon if you don't want the icon to change when track is playing |
-
-| iconSize | string | "1rem" | no | iconSize can be set to any acceptable css unit, icon images' heights are set to size entered, widths are set to auto |
-
+| iconSize | string | "1rem" | no | can be set to any acceptable css unit, icon images' heights are set to size entered, widths are set to auto |
+| fontFamily | string | "sans-serif" | no | can be set to any acceptable css font-family, changes font of the scrolling title/artist marquee and time/duration |
+| fontWeight | string | "100" | can be set to any acceptable css font-weight, changes font-weight of the scrolling title/artist marquee and time/duration |
+| fontSize | string | "small" | can be set to any acceptable css font-size, changes font-size of the scrolling title/artist marquee and time/duration |
+| fontColor | string | "black" | can be set to any acceptable css color, changes color of the scrolling title/artist marquee and time/duration fonts |
