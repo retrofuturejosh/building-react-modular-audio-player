@@ -29,13 +29,13 @@ Within the audioFile object, only src is required, title and artist are optional
 import AudioPlayer from 'react-custom-audio-player';
 
 let playlist = [
-    { src="/music.mp3",
-      title="Song",
-      artist="Singer" },
-    { src="/moreMusic.mp3"
-      title="Only A Single Name" },
-    { src="/musicWithNoTitleorArtist.mp3" }
-  ]
+  { src="/music.mp3",
+    title="Song",
+    artist="Singer" },
+  { src="/moreMusic.mp3"
+    title="Only A Single Name" },
+  { src="/musicWithNoTitleorArtist.mp3" }
+];
 
 //inside render() function
 <AudioPlayer 
