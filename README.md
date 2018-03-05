@@ -50,9 +50,9 @@ let playlist = [
 | ---------- | ---------- | ------------- | ---------- | ----------- |
 | audioFiles | array of objects | no default value | yes | array of audioFile objects following the pattern { src: "required string pointing to audio file", title: "optional title of track", artist:"optional artist name"} |
 | hideSeeking | bool | false | no | prevents the seeking bar from being rendered |
-| hideForward | bool | false | no | hides the skip forward icon |
-| hideLoop | bool | false | no | hides the loop current track icon |
-| hideRewind | bool | false | no | hides the rewind/previous icon |
-| hideTime | bool | false | no | hides the current time/duration |
-| hideName | bool | false | no | hides the scrolling marquee that displays track name and artist |
+| hideForward | bool | false | no | prevents the skip forward icon from being rendered |
+| hideLoop | bool | false | no | prevents the loop current track icon being rendered |
+| hideRewind | bool | false | no | prevents the rewind/previous icon from being rendered |
+| hideTime | bool | false | no | prevents the current time/duration from being rendered|
+| hideName | bool | false | no | prevents the scrolling marquee that displays track name and artist from being rendered |
 | iconSize | string | "1rem" | no | icon images' heights are set to size entered, widths are set to auto, prop can be set to any acceptable css unit |
