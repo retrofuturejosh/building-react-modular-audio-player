@@ -49,4 +49,10 @@ let playlist = [
 | Prop Name  | Value Type | Default Value | isRequired | Explanation |
 | ---------- | ---------- | ------------- | ---------- | ----------- |
 | audioFiles | array of objects | no default value | yes | array of audioFile objects following the pattern { src: "required string pointing to audio file", title: "optional title of track", artist:"optional artist name"} |
-| iconSize | string | "1rem" | no | icon images' heights are set to size entered, widths are set to auto. prop can be set to any acceptable css unit |
+| hideSeeking | bool | false | no | prevents the seeking bar from being rendered |
+| hideForward | bool | false | no | hides the skip forward icon |
+| hideLoop | bool | false | no | hides the loop current track icon |
+| hideRewind | bool | false | no | hides the rewind/previous icon |
+| hideTime | bool | false | no | hides the current time/duration |
+| hideName | bool | false | no | hides the scrolling marquee that displays track name and artist |
+| iconSize | string | "1rem" | no | icon images' heights are set to size entered, widths are set to auto, prop can be set to any acceptable css unit |
