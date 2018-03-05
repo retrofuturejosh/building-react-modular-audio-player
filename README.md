@@ -102,13 +102,16 @@ The rearrange prop accepts an array of objects, representing tiers. The tier obj
 {
   //names the div containing the subcomponents
   className: "Any name you would like",
+
   //an optional styling property that appends and rewrites the default styling options for the tier, accepts an object with any jsx inline style properties
   style: {marginBottom: "0.3em"}
+
   //an array of objects arranging desired subcomponents
   innerComponents: [
     {
       //a string, naming the specific subcomponent
       type: "play",
+      
       //an optional styling property that appends and rewrites the default styling options for the div containing the subcomponent, accepts an object with any jsx inline style properties
       style: {width: "fit-content"}
     },
