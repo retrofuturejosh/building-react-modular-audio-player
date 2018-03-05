@@ -49,4 +49,4 @@ let playlist = [
 | Prop Name  | Value Type | Default Value | isRequired | Explanation |
 | ---------- | ---------- | ------------- | ---------- | ----------- |
 | audioFiles | array of objects | no default value | yes | array of audioFile objects following the pattern { src: "required string pointing to audio file", title: "optional title of track", artist:"optional artist name"} |
-| iconSize | string | "1rem" | no | icon imgages' height are set to size entered, width set to auto. prop can be set to any acceptable css unit |
+| iconSize | string | "1rem" | no | icon images' heights are set to size entered, widths are set to auto. prop can be set to any acceptable css unit |
