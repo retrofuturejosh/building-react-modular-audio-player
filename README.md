@@ -99,6 +99,7 @@ The rearrange prop allows you to arrange the following subcomponents. All of the
 The rearrange prop accepts an array of objects, representing tiers. The tier object follows the pattern
 
 ```
+//Example tier that renders only the play icon and the volume icon/range input
 {
   //names the div containing the subcomponents
   className: "First Tier",
@@ -113,7 +114,8 @@ The rearrange prop accepts an array of objects, representing tiers. The tier obj
       //a string, naming the specific subcomponent
       type: "play",
 
-      //an optional styling property that appends and rewrites the default styling options for the div containing the subcomponent
+      //an optional styling property
+      //appends and rewrites the default styling options for the div containing the subcomponent
       //accepts an object with any jsx inline style properties
       style: {width: "fit-content"}
     },
