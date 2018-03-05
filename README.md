@@ -105,7 +105,7 @@ The rearrange prop accepts an array of objects, representing tiers. The tier obj
   className: "First Tier",
 
   //an optional styling property that appends and rewrites the default styling options for the tier
-  //accepts an object with any jsx inline style properties
+  //accepts an object with any JSX inline style properties
   style: {marginBottom: "0.3em"}
 
   //an array of objects arranging desired subcomponents
@@ -116,7 +116,7 @@ The rearrange prop accepts an array of objects, representing tiers. The tier obj
 
       //an optional styling property
       //appends and rewrites the default styling options for the div containing the subcomponent
-      //accepts an object with any jsx inline style properties
+      //accepts an object with any JSX inline style properties
       style: {width: "fit-content"}
     },
     {
@@ -124,4 +124,72 @@ The rearrange prop accepts an array of objects, representing tiers. The tier obj
     }
   ]
 }
+```
+
+Tiers have two default inline style properties, tier and innerComponent. Both of these JSX inline styles can be appended or rewritten with the style properties available within the rearrange prop.
+
+The tier div itself, which contains all the tier's innerComponents, has the following default style
+```
+defaultTierStyle = {
+  display: "flex", 
+  flexDirection: "row", 
+  justifyContent: "left",
+  alignContent: "left",
+  width: "100%"
+}
+```
+The innerComponent div, which contains a specific subcomponent, has the following default style
+```
+defaultInnerComponentStyle = {
+  display: "flex", 
+  alignItems: "center", 
+  justifyContent: "left",
+  width: "100%" 
+}
+```
+
+Below is an example of a custom arranged AudioPlayer with two tiers. The first tier contains the play, rewind, forward, and volume innerComponents. The second tier contains the time and seek innerComponents.
+
+```
+let rearrangedPlayer = [
+  {
+    className: "Top Tier",
+    style: {margin: "0.3rem"},
+    innerComponents: [
+      { 
+        type: "play",
+        style: {width: "fit-content"}
+      },
+      {
+        type: "rewind",
+        style: {width: "fit-content"}
+      },
+      {
+        type: "forward",
+        style: {width: "fit-content"}
+      },
+      {
+        type: "volume"
+      }
+    ]
+  },
+  {
+    className: "Bottom Tier",
+    style: {margin: "0rem 0.3rem 0.3rem 0.3rem"},
+    innerComponents: [
+      {
+        type: "time",
+        style: {width: "fit-content"}
+      },
+      {
+        type: "seek"
+      }
+    ]
+  }
+]
+
+//render
+<AudioPlayer
+  rearrange={rearrangedPlayer}
+  audioFiles={anArrayOfAudioFileObjects}>
 ```
