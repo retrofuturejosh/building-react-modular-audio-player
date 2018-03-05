@@ -191,5 +191,6 @@ let rearrangedPlayer = [
 //render
 <AudioPlayer
   rearrange={rearrangedPlayer}
-  audioFiles={anArrayOfAudioFileObjects}>
+  audioFiles={anArrayOfAudioFileObjects}
+/>
 ```

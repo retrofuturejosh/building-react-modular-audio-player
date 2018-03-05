@@ -21,6 +21,43 @@ const audioFiles2 = [
   title: "Yas Kween" }
 ]
 
+let rearrangedPlayer = [
+  {
+    className: "Top Tier",
+    style: {margin: "0.3rem"},
+    innerComponents: [
+      { 
+        type: "play",
+        style: {width: "fit-content"}
+      },
+      {
+        type: "rewind",
+        style: {width: "fit-content"}
+      },
+      {
+        type: "forward",
+        style: {width: "fit-content"}
+      },
+      {
+        type: "volume"
+      }
+    ]
+  },
+  {
+    className: "Bottom Tier",
+    style: {margin: "0rem 0.3rem 0.3rem 0.3rem"},
+    innerComponents: [
+      {
+        type: "time",
+        style: {width: "fit-content"}
+      },
+      {
+        type: "seek"
+      }
+    ]
+  }
+]
+
 const rearrangeTest = [
   { className: "One",
     style: {marginBottom: "0.3em"},
@@ -93,7 +130,7 @@ ReactDOM.render(
         audioFiles={audioFiles2}
         iconSize="1.5rem"
         playerWidth="10em"
-        rearrange={rearrangeTest}
+        rearrange={rearrangedPlayer}
         fontSize="1.5rem"
       />
       ,
