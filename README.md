@@ -27,7 +27,7 @@ Within the audioFile object, only src is required, title and artist are optional
 ### Below is a simple example.
 
 ```
-import AudioPlayer from 'react-custom-audio-player';
+import AudioPlayer from 'react-modular-audio-player';
 
 let playlist = [
   { src="/music.mp3",
@@ -193,5 +193,8 @@ let rearrangedPlayer = [
 <AudioPlayer
   rearrange={rearrangedPlayer}
   audioFiles={anArrayOfAudioFileObjects}
+  playerWidth="10em"
+  fontSize="1.5rem"
+  iconSize="1.5rem"
 />
 ```
