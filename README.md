@@ -6,6 +6,8 @@ This is a simple web application used to build, test, and demo a soon-to-be-rele
 
 This is the react audio player solution you've been looking for! It looks great with almost no learning curve, and setup is fast 'n easy. If you want more options, it's highly customizable and easily styled.
 
+<img src="https://github.com/retrofuturejosh/react_html5_audio_wrapper/blob/master/public/example.gif" width="600">
+
 
 ## Features
 
