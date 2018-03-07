@@ -113,6 +113,7 @@ The rearrange prop accepts an array of objects, representing tiers. The tier obj
       style: {JSXstyleElement: "value"}
     },
   ]
+}
 ```
 Below is an example tier rendering the play icon and volume icon/range input with comments.
 ```
