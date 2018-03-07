@@ -1,6 +1,6 @@
 # React Modular Audio Player
 
-This is a simple web application used to build, test, and demo a soon-to-be-released React HTML5 audio player component available through NPM. Information about the component is available below and will be updated frequently.
+This is a simple web application used to build, test, and demo a soon-to-be-released React HTML5 audio player component available through NPM. Information about the component is detailed below and will be updated frequently.
 
 ## CURRENTLY UNDER CONSTRUCTION!!!!!!
 
