@@ -102,15 +102,15 @@ The rearrange prop accepts an array of objects, representing tiers. The tier obj
 //Single Tier Object Shape
 {
   className: "string",
-  style: {styleElement: "value"},
+  style: {JSXstyleElement: "value"},
   innerComponents: [
     {
       name: "subcomponent string name",
-      style: {styleElement: "value", styleElement: "value"}
+      style: {JSXstyleElement: "value", JSXstyleElement: "value"}
     },
     {
       name: "another subcomponent string name",
-      style: {styleElement: "value"}
+      style: {JSXstyleElement: "value"}
     },
   ]
 ```
