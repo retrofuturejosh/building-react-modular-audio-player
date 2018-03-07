@@ -11,7 +11,7 @@ This is the react audio player solution you've been looking for! It looks great 
 
 * Single component, ready for use instantly
 * Customizable, modular, and styleable
-* Add your own icons/buttons, change the order, decide which subcomponents/buttons are rendered
+* Add your own icons, change the order, decide which subcomponents/icons are rendered
 
 
 ## Setup
