@@ -25,18 +25,18 @@ Only required prop is an ARRAY of audioFile OBJECTs, which follows the pattern
 
 Within the audioFile object, only src is required, title and artist are optional. If you only want to include a single piece of text as the name, set it as the title with no artist.
 
-### Below is a simple example.
+### Quick Setup with this simple example.
 
 ```
 import AudioPlayer from 'react-modular-audio-player';
 
 let playlist = [
-  { src="/music.mp3",
-    title="Song",
-    artist="Singer" },
-  { src="/moreMusic.mp3"
-    title="Only A Single Name" },
-  { src="/musicWithNoTitleorArtist.mp3" }
+  { src: "/music.mp3",
+    title: "Song",
+    artist: "Singer" },
+  { src: "/moreMusic.mp3",
+    title: "Another Song",
+    artist: "Another Singer" }
 ];
 
 //inside render() function
