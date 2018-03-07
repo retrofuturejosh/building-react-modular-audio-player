@@ -97,27 +97,42 @@ The rearrange prop allows you to arrange the following subcomponents. All of the
 | "seek" | renders the seeking range input |
 | "volume" | renders the volume/mute icon and corresponding range input |
 
-The rearrange prop accepts an array of objects, representing tiers. The tier object follows the pattern
-
+The rearrange prop accepts an array of objects, representing tiers. The tier object follows the pattern below.
 ```
-//Example tier that renders only the play icon and the volume icon/range input
+//Single Tier Object Shape
 {
-  //names the div containing the subcomponents
-  className: "First Tier",
-
-  //an optional styling property that appends and rewrites the default styling options for the tier
-  //accepts an object with any JSX inline style properties
-  style: {marginBottom: "0.3em"}
-
-  //an array of objects arranging desired subcomponents
+  className: "string",
+  style: {styleElement: "value"},
   innerComponents: [
     {
-      //a string, naming the specific subcomponent
+      name: "subcomponent string name",
+      style: {styleElement: "value}
+    },
+    {
+      name: "another subcomponent string name",
+      style: {styleElement: "value}
+    },
+  ]
+```
+Below is an example tier rendering the play icon and volume icon/range input with comments.
+```
+{
+  //className supplies a CSS class to the div containing the given subcomponents
+  className: "First Tier",
+
+  //style is an optional property that appends and rewrites the default styling options for the current tier
+  //style accepts an object with any JSX inline style properties
+  style: {marginBottom: "0.3em"}
+
+  //innerComponents is an array of objects that arrange the desired subcomponents
+  innerComponents: [
+    {
+      //type is a string that will render a specific subcomponent
       type: "play",
 
-      //an optional styling property
-      //appends and rewrites the default styling options for the div containing the subcomponent
-      //accepts an object with any JSX inline style properties
+      //style is an optional property
+      //style appends and rewrites the default styling options for the div containing the subcomponent
+      //style accepts an object with any JSX inline style properties
       style: {width: "fit-content"}
     },
     {
