@@ -106,11 +106,11 @@ The rearrange prop accepts an array of objects, representing tiers. The tier obj
   innerComponents: [
     {
       name: "subcomponent string name",
-      style: {styleElement: "value}
+      style: {styleElement: "value", styleElement: "value"}
     },
     {
       name: "another subcomponent string name",
-      style: {styleElement: "value}
+      style: {styleElement: "value"}
     },
   ]
 ```
