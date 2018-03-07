@@ -17,8 +17,8 @@ const audioFiles = [
 
 const audioFiles2 = [
   { src: "/One Night.mp3",
-  artist: "YAAAAAAAAAAS Kween",
-  title: "Yas Kween" }
+  artist: "Artist Name",
+  title: "Title of Song" }
 ]
 
 let rearrangedPlayer = [
@@ -126,12 +126,15 @@ ReactDOM.render(
       // <AudioPlayer
       //   audioFiles={audioFiles}
       // />
+      // <AudioPlayer
+      //   audioFiles={audioFiles2}
+      //   iconSize="1.5rem"
+      //   playerWidth="10em"
+      //   rearrange={rearrangedPlayer}
+      //   fontSize="1.5rem"
+      // />
       <AudioPlayer
-        audioFiles={audioFiles2}
-        iconSize="1.5rem"
-        playerWidth="10em"
-        rearrange={rearrangedPlayer}
-        fontSize="1.5rem"
+      audioFiles={audioFiles2}
       />
       ,
   document.getElementById('app')
