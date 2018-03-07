@@ -86,6 +86,8 @@ The rearrange prop allows you to render subcomponents in any order you wish. It 
 
 The rearrange prop allows you to arrange the following subcomponents. All of these subcomponents are referenced by a string name. 
 
+### Available Subcomponents
+
 | Name  | Description |
 | ---------- | ---------- |
 | "play" | renders the play icon |
@@ -97,6 +99,7 @@ The rearrange prop allows you to arrange the following subcomponents. All of the
 | "seek" | renders the seeking range input |
 | "volume" | renders the volume/mute icon and corresponding range input |
 
+### Tier Object
 The rearrange prop accepts an array of objects, representing tiers. The tier object follows the pattern below.
 ```
 //Single Tier Object Shape
@@ -115,6 +118,7 @@ The rearrange prop accepts an array of objects, representing tiers. The tier obj
   ]
 }
 ```
+### Example Tier Object
 Below is an example tier rendering the play icon and volume icon/range input with comments.
 ```
 {
@@ -142,9 +146,9 @@ Below is an example tier rendering the play icon and volume icon/range input wit
   ]
 }
 ```
-
+### Default Styling for rearrange
 Tiers have two default inline style properties, tier and innerComponent. Both of these JSX inline styles can be appended or rewritten with the style properties available within the rearrange prop.
-
+#### Default Tier Styling
 The tier div itself, which contains all the tier's innerComponents, has the following default style
 ```
 defaultTierStyle = {
@@ -155,6 +159,7 @@ defaultTierStyle = {
   width: "100%"
 }
 ```
+#### Default innerComponent Styling
 The innerComponent div, which contains a specific subcomponent, has the following default style
 ```
 defaultInnerComponentStyle = {
@@ -164,7 +169,7 @@ defaultInnerComponentStyle = {
   width: "100%" 
 }
 ```
-
+### Example AudioPlayer using rearrange
 Below is an example of a custom arranged AudioPlayer with two tiers. The first tier contains the play, rewind, forward, and volume innerComponents. The second tier contains the time and seek innerComponents. It appears like this:
 <img src="https://github.com/retrofuturejosh/react_html5_audio_wrapper/blob/master/public/tierExample.png" width="500">
 
