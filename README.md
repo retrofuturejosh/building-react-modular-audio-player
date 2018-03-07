@@ -146,7 +146,7 @@ Below is an example tier rendering the play icon and volume icon/range input wit
   ]
 }
 ```
-### Default Styling when using rearrange Prop
+### Default Styling When Using rearrange Prop
 Tiers have two default inline style properties, tier and innerComponent. Both of these JSX inline styles can be appended or rewritten with the style properties available within the rearrange prop.
 #### Default Tier Styling
 The tier div itself, which contains all the tier's innerComponents, has the following default style
