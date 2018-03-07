@@ -125,9 +125,10 @@ Below is an example tier rendering the play icon and volume icon/range input wit
 ```
 {
   //className supplies a CSS class to the div containing the given subcomponents
-  className: "First Tier",
+  className: "first-tier",
 
-  //style is an optional property that appends and rewrites the default styling options for the current tier
+  //style is an optional property
+  //style appends and rewrites the default styling options for the current tier
   //style accepts an object with any JSX inline style properties
   style: {marginBottom: "0.3em"}
 
@@ -178,7 +179,7 @@ Below is an example of a custom arranged AudioPlayer with two tiers. The first t
 ```
 let rearrangedPlayer = [
   {
-    className: "Top Tier",
+    className: "tier-top",
     style: {margin: "0.3rem"},
     innerComponents: [
       { 
@@ -199,7 +200,7 @@ let rearrangedPlayer = [
     ]
   },
   {
-    className: "Bottom Tier",
+    className: "tier-bottom",
     style: {margin: "0rem 0.3rem 0.3rem 0.3rem"},
     innerComponents: [
       {
