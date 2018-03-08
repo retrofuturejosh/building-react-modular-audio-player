@@ -3,10 +3,10 @@ import PropTypes from 'prop-types';
 //shorten PropTypes
 let str = PropTypes.string,
     bool = PropTypes.bool,
-    requiredFunc = PropTypes.func.isRequired;
+    requiredFunc = PropTypes.func.isRequired,
 
 //for more than one component
-let rearrangeProps = PropTypes.arrayOf(PropTypes.shape({
+    rearrangeProps = PropTypes.arrayOf(PropTypes.shape({
       className: PropTypes.string.isRequired,
       style: PropTypes.object,
       innerComponents: PropTypes.arrayOf(PropTypes.shape({
