@@ -8,8 +8,10 @@ This is the react audio player solution you've been looking for! It looks great 
 
 <img src="https://github.com/retrofuturejosh/react_html5_audio_wrapper/blob/master/public/example.gif" width="600">
 
+## Table of Contents
+1. [Features](#features)
 
-## Features
+## <a name="features"></a>Features
 
 * Single component, ready for use instantly
 * Customizable, modular, and styleable
@@ -226,7 +228,7 @@ let rearrangedPlayer = [
 
 ## Styling
 
-### Whole AudioPlayer component
+### AudioPlayer component
 To style the whole AudioPlayer component, you can target the class 'audio-player'.
 
 ### Icons
