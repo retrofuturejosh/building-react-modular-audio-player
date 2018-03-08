@@ -9,22 +9,23 @@ const CustomArrange = (props) => {
     setStyle,
     setAudio,
     componentObj
-  } = props;
-  let componentCheck = {};
-  let defaultTierStyle = {
+  } = props,
+  componentCheck = {},
+  defaultTierStyle = {
     display: "flex", 
     flexDirection: "row", 
     justifyContent: "left",
     alignContent: "left",
     width: "100%"
-  };
-  let defaultInnerComponentStyle = {
+  },
+  defaultInnerComponentStyle = {
     display: "flex", 
     alignItems: "center", 
     justifyContent: "left",
     width: "100%" 
   };
 
+  //function to edit default style
   let appendStyle = (originalStyle, additions) => {
     let newStyle = Object.assign({}, originalStyle)
     if (additions) {
@@ -50,8 +51,8 @@ const CustomArrange = (props) => {
             key={`level${idx}`}
           >
             {tier.innerComponents.map((innerComponent, idx) => {
-              let type = innerComponent.type;
-              let currentStyle = appendStyle(defaultInnerComponentStyle, innerComponent.style)
+              let type = innerComponent.type,
+                  currentStyle = appendStyle(defaultInnerComponentStyle, innerComponent.style)
               if (componentCheck[type]) return null
               componentCheck[type] = true;
               return (
