@@ -226,6 +226,14 @@ let rearrangedPlayer = [
 
 ## Styling
 
+To style the whole AudioPlayer component, you can target the class 'audio-player'
 
+The icon sizes are set by the iconSize prop, but individual icon sizes and styling can be overwritten by the following selectors.
 
-
+| Selector  | Info |
+| --------- | ---- |
+| #play-icon | requires !important attribute, includes pause icon |
+| #rewind-icon | requires !important attribute |
+| #forward-icon | requires !important attribute |
+| #volume-icon | requires !important attribute |
+| #loop-icon | requires !important attribute |
