@@ -8,17 +8,31 @@ This is the react audio player solution you've been looking for! It looks great 
 
 <img src="https://github.com/retrofuturejosh/react_html5_audio_wrapper/blob/master/public/example.gif" width="600">
 
-## Table of Contents
-1. [Features](#features)
-
-## <a name="features"></a>Features
+### Features
 
 * Single component, ready for use instantly
 * Customizable, modular, and styleable
 * Add your own icons, change the order, decide which subcomponents/icons are rendered
 
+## Table of Contents
+1. [Setup](#setup)
+  * [Quick Setup](#quick)
+2. [Props](#props)
+3. [Rearrange Prop](#rearrange)
+  * [Subcomponents](#subcomponents)
+  * [Tier Object](#tier-object)
+  * [Tier Example](#tier-example)
+  * [Rearrange Styling](#rearrange-styling)
+      * [Default Tier Styling](#default-tier-style)
+      * [Default InnerComponent Styling](#default-innercomponent-style)
+  * [Rearrange Example](#example-rearrange)
+4. [Component Styling](#styling)
+  * [Main AudioPlayer Component](#audio-player-style)
+  * [Icons](#icon-style)
+  * [Range Inputs](#range-style)
 
-## Setup
+
+## <a name="setup"></a>Setup
 
 Only required prop is an ARRAY of audioFile OBJECTs, which follows the pattern
 ```
@@ -29,7 +43,7 @@ Only required prop is an ARRAY of audioFile OBJECTs, which follows the pattern
 
 Within the audioFile object, only src is required, title and artist are optional. If you only want to include a single piece of text as the name, set it as the title with no artist.
 
-### Quick setup with this simple example
+### <a name="quick"></a>Quick setup with this simple example
 
 ```
 import AudioPlayer from 'react-modular-audio-player';
@@ -49,7 +63,7 @@ let playlist = [
 />
 ```
 
-## Acceptable Props
+## <a name="props"></a>Acceptable Props
 
 | Prop Name  | Value Type | Default Value | isRequired | Explanation |
 | ---------- | ---------- | ------------- | ---------- | ----------- |
@@ -84,13 +98,13 @@ let playlist = [
 | fontSize | string | "small" | no | can be set to any acceptable css font-size, changes font-size of the scrolling title/artist marquee and time/duration |
 | fontColor | string | "black" | no | can be set to any acceptable css color, changes color of the scrolling title/artist marquee and time/duration fonts |
 
-## Rearrange Prop
+## <a name="rearrange"></a>Rearrange Prop
 
 The rearrange prop allows you to render subcomponents in any order you wish. It also allows you to build your audioplayer in multiple columns called tiers. 
 
 The rearrange prop allows you to arrange the following subcomponents. All of these subcomponents are referenced by a string name. 
 
-### Available Subcomponents
+### <a name="subcomponents"></a>Available Subcomponents
 
 | Name  | Description |
 | ---------- | ---------- |
@@ -103,7 +117,7 @@ The rearrange prop allows you to arrange the following subcomponents. All of the
 | "seek" | renders the seeking range input |
 | "volume" | renders the volume/mute icon and corresponding range input |
 
-### Tier Object
+### <a name="tier-object"></a>Tier Object
 The rearrange prop accepts an array of objects, representing tiers. The tier object follows the pattern below.
 ```
 //Single Tier Object Shape
@@ -122,7 +136,7 @@ The rearrange prop accepts an array of objects, representing tiers. The tier obj
   ]
 }
 ```
-### Example Tier Object
+### <a name="tier-example"></a>Example Tier Object
 Below is an example tier rendering the play icon and volume icon/range input with comments.
 ```
 {
@@ -151,9 +165,9 @@ Below is an example tier rendering the play icon and volume icon/range input wit
   ]
 }
 ```
-### Default Styling When Using rearrange Prop
+### <a name="rearrange-styling"></a>Default Styling When Using rearrange Prop
 Tiers have two default inline style properties, tier and innerComponent. Both of these JSX inline styles can be appended or rewritten with the style properties available within the rearrange prop.
-#### Default Tier Styling
+#### <a name="default-tier-style"></a>Default Tier Styling
 The tier div itself, which contains all the tier's innerComponents, has the following default style
 ```
 defaultTierStyle = {
@@ -164,7 +178,7 @@ defaultTierStyle = {
   width: "100%"
 }
 ```
-#### Default innerComponent Styling
+#### <a name="default-innercomponent-style"></a>Default innerComponent Styling
 The innerComponent div, which contains a specific subcomponent, has the following default style
 ```
 defaultInnerComponentStyle = {
@@ -174,7 +188,7 @@ defaultInnerComponentStyle = {
   width: "100%" 
 }
 ```
-### Example AudioPlayer using rearrange
+### <a name="example-rearrange"></a>Example AudioPlayer using rearrange
 Below is an example of a custom arranged AudioPlayer with two tiers. The first tier contains the play, rewind, forward, and volume innerComponents. The second tier contains the time and seek innerComponents. It appears like this:
 <img src="https://github.com/retrofuturejosh/react_html5_audio_wrapper/blob/master/public/tierExample.png" width="500">
 
@@ -226,12 +240,12 @@ let rearrangedPlayer = [
 />
 ```
 
-## Styling
+## <a name="styling"></a>Styling
 
-### AudioPlayer component
+### <a name="audio-player-style"></a>AudioPlayer component
 To style the whole AudioPlayer component, you can target the class 'audio-player'.
 
-### Icons
+### <a name="icon-style"></a>Icons
 The icon sizes are set by the iconSize prop, but individual icon sizes and styling can be overwritten by the following selectors.
 
 | Selector  | Info |
@@ -243,7 +257,7 @@ The icon sizes are set by the iconSize prop, but individual icon sizes and styli
 | #loop-icon | requires !important attribute |
 
 
-### Range-input
+### <a name="range-style"></a>Range-input
 To style the range-input for the volume and seek subcomponents, provide a class selector name for the sliderClass prop (not 'slider', which will have the default styling). I recommend using http://danielstern.ca/range.css/#/ to generate your desired slider style. Include the class name you provided as a prop in the Namespace input at the bottom of the page under 'General'. Copy the generated code into your style sheet and Voila!, a new slider style. 
 ```
 //in render()
