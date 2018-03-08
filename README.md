@@ -16,20 +16,20 @@ This is the react audio player solution you've been looking for! It looks great 
 
 ## Table of Contents
 1. [Setup](#setup)
-  * [Quick Setup](#quick)
+    * [Quick Setup](#quick)
 2. [Props](#props)
 3. [Rearrange Prop](#rearrange)
-  * [Subcomponents](#subcomponents)
-  * [Tier Object](#tier-object)
-  * [Tier Example](#tier-example)
-  * [Rearrange Styling](#rearrange-styling)
-      * [Default Tier Styling](#default-tier-style)
-      * [Default InnerComponent Styling](#default-innercomponent-style)
-  * [Rearrange Example](#example-rearrange)
+    * [Subcomponents](#subcomponents)
+    * [Tier Object](#tier-object)
+    * [Tier Example](#tier-example)
+    * [Rearrange Styling](#rearrange-styling)
+        * [Default Tier Styling](#default-tier-style)
+        * [Default InnerComponent Styling](#default-innercomponent-style)
+    * [Rearrange Example](#example-rearrange)
 4. [Component Styling](#styling)
-  * [Main AudioPlayer Component](#audio-player-style)
-  * [Icons](#icon-style)
-  * [Range Inputs](#range-style)
+    * [Main AudioPlayer Component](#audio-player-style)
+    * [Icons](#icon-style)
+    * [Range Inputs](#range-style)
 
 
 ## <a name="setup"></a>Setup
