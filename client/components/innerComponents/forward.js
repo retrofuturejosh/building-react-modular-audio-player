@@ -21,6 +21,7 @@ const Forward = (props) => {
       onMouseLeave={e => handleHoverOut(e, 'forward')}
       onClick={e => endPlay(e, true)}>
       <img
+        id="forward-icon"
         src={forwardHover
         ? forwardHoverIcon
         : forwardIcon}

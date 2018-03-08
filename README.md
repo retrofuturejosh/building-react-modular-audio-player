@@ -223,3 +223,9 @@ let rearrangedPlayer = [
   iconSize="1.5rem"
 />
 ```
+
+## Styling
+
+To style the whole AudioPlayer component, you can target the class 'audio-player'
+
+
