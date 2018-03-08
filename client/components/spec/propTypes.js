@@ -1,47 +1,47 @@
 import PropTypes from 'prop-types';
 
 //shorten PropTypes
-let str = PropTypes.string;
-let bool = PropTypes.bool;
-let requiredFunc = PropTypes.func.isRequired
+let str = PropTypes.string,
+    bool = PropTypes.bool,
+    requiredFunc = PropTypes.func.isRequired;
 
 //for more than one component
 let rearrangeProps = PropTypes.arrayOf(PropTypes.shape({
-  className: PropTypes.string.isRequired,
-  style: PropTypes.object,
-  innerComponents: PropTypes.arrayOf(PropTypes.shape({
-    type: PropTypes.oneOf([
-      "name", 
-      "play", 
-      "rewind", 
-      "forward", 
-      "loop", 
-      "time", 
-      "seek", 
-      "volume"]),
-    style: PropTypes.object
-  }))
-}));
-let handleHoverOut = requiredFunc;
-let handleHoverOver = requiredFunc;
-let playIcon = str;
-let playHoverIcon = str;
-let pauseIcon = str;
-let pauseHoverIcon = str;
-let volumeIcon = str;
-let volumeEngagedIcon = str;
-let muteIcon = str;
-let muteEngagedIcon = str;
-let forwardIcon = str;
-let forwardHoverIcon = str;
-let rewindIcon = str;
-let rewindHoverIcon = str;
-let loopIcon = str;
-let loopEngagedIcon = str;
-let iconSize = str;
-let sliderClass = str;
-let playerWidth = str;
-let hideSeeking = bool;
+      className: PropTypes.string.isRequired,
+      style: PropTypes.object,
+      innerComponents: PropTypes.arrayOf(PropTypes.shape({
+        type: PropTypes.oneOf([
+          "name", 
+          "play", 
+          "rewind", 
+          "forward", 
+          "loop", 
+          "time", 
+          "seek", 
+          "volume"]),
+        style: PropTypes.object
+      }))
+    })),
+    handleHoverOut = requiredFunc,
+    handleHoverOver = requiredFunc,
+    playIcon = str,
+    playHoverIcon = str,
+    pauseIcon = str,
+    pauseHoverIcon = str,
+    volumeIcon = str,
+    volumeEngagedIcon = str,
+    muteIcon = str,
+    muteEngagedIcon = str,
+    forwardIcon = str,
+    forwardHoverIcon = str,
+    rewindIcon = str,
+    rewindHoverIcon = str,
+    loopIcon = str,
+    loopEngagedIcon = str,
+    iconSize = str,
+    sliderClass = str,
+    playerWidth = str,
+    hideSeeking = bool;
 
 export const audioPlayerPropTypes = {
   audioFiles: PropTypes.arrayOf(PropTypes.shape({
