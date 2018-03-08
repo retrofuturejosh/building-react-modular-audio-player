@@ -25,7 +25,8 @@ export function mountComponent() {
     'iconSize'
   ]);
   this.setState(opts, () => {
-    if(!this.props.hideName) this.setScrollSize();
+    if (!this.props.hideName) 
+      this.setScrollSize();
     this.setPercentages();
   });
 }
@@ -33,36 +34,35 @@ export function mountComponent() {
 export function setOpts(settings) {
   let opts = {};
   settings.forEach(setting => {
-    opts[setting] = this.props[setting] ?
-      this.props[setting]
-        :
-      this.state[setting];
+    opts[setting] = this.props[setting]
+      ? this.props[setting]
+      : this.state[setting];
   })
   return opts;
 }
-  
+
 export function setScrollSize() {
   setTimeout(() => {
-      window.requestAnimationFrame(() => {
-        if (this.nameDisplay){
-          let marqueeWidth = this.nameDisplay.scrollWidth;
-          let nameDisplayWidth = this.nameDisplay.offsetWidth;
-          if(marqueeWidth > nameDisplayWidth) {
-            let scrollTime = Math.round((marqueeWidth / nameDisplayWidth) * 1.7);
-            let difference = marqueeWidth - nameDisplayWidth;
-            this.setState({scrollMarquee: true, scrollDifference: difference, scrollTime});
-          }
+    window.requestAnimationFrame(() => {
+      if (this.nameDisplay) {
+        let marqueeWidth = this.nameDisplay.scrollWidth;
+        let nameDisplayWidth = this.nameDisplay.offsetWidth;
+        if (marqueeWidth > nameDisplayWidth) {
+          let scrollTime = Math.round((marqueeWidth / nameDisplayWidth) * 1.7);
+          let difference = marqueeWidth - nameDisplayWidth;
+          this.setState({scrollMarquee: true, scrollDifference: difference, scrollTime});
         }
-      })
+      }
+    })
   }, 0);
 }
 
 export function setNameDisplayRef(el) {
-  this.nameDisplay = el 
+  this.nameDisplay = el
 }
 
 export function setStyle(tier) {
-  let style =  {
+  let style = {
     fontFamily: this.state.fontFamily,
     fontWeight: this.state.fontWeight,
     color: this.state.fontColor,
@@ -80,17 +80,18 @@ export function setStyle(tier) {
 export function setAudio() {
   return <audio
     src={this.props.audioFiles[this.state.currentTrackIdx].src}
-    ref={(audioRef) => { this.audioRef = audioRef; }}
+    ref={(audioRef) => {
+    this.audioRef = audioRef;
+  }}
     onLoadedMetadata={this.loadDuration}
     onPlay={this.startPlay}
-    onEnded={this.endPlay}
-  />
+    onEnded={this.endPlay}/>
 }
 
 export function setPercentages() {
   if (this.props.rearrange) {
     this.setState({volumeWidth: "100%", nameWidth: "100%", seekWidth: "100%"})
-  } else if(this.props.hideSeeking && this.props.hideName) {
+  } else if (this.props.hideSeeking && this.props.hideName) {
     this.setState({volumeWidth: "100%"});
   } else if (this.props.hideSeeking) {
     this.setState({volumeWidth: "50%", nameWidth: "50%"})

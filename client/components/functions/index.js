@@ -1,51 +1,28 @@
-import { 
+import {
   setScrollSize,
   mountComponent,
   setNameDisplayRef,
-  setOpts ,
+  setOpts,
   setStyle,
   setAudio,
   setPercentages
 } from './setUp';
 
-import {
-  startPlay,
-  endPlay,
-  handlePlay,
-  handlePause 
-} from './playPause';
+import {startPlay, endPlay, handlePlay, handlePause} from './playPause';
 
-import {
-  handleProgress,
-  handleSeek,
-  handleSeekSlider
-} from './seek';
+import {handleProgress, handleSeek, handleSeekSlider} from './seek';
 
-import {
-  setTime,
-  secondsToClock,
-  loadDuration
-} from './time';
+import {setTime, secondsToClock, loadDuration} from './time';
 
-import {
-  handleVolume,
-  handleMute
-} from './volume';
+import {handleVolume, handleMute} from './volume';
 
-import { handleRewind } from './rewind';
+import {handleRewind} from './rewind';
 
-import {
-  handleHoverOver,
-  handleHoverOut
-} from './hover';
+import {handleHoverOver, handleHoverOut} from './hover';
 
-import {
-renderPlayIcon,
-renderMuteIcon,
-scrollMarquee
-} from './renderVisualElements';
+import {renderPlayIcon, renderMuteIcon, scrollMarquee} from './renderVisualElements';
 
-import { handleLoop } from './loop';
+import {handleLoop} from './loop';
 
 export default {
   setScrollSize,

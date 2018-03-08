@@ -2,53 +2,52 @@ import PropTypes from 'prop-types';
 
 //shorten PropTypes
 let str = PropTypes.string,
-    bool = PropTypes.bool,
-    requiredFunc = PropTypes.func.isRequired,
+  bool = PropTypes.bool,
+  requiredFunc = PropTypes.func.isRequired,
 
-//for more than one component
-    rearrangeProps = PropTypes.arrayOf(PropTypes.shape({
-      className: PropTypes.string.isRequired,
-      style: PropTypes.object,
-      innerComponents: PropTypes.arrayOf(PropTypes.shape({
-        type: PropTypes.oneOf([
-          "name", 
-          "play", 
-          "rewind", 
-          "forward", 
-          "loop", 
-          "time", 
-          "seek", 
-          "volume"]),
-        style: PropTypes.object
-      }))
-    })),
-    handleHoverOut = requiredFunc,
-    handleHoverOver = requiredFunc,
-    playIcon = str,
-    playHoverIcon = str,
-    pauseIcon = str,
-    pauseHoverIcon = str,
-    volumeIcon = str,
-    volumeEngagedIcon = str,
-    muteIcon = str,
-    muteEngagedIcon = str,
-    forwardIcon = str,
-    forwardHoverIcon = str,
-    rewindIcon = str,
-    rewindHoverIcon = str,
-    loopIcon = str,
-    loopEngagedIcon = str,
-    iconSize = str,
-    sliderClass = str,
-    playerWidth = str,
-    hideSeeking = bool;
+  //for more than one component
+  rearrangeProps = PropTypes.arrayOf(PropTypes.shape({
+    className: PropTypes.string.isRequired,
+    style: PropTypes.object,
+    innerComponents: PropTypes.arrayOf(PropTypes.shape({
+      type: PropTypes.oneOf([
+        "name",
+        "play",
+        "rewind",
+        "forward",
+        "loop",
+        "time",
+        "seek",
+        "volume"
+      ]),
+      style: PropTypes.object
+    }))
+  })),
+  handleHoverOut = requiredFunc,
+  handleHoverOver = requiredFunc,
+  playIcon = str,
+  playHoverIcon = str,
+  pauseIcon = str,
+  pauseHoverIcon = str,
+  volumeIcon = str,
+  volumeEngagedIcon = str,
+  muteIcon = str,
+  muteEngagedIcon = str,
+  forwardIcon = str,
+  forwardHoverIcon = str,
+  rewindIcon = str,
+  rewindHoverIcon = str,
+  loopIcon = str,
+  loopEngagedIcon = str,
+  iconSize = str,
+  sliderClass = str,
+  playerWidth = str,
+  hideSeeking = bool;
 
 export const audioPlayerPropTypes = {
-  audioFiles: PropTypes.arrayOf(PropTypes.shape({
-      src: str.isRequired,
-      title: str,
-      artist: str
-    })).isRequired,
+  audioFiles: PropTypes
+    .arrayOf(PropTypes.shape({src: str.isRequired, title: str, artist: str}))
+    .isRequired,
   playIcon,
   playHoverIcon,
   pauseIcon,
@@ -91,7 +90,7 @@ export const customArrangePropTypes = {
     loop: requiredFunc,
     name: requiredFunc,
     time: requiredFunc,
-    volume: requiredFunc,
+    volume: requiredFunc
   })
 };
 

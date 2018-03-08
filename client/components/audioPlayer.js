@@ -78,67 +78,64 @@ export class AudioPlayer extends Component {
     this.mountComponent();
   }
 
-  render() {
-    let title = this.props.audioFiles[this.state.currentTrackIdx].title;
+render() {
+  let title = this.props.audioFiles[this.state.currentTrackIdx].title;
 
-    if (!this.props.rearrange) {
-      //DEFAULT PLAYER VIEW
-      return (
-        <div className="audio-player"
-          style={this.setStyle()}>
-          {this.setAudio()}
+  if (!this.props.rearrange) {
+    //DEFAULT PLAYER VIEW
+    return (
+      <div className="audio-player" style={this.setStyle()}>
+        {this.setAudio()}
 
-      {/* Main Controls */}
+        {/* Main Controls */}
         {/* Play/Pause */}
-          {this.componentObj.play('first')}
-        
+        {this
+          .componentObj
+          .play('first')}
+
         {/* Rewind */}
-          {this.props.hideRewind ? 
-            null
-              :
-            this.componentObj.rewind()
-          }
+        {this.props.hideRewind
+          ? null
+          : this
+            .componentObj
+            .rewind()
+        }
 
         {/* Forward */}
-          {this.props.hideForward ? 
-            null
-              :
-            this.componentObj.forward()
-          }
+        {this.props.hideForward
+          ? null
+          : this.componentObj.forward()
+        }
 
         {/* Loop */}
-          {this.props.hideLoop ? 
-            null
-              :
-            this.componentObj.loop()
-          }
-  
-      {/* Track Name and Artist */}
-          {this.props.hideName ?
-            null
-              :
-            this.componentObj.name()
-          }
-  
-      {/* Seeking Bar*/}
-          {this.props.hideSeeking ? 
-            null
-              :
-            this.componentObj.seek()
-          }
-        
-      {/* Current Time / Duration */}
-          {this.props.hideTime ?
-            null
-              :
-            this.componentObj.time()
-          }
-  
-      {/* Volume Controls */}
-          {this.componentObj.volume()}
-        </div>
-      )
-    } else {
+        {this.props.hideLoop
+          ? null
+          : this.componentObj.loop()
+        }
+
+        {/* Track Name and Artist */}
+        {this.props.hideName
+          ? null
+          : this.componentObj.name()
+        }
+
+        {/* Seeking Bar*/}
+        {this.props.hideSeeking
+          ? null
+          : this.componentObj.seek()
+        }
+
+        {/* Current Time / Duration */}
+        {this.props.hideTime
+          ? null
+          : this.componentObj.time()
+        }
+
+        {/* Volume Controls */}
+        {this.componentObj.volume()}
+      </div>
+    )
+  } else {
       //Custom Arrangement
       return this.renderCustomArrange();
     }

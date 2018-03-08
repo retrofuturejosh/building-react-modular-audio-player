@@ -1,4 +1,4 @@
-export function handleHoverOver(e, type){
+export function handleHoverOver(e, type) {
   switch (type) {
     case 'play':
       this.setState({playHover: true});
@@ -18,7 +18,7 @@ export function handleHoverOver(e, type){
   }
 }
 
-export function handleHoverOut(e, type){
+export function handleHoverOut(e, type) {
   switch (type) {
     case 'play':
       this.setState({playHover: false});

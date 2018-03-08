@@ -1,4 +1,4 @@
-export function setTime(seekTo){
+export function setTime(seekTo) {
   let time;
   if (seekTo || seekTo === 0) {
     time = seekTo;
@@ -6,10 +6,10 @@ export function setTime(seekTo){
     time = this.audioRef.currentTime;
   }
   let currentAudioTime = this.secondsToClock(time);
-  this.setState({ currentAudioTime });
+  this.setState({currentAudioTime});
 }
 
-export function secondsToClock(time){
+export function secondsToClock(time) {
   let minutes = Math.floor(time / 60);
   let seconds = Math.floor(time - minutes * 60);
   if (seconds < 10) {
@@ -18,7 +18,7 @@ export function secondsToClock(time){
   return `${minutes}:${seconds}`;
 }
 
-export function loadDuration(){
+export function loadDuration() {
   let duration = this.secondsToClock(this.audioRef.duration);
   this.setState({duration})
 }

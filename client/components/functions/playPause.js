@@ -6,9 +6,12 @@ export function startPlay() {
 
 export function endPlay(e, skipped) {
   clearInterval(this.seekingInterval);
-  let endOfTracks = (this.state.currentTrackIdx === this.props.audioFiles.length-1) ?
-    true : false;
-  let nextTrackIdx = endOfTracks ? 0 : 1;
+  let endOfTracks = (this.state.currentTrackIdx === this.props.audioFiles.length - 1)
+    ? true
+    : false;
+  let nextTrackIdx = endOfTracks
+    ? 0
+    : 1;
   if (this.state.loop) {
     nextTrackIdx = this.state.currentTrackIdx;
     endOfTracks = false;
@@ -23,33 +26,32 @@ export function endPlay(e, skipped) {
       marginLeft: "0"
     }
   }, () => {
-    if(endOfTracks && !skipped && !this.props.loopPlaylist) {
-      this.setState({
-        playHover: false,
-        playing: false})
-    }
-    else {
-      if (this.state.loop || skipped) this.audioRef.currentTime = 0;
-      if (this.state.playing) this.handlePlay();
-    }
+    if (endOfTracks && !skipped && !this.props.loopPlaylist) {
+      this.setState({playHover: false, playing: false})
+    } else {
+      if (this.state.loop || skipped) 
+        this.audioRef.currentTime = 0;
+      if (this.state.playing) 
+        this.handlePlay();
+      }
     this.setScrollSize();
   });
 }
 
 export function handlePlay() {
-  this.audioRef.play();
-  this.setState({
-    playing: true,
-    paused: false,});
+  this
+    .audioRef
+    .play();
+  this.setState({playing: true, paused: false});
   this.handleProgress();
 }
 
 export function handlePause() {
   if (this.state.playing) {
     clearInterval(this.seekingInterval);
-    this.audioRef.pause();
-    this.setState({
-      playing: false,
-      paused: true});
+    this
+      .audioRef
+      .pause();
+    this.setState({playing: false, paused: true});
   }
 }

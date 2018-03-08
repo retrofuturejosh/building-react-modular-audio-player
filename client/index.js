@@ -126,16 +126,16 @@ ReactDOM.render(
       // <AudioPlayer
       //   audioFiles={audioFiles}
       // />
-      // <AudioPlayer
-      //   audioFiles={audioFiles2}
-      //   iconSize="1.5rem"
-      //   playerWidth="10em"
-      //   rearrange={rearrangedPlayer}
-      //   fontSize="1.5rem"
-      // />
       <AudioPlayer
-      audioFiles={audioFiles2}
+        audioFiles={audioFiles2}
+        iconSize="1.5rem"
+        playerWidth="10em"
+        rearrange={rearrangedPlayer}
+        fontSize="1.5rem"
       />
+      // <AudioPlayer
+      // audioFiles={audioFiles2}
+      // />
       ,
   document.getElementById('app')
 )
