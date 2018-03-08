@@ -19,7 +19,7 @@ import functions from './functions/index';
 import { default as initialState } from './initialState'
 
 //style sheet
-import './audioWrapperStyle.scss';
+import './audioPlayerStyle.scss';
 
 //prop types
 import { audioPlayerPropTypes } from './spec/propTypes'
