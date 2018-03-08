@@ -1,7 +1,7 @@
 import React from 'react';
 
 //prop types
-import { loopPropTypes } from '../spec/propTypes'
+import {loopPropTypes} from '../spec/propTypes'
 
 const Loop = (props) => {
   let {
@@ -20,14 +20,18 @@ const Loop = (props) => {
       id="loop"
       onMouseOver={e => handleHoverOver(e, 'loop')}
       onMouseLeave={e => handleHoverOut(e, 'loop')}
-      onClick={handleLoop}
-    >
-      <img src={loopHover ? 
-        loop ? loopIcon : loopEngagedIcon
-          : 
-        loop ? loopEngagedIcon : loopIcon}
-        style={{height: iconSize}}
-      />
+      onClick={handleLoop}>
+      <img
+        src={loopHover
+        ? loop
+          ? loopIcon
+          : loopEngagedIcon
+        : loop
+          ? loopEngagedIcon
+          : loopIcon}
+        style={{
+        height: iconSize
+      }}/>
     </div>
   )
 }

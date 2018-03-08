@@ -1,7 +1,7 @@
 import React from 'react';
 
-//prop types 
-import { rewindPropTypes } from '../spec/propTypes'
+//prop types
+import {rewindPropTypes} from '../spec/propTypes'
 
 const Rewind = (props) => {
   let {
@@ -19,11 +19,14 @@ const Rewind = (props) => {
       id="rewind"
       onMouseOver={e => handleHoverOver(e, 'rewind')}
       onMouseLeave={e => handleHoverOut(e, 'rewind')}
-      onClick={handleRewind}
-      >
-      <img src={rewindHover ? 
-        rewindHoverIcon : rewindIcon}
-        style={{height: iconSize}}/>
+      onClick={handleRewind}>
+      <img
+        src={rewindHover
+        ? rewindHoverIcon
+        : rewindIcon}
+        style={{
+        height: iconSize
+      }}/>
     </div>
   )
 }

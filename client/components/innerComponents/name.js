@@ -1,7 +1,7 @@
 import React from 'react';
 
 //prop types
-import { namePropTypes } from '../spec/propTypes'
+import {namePropTypes} from '../spec/propTypes'
 
 const Name = (props) => {
   let {
@@ -12,32 +12,30 @@ const Name = (props) => {
     scrollStyle,
     artist,
     title,
-    width  
+    width
   } = props;
 
   return (
-    <div className="audio-player-track-name"
-      style={{width}}
+    <div
+      className="audio-player-track-name"
+      style={{
+        width
+      }}
       ref={setNameDisplayRef}
-      onMouseOver={scrollMarquee ? 
-        e => scrollMarqueeFunc(e, 'left')
-          :
-        null}
-      onMouseOut={scrollMarquee ? 
-        e => scrollMarqueeFunc(e, 'right')
-          :
-        null}>
-      <div className="marquee"
-        style={scrollStyle}
-      >
-        {artist ? 
-          (`${artist} - `)
-            : 
-          null
+      onMouseOver={scrollMarquee
+      ? e => scrollMarqueeFunc(e, 'left')
+      : null}
+      onMouseOut={scrollMarquee
+      ? e => scrollMarqueeFunc(e, 'right')
+      : null}>
+      <div className="marquee" style={scrollStyle}>
+        {artist
+          ? (`${artist} - `)
+          : null
         }
         {title}
+      </div>
     </div>
-  </div>
   )
 }
 

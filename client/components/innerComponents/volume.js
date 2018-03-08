@@ -1,7 +1,7 @@
 import React from 'react';
 
-//prop types 
-import { volumePropTypes } from '../spec/propTypes'
+//prop types
+import {volumePropTypes} from '../spec/propTypes'
 
 const Volume = (props) => {
   let {
@@ -18,19 +18,21 @@ const Volume = (props) => {
   } = props;
 
   return (
-    <div className="audio-player-volume"
-      style={{width}}
-    >
+    <div 
+      className="audio-player-volume" 
+      style={{
+        width
+      }}>
       <div
         id="volume-button"
         onClick={handleMute}
         onMouseOver={e => handleHoverOver(e, 'mute')}
-        onMouseOut={e => handleHoverOut(e, 'mute')}
-      >
+        onMouseOut={e => handleHoverOut(e, 'mute')}>
         <img 
-          style={{height: iconSize}}
-          src={renderMuteIcon()}
-        />
+          style={{
+            height: iconSize
+          }} 
+          src={renderMuteIcon()}/>
       </div>
       <div className="slide-container">
         <input
@@ -40,8 +42,7 @@ const Volume = (props) => {
           max="100"
           step="1"
           value={volume}
-          onChange={handleVolume}
-        />
+          onChange={handleVolume}/>
       </div>
     </div>
   )

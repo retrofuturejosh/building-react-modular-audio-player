@@ -1,7 +1,7 @@
 import React from 'react';
 
 //prop types
-import { forwardPropTypes } from '../spec/propTypes'
+import {forwardPropTypes} from '../spec/propTypes'
 
 const Forward = (props) => {
   let {
@@ -19,11 +19,14 @@ const Forward = (props) => {
       id="forward"
       onMouseOver={e => handleHoverOver(e, 'forward')}
       onMouseLeave={e => handleHoverOut(e, 'forward')}
-      onClick={e => endPlay(e, true)}
-    >
-      <img src={forwardHover ? 
-        forwardHoverIcon : forwardIcon}
-        style={{height: iconSize}}/>
+      onClick={e => endPlay(e, true)}>
+      <img
+        src={forwardHover
+        ? forwardHoverIcon
+        : forwardIcon}
+        style={{
+        height: iconSize
+      }}/>
     </div>
   )
 }

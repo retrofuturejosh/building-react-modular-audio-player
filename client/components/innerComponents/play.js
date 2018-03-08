@@ -1,7 +1,7 @@
 import React from 'react';
 
 //prop types
-import { playPropTypes } from '../spec/propTypes'
+import {playPropTypes} from '../spec/propTypes'
 
 const Play = (props) => {
   let {
@@ -13,16 +13,18 @@ const Play = (props) => {
     iconSize,
     renderPlayIcon
   } = props;
-  
+
   return (
     <div
       id="play"
-      onClick={playing ? handlePause : handlePlay}
+      onClick={playing
+      ? handlePause
+      : handlePlay}
       onMouseOver={e => handleHoverOver(e, 'play')}
       onMouseLeave={e => handleHoverOut(e, 'play')}>
-      <img 
-        style={{height: iconSize}}
-        src={renderPlayIcon()}/>
+      <img style={{
+        height: iconSize
+      }} src={renderPlayIcon()}/>
     </div>
   )
 }
