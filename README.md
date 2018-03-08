@@ -226,8 +226,10 @@ let rearrangedPlayer = [
 
 ## Styling
 
-To style the whole AudioPlayer component, you can target the class 'audio-player'
+### Whole AudioPlayer component
+To style the whole AudioPlayer component, you can target the class 'audio-player'.
 
+### Icons
 The icon sizes are set by the iconSize prop, but individual icon sizes and styling can be overwritten by the following selectors.
 
 | Selector  | Info |
@@ -237,3 +239,53 @@ The icon sizes are set by the iconSize prop, but individual icon sizes and styli
 | #forward-icon | requires !important attribute |
 | #volume-icon | requires !important attribute |
 | #loop-icon | requires !important attribute |
+
+
+### Range-input
+To style the range-input for the volume and seek subcomponents, provide a class selector name for the sliderClass prop (not 'slider', which will have the default styling). I recommend using http://danielstern.ca/range.css/#/ to generate your desired slider style. Include the class name you provided as a prop in the Namespace input at the bottom of the page under 'General'. Copy the generated code into your style sheet and Voila!, a new slider style. 
+```
+//in render()
+<AudioPlayer
+  sliderClass="my-slider"/>
+
+//in style sheet 
+input[type=range].my-slider {
+  //style
+}
+input[type=range].my-slider:focus {
+  //style
+}
+input[type=range].my-slider::-webkit-slider-runnable-track {
+  //style
+}
+input[type=range].my-slider::-webkit-slider-thumb {
+  //style
+}
+input[type=range].my-slider:focus::-webkit-slider-runnable-track {
+  //style
+}
+input[type=range].my-slider::-moz-range-track {
+  //style
+}
+input[type=range].my-slider::-moz-range-thumb {
+  //style
+}
+input[type=range].my-slider::-ms-track {
+  //style
+}
+input[type=range].my-slider::-ms-fill-lower {
+  //style
+}
+input[type=range].my-slider::-ms-fill-upper {
+  //style
+}
+input[type=range].my-slider::-ms-thumb {
+  //style
+}
+input[type=range].my-slider:focus::-ms-fill-lower {
+  //style
+}
+input[type=range].my-slider:focus::-ms-fill-upper {
+  //style
+}
+```
